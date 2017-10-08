@@ -72,13 +72,13 @@ class Solution:
             while node:
                 hashcode = node.val % new_capacity
 
-                if new_hashTabl[hashcode] is None:
+                if new_hashTable[hashcode] is None:
                     new_hashTable[hashcode] = ListNode(node.val)
                 else:
                     head = new_hashTable[hashcode]
                     while head.next:
                         head = head.next
-                    head.next = node
+                    head.next = ListNode(node.val)
 
                 node = node.next
 
