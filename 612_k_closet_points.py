@@ -28,7 +28,7 @@ class Solution:
         distances = defaultdict(list)
 
         for point in points:
-            distance_sqrt = abs(point.x - origin.x)** 2 + abs(point.y - origin.y) ** 2
+            distance_sqrt = abs(point.x - origin.x) ** 2 + abs(point.y - origin.y) ** 2
             distances[distance_sqrt].append((point.x, point.y))
         i = 1
         for distance in sorted(distances.keys()):
