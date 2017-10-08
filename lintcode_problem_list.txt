@@ -1,0 +1,146 @@
+1 - strStr & Coding Style
+    13. strStr
+    18. Subsets II
+    17. Subsets
+    594. strStr II
+    16. Permutations II
+    15. Permutations
+
+2 - Binary Search
+    459. Closest Number in Sorted Array
+    458. Last Position of Target
+    28. Search a 2D Matrix
+    585. Maximum Number in Mountain Sequence
+    447. Search in a Big Sorted Array
+    159. Find Minimum in Rotated Sorted Array
+    75. Find Peak Element
+    74. First Bad Version
+    62. Search in Rotated Sorted Array
+
+    462. Total Occurrence of Target
+    254. Drop Eggs
+    14. First Position of Target
+    460. K Closest Numbers In Sorted Array
+    414. Divide Two Integers
+    61. Search for a Range
+    38. Search a 2D Matrix II
+    600. Smallest Rectangle Enclosing Black Pixels
+
+3 - Binary Tree & Divide Conquer
+    597. Subtree with Maximum Average
+    596. Minimum Subtree
+    480. Binary Tree Paths
+    453. Flatten Binary Tree to Linked List
+    97. Maximum Depth of Binary Tree
+    93. Balanced Binary Tree
+    67. Binary Tree Inorder Traversal
+    66. Binary Tree Preorder Traversal
+    578. Lowest Common Ancestor III
+    95. Validate Binary Search Tree
+
+    595. Binary Tree Longest Consecutive Sequence
+    376. Binary Tree Path Sum
+    474. Lowest Common Ancestor II
+    246. Binary Tree Path Sum II
+    68. Binary Tree Postorder Traversal
+    619. Binary Tree Longest Consecutive Sequence III
+    614. Binary Tree Longest Consecutive Sequence II
+    475. Binary Tree Maximum Path Sum II
+    448. Inorder Successor in Binary Search Tree
+    378. Convert Binary Search Tree to Doubly Linked List
+    472. Binary Tree Path Sum III
+
+4 - Breadth First Search
+    433. Number of Islands
+    69. Binary Tree Level Order Traversal
+    616. Course Schedule II
+    618. Search Graph Nodes
+    611. Knight Shortest Path
+    598. Zombie in Matrix
+    178. Graph Valid Tree
+    137. Clone Graph
+    7. Binary Tree Serialization
+    573. Build Post Office II
+
+    242. Convert Binary Tree to Linked Lists by Depth Easy
+    624. Remove Substrings Medium
+    605. Sequence Reconstruction Medium
+    531. Six Degrees Medium
+    127. Topological Sorting Medium
+    120. Word Ladder
+
+5 - Depth First Search
+    136. Palindrome Partitioning
+    153. Combination Sum II
+    135. Combination Sum
+    18. Subsets II
+    16. Permutations II
+    15. Permutations
+    121. Word Ladder II
+    120. Word Ladder Medium
+    52. Next Permutation Medium
+    51. Previous Permutation Medium
+    582. Word Break II
+
+6 - Linked List & Array
+    599. Insert into a Cyclic Sorted List
+    165. Merge Two Sorted Lists
+    138. Subarray Sum
+    41. Maximum Subarray
+    139. Subarray Sum Closest
+    105. Copy List with Random Pointer
+    102. Linked List Cycle
+    98. Sort List
+    450. Reverse Nodes in k-Group
+    65. Median of two Sorted Arrays
+
+    548. Intersection of Two Arrays II Easy
+    547. Intersection of Two Arrays Easy
+    96. Partition List Easy
+    64. Merge Sorted Array Easy
+    6. Merge Two Sorted Arrays Easy
+    103. Linked List Cycle II
+
+7 - Two Pointers
+    607. Two Sum - Data structure design
+    521. Remove Duplicate Numbers in Array
+    608. Two Sum - Input array is sorted
+    609. Two Sum - Less than or equal to target
+    587. Two Sum - Unique pairs
+    533. Two Sum - Closest to target
+    148. Sort Colors
+    143. Sort Colors II
+    57. 3Sum
+    31. Partition Array
+
+    604. Window Sum Easy
+    539. Move Zeroes Easy
+    415. Valid Palindrome Easy
+    56. Two Sum Easy
+    625. Partition Array II Medium
+    610. Two Sum - Difference equals to target Medium
+    443. Two Sum - Greater than target Medium
+    461. Kth Smallest Numbers in Unsorted Array Medium
+    382. Triangle Count Medium
+    59. 3Sum Closest Medium
+    58. 4Sum
+
+
+8 - Data Structure
+    128. Hash Function
+    613. High Five
+    612. K Closest Points
+    606. Kth Largest Element II
+    544. Top k Largest Numbers
+    129. Rehashing
+    104. Merge k Sorted Lists
+    4. Ugly Number II
+    594. strStr II
+    134. LRU Cache
+
+    601. Flatten 2D Vector Medium
+    545. Top k Largest Numbers II Medium
+    486. Merge k Sorted Arrays Medium
+    471. Top K Frequent Words Medium
+    130. Heapify Medium
+    124. Longest Consecutive Sequence
