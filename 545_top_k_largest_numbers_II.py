@@ -30,6 +30,7 @@ class Solution:
     idea:
     assume n >>> k
     use min heap to store the top k nums instead of max heap
+
     Min Heap:
         Time:
             add: O(logk)
@@ -39,8 +40,15 @@ class Solution:
     Max Heap:
         Time:
             add: O(logn)
-            topk: O(k)
+            topk: O(klogn)
         Space: O(n)
+
+    List:
+        Time:
+            add: O(1)
+            topk: O(nlogn) .. sorted() + for k loop
+        Space: O(n)
+
     '''
     """
     @param: k: An integer

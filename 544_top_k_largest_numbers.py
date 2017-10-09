@@ -6,7 +6,7 @@ Example
 Given [3,10,1000,-99,4,100] and k = 3.
 Return [1000, 100, 10].
 '''
-from heapq import heappush, heappop, heapify
+from heapq import heappush, heappop
 class Solution:
     """
     @param: nums: an integer array
@@ -14,10 +14,9 @@ class Solution:
     @return: the top k largest numbers in array
     """
     def topk(self, nums, k):
-        largest_kth = k
         result = []
-
         max_heap = []
+
         for num in nums:
             heappush(max_heap, -num)
 
@@ -25,7 +24,6 @@ class Solution:
             result.append(-heappop(max_heap))
 
         return result
-
 
 
 # def main():

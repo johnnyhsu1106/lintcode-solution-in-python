@@ -11,7 +11,8 @@ Given [-3, 1, 2, -3, 4], return [0, 2] or [1, 3].
 class Solution:
     """
     @param: nums: A list of integers
-    @return: A list of integers includes the index of the first number and the index of the last number
+    @return: A list of integers includes the index of the first number and
+    the index of the last number
     """
     def subarraySum_1(self, nums):
         '''
@@ -48,7 +49,6 @@ class Solution:
             if total in pre_sum_table:
                 return [pre_sum_table[total] + 1, i]
             pre_sum_table[total] = i
-            print(pre_sum_table)
 
 # def main():
 #     s = Solution()
