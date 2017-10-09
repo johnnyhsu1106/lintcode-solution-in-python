@@ -32,77 +32,75 @@ class Solution:
     @param: A: Given an integer array
     @return: nothing
     """
-    def heapify(self, nums):
-        for i in range(len(nums) - 1, -1, -1):
-            if self.has_parent(i) and nums[i] < self.parent(i, nums):
-                # if nums[i]  < self.silbing(i, nums):
-                self.swap(i , self.parent_index(i), nums)
-                # else:
-                    # self.swap(self.silbing_index(i), self.parent_index(i), nums)
+    def heapify_1(self, nums):
+        for i in range(len(nums)//2, -1, -1):
+            self.heapify_down(i, nums)
+
+
+
+    def heapify_down(self, i, nums):
+        # i = 0
+        while self.has_left(i, nums):
+            child_index = self.left_index(i)
+            if self.has_right(i, nums) and self.right(i, nums) < self.left(i, nums):
+                child_index = self.right_index(i)
+
+            if nums[i] < nums[child_index]:
+                break
+            else:
+                self.swap(i, child_index, nums)
+            i = child_index
+
 
     def swap(self, i, j, nums):
         nums[i], nums[j] = nums[j], nums[i]
 
-    # def silbing_index(self, i):
-    #     if i % 2 == 1:
-    #         return i + 1
-    #     return i - 1
-    #
-    # def has_silbing(self, i, nums):
-    #     if i % 2 == 1:
-    #         return i + 1 < len(nums)
-    #     return True
-    #
-    # def silbing(self, i , nums):
-    #     if i % 2 == 1:
-    #         if self.has_silbing(i, nums):
-    #             return nums[i + 1]
-    #         return float('inf')
-    #     else:
-    #         return nums[i - 1]
+    def left_index(self, i):
+        return 2 * i + 1
 
-    def parent_index(self, i):
-        if i % 2 == 0:
-            return (i - 2) // 2
-        return (i - 1) // 2
+    def right_index(self, i):
+        return 2 * i + 2
 
-    def has_parent(self, i):
-        return self.parent_index(i) >= 0
+    def has_left(self, i, nums):
+        return self.left_index(i) < len(nums)
 
-    def parent(self, i , nums):
-        if self.has_parent(i):
-            return nums[self.parent_index(i)]
+    def has_right(self, i, nums):
+        return self.right_index(i) < len(nums)
+
+    def left(self, i, nums):
+        if self.has_left(i, nums):
+            return nums[self.left_index(i)]
+
+    def right(self, i, nums):
+        if self.has_right(i, nums):
+            return nums[self.right_index(i)]
 
 
-    # def left_index(self, i):
-    #     return 2 * i + 1
-    #
-    # def right_index(self, i):
-    #     return 2 * i + 2
-    #
-    # def has_left(self, i, nums):
-    #     return self.left_index(i) < len(nums)
-    #
-    # def has_right(self, i, nums):
-    #     return self.right_index(i) < len(nums)
-    #
-    # def left(self, i, nums):
-    #     if self.has_left(i, nums):
-    #         return nums[self.left_index(i)]
-    #     return float('inf')
-    #
-    # def right(self, i, nums):
-    #     if self.has_right(i, nums):
-    #         return nums[self.right_index(i)]
-    #     return float('inf')
+##############################################################################
+
+    def heapify_2(self, nums):
+        for i in range(len(nums) // 2, -1, -1):
+            self.percolate_down(i ,nums)
 
 
+    def percolate_down(self, i, nums):
+        while 2 * i + 1 < len(nums):
+            child_index = 2 * i  + 1
+            if 2 * i + 2 < len(nums) and nums[2 * i + 2] < nums[2 * i + 1]:
+                child_index = 2 * i + 2
 
-def main():
-    s = Solution()
-    nums = [45, 39, 32, 11]
-    s.heapify(nums)
-    print(nums)
+            if nums[i] < nums[child_index]:
+                break
+            else:
+                nums[i], nums[child_index] = nums[child_index], nums[i]
+            i = child_index
 
-if __name__ == '__main__':
-    main()
+
+# def main():
+#     s = Solution()
+#     nums = [45, 39, 32, 11]
+#     s.heapify_2(nums)
+#     print(nums)
+#
+# if __name__ == '__main__':
+#     main()
