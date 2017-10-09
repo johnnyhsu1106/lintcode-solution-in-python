@@ -96,10 +96,23 @@ class Solution:
             i = child_index
 
 
+    def heapify_3(self, nums):
+        for i in range(1, len(nums)):
+            self.percolate_up(i ,nums)
+
+
+    def percolate_up(self, i, nums):
+        while (i - 1) // 2 >= 0 and nums[(i - 1)// 2] > nums[i]:
+            nums[i], nums[(i - 1) // 2] = nums[(i - 1) // 2], nums[i]
+            i = (i - 1) // 2
+
+
+
+# 
 # def main():
 #     s = Solution()
 #     nums = [45, 39, 32, 11]
-#     s.heapify_2(nums)
+#     s.heapify_3(nums)
 #     print(nums)
 #
 # if __name__ == '__main__':
