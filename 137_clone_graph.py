@@ -42,19 +42,19 @@ class Solution:
         root = node
         if not node:
             return node
-
-        mapping ={}
         # 1. get all nodes: a Set of all nodes and mapping node to new node
-        nodes = self.get_nodes_mapping(node, mapping)
+        mapping ={}
+        nodes = self.get_nodes_and_mapping(node, mapping)
 
         # 2. copy all neighbors
+
         for node in nodes:
-            new_node = node_map[node]
+            new_node = mapping[node]
             for neighbor in node.neighbors:
                 new_neighbor = mapping[neighbor]
                 new_node.neighbors.append(new_neighbor)
 
-        return mapping[root]
+        return mapping[node]
 
 
     def get_nodes_and_mapping(self, node, mapping):
@@ -69,3 +69,5 @@ class Solution:
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append(neighbor)
+
+        return visited

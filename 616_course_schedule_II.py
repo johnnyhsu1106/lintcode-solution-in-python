@@ -29,12 +29,9 @@ class Solution:
         # convert prerequisites to course map = {couse: []}
         # Calculate the indegree for each course
 
-        course_map = defaultdict(list)
         indegree = defaultdict(int)
-        #  Initialize the indegree
-        for course in range(numCourses):
-            indegree[course] = 0
-
+        course_map = defaultdict(list)
+        
         for course, pre_course in prerequisites:
             indegree[course] += 1
             course_map[pre_course].append(course)
