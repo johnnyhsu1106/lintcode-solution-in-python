@@ -102,7 +102,6 @@ class Solution:
         left_tail = self.divide_and_conquer(root.left)
         right_tail = self.divide_and_conquer(root.right)
 
-        head = root
         if left_tail:
             left_tail.right = root.right
             root.right = root.left

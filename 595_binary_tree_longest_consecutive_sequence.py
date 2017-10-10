@@ -46,13 +46,13 @@ class Solution:
 
 
 
-    def helper(self, root, parent, length_without_root):
-        if not root:
+    def helper(self, node, parent, length_without_root):
+        if not node:
             return 0
 
-        length = length_without_root + 1 if parent and parent.val + 1 == root.val else 1
-        left_length = self.helper(root.left, root, length)
-        right_length = self.helper(root.right, root,length)
+        length = length_without_root + 1 if parent and parent.val + 1 == node.val else 1
+        left_length = self.helper(node.left, node, length)
+        right_length = self.helper(node.right, node,length)
 
         return max(length, left_length, right_length)
 
