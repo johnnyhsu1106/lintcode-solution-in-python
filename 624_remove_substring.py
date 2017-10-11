@@ -30,16 +30,16 @@ class Solution:
             string = queue.popleft()
 
             for sub in dictionary:
-                found = string.find(sub)
+                found_idx = string.find(sub)
 
-                while found != -1:
-                    new_string = string[:found] + string[found + len(sub):]
+                while found_idx != -1:
+                    new_string = string[:found_idx] + string[found_idx + len(sub):]
                     if new_string not in visited:
                         queue.append(new_string)
                         visited.add(new_string)
                         min_length = min(len(new_string), min_length)
 
-                    found = string.find(sub, found + 1)
+                    found_idx = string.find(sub, found_idx + 1)
 
         return min_length
 
