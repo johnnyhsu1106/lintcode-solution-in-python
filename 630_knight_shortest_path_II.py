@@ -31,6 +31,9 @@ class Solution:
     @return: the shortest path
     """
     def shortestPath2_bfs(self, grid):
+        '''
+        Time Limit Exceeded... in LintCode
+        '''
         from collections import deque
         #  BFS
         if not grid or len(grid) == 0 or len(grid[0]) == 0:

@@ -75,13 +75,12 @@ class Solution:
     def get_next_words(self, word, dictionary):
         next_words = []
         for i in range(len(word)):
-            for j in range(26):
-                index = ord('a') + j
-                if index != ord(word[i]):
-                    new_char = chr(index)
-                    next_word = self.replace_char(i, new_char, word)
-                    if next_word in dictionary:
-                        next_words.append(next_word)
+            for j in range(25):
+                index = (ord(word[i]) + j - ord('a')) % 26 + ord('a')
+                new_char = chr(index)
+                next_word = self.replace_char(i, new_char, word)
+                if next_word in dictionary:
+                    next_words.append(next_word)
 
         return next_words
 

@@ -32,6 +32,7 @@ class Solution:
         result = []
         candidates.sort()
         combination = []
+
         self.dfs(candidates, 0, combination, target, result)
         return result
 
@@ -45,11 +46,10 @@ class Solution:
         for i in range(start_index, len(candidates)):
             if candidates[i] > remain_target:
                 break
-
-            combination.append(candidates[i])
             if i == 0 or candidates[i] != candidates[i - 1]:
+                combination.append(candidates[i])
                 self.dfs(candidates, i, combination, remain_target - candidates[i], result)
-            combination.pop()
+                combination.pop()
 
 # def main():
 #     s = Solution()

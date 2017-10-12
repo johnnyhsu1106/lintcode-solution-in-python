@@ -30,7 +30,15 @@ class Solution:
 
         for i in range(1, n):
             for j in range(i):
-                if step[j] != float('inf') and A[j] >= i - j:
+                if steps[j] != float('inf') and A[j] >= i - j:
                     steps[i] = min(steps[i], steps[j] + 1)
-
         return steps[n - 1]
+
+
+# def main():
+#     s = Solution()
+#     A = [2,3,1,1,4]
+#     print(s.jump(A))
+#
+# if __name__ == '__main__':
+#     main()

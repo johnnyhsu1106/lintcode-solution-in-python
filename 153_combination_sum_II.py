@@ -54,7 +54,7 @@ class Solution:
             if candidates[i] > remain_target:
                 break
 
-            if i == start_index or candidates[i] != candidates[i - 1]:
+            if i == 0 or i == start_index or candidates[i] != candidates[i - 1]:
                 combination.append(candidates[i])
                 self.dfs(candidates, i + 1, combination, remain_target - candidates[i], result)
                 combination.pop()

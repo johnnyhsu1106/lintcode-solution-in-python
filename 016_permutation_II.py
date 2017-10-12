@@ -25,7 +25,8 @@ class Solution:
 
         result = []
         permutation = []
-        visited = [False for i in range(len(nums))]
+        # visited = [False for i in range(len(nums))]
+        visited = set()
         nums.sort()
 
         self.dfs(nums, visited, permutation, result)
@@ -39,18 +40,18 @@ class Solution:
             return
 
         for i in range(len(nums)):
-            if not visited[i]:
-                if i == 0 or nums[i] != nums[i - 1] or visited[i - 1]:
+            if  i not in visited:
+                if i == 0 or nums[i] != nums[i - 1] or i - 1 in visited:
                     permutation.append(nums[i])
-                    visited[i] = True
+                    visited.add(i)
                     self.dfs(nums, visited, permutation, result)
-                    visited[i] = False
+                    visited.discard(i)
                     permutation.pop()
 
 
 # def main():
 #     s = Solution()
-#     nums = [1, 2, 2, 2]
+#     nums = [3, 3, 0, 3]
 #     print(s.permuteUnique(nums))
 #
 # if __name__ == '__main__':
