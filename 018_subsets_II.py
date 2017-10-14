@@ -36,7 +36,7 @@ class Solution:
         return result
 
     def dfs(self, nums, start_index, subset, result):
-        result.append([] + subset)
+        result.append(list(subset))
 
         for i in range(start_index, len(nums)):
             if i == start_index or nums[i] != nums[i-1]:

@@ -48,7 +48,7 @@ class Solution:
         '''
         if current_word == end:
             path.append(end)
-            result.append([]+ path)
+            result.append(list(path))
             path.pop()
             return
 

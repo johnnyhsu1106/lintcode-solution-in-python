@@ -40,7 +40,7 @@ class Solution:
     def dfs(self, candidates, start_index, combination, remain_target, result):
         #  base case (stoppig condition)
         if remain_target == 0:
-            result.append([] + combination)
+            result.append(list(combination))
             return
 
         for i in range(start_index, len(candidates)):

@@ -62,11 +62,11 @@
     7. Binary Tree Serialization
     573. Build Post Office II
 
-    242. Convert Binary Tree to Linked Lists by Depth Easy
-    624. Remove Substrings Medium
-    605. Sequence Reconstruction Medium
-    531. Six Degrees Medium
-    127. Topological Sorting Medium
+    242. Convert Binary Tree to Linked Lists by Depth
+    624. Remove Substrings
+    605. Sequence Reconstruction
+    531. Six Degrees
+    127. Topological Sorting
     120. Word Ladder
 
 5 - Depth First Search
@@ -77,9 +77,9 @@
     16. Permutations II
     15. Permutations
     121. Word Ladder II
-    120. Word Ladder Medium
-    52. Next Permutation Medium
-    51. Previous Permutation Medium
+    120. Word Ladder
+    52. Next Permutation
+    51. Previous Permutation
     582. Word Break II
 
 6 - Linked List & Array
@@ -94,11 +94,11 @@
     450. Reverse Nodes in k-Group
     65. Median of two Sorted Arrays
 
-    548. Intersection of Two Arrays II Easy
-    547. Intersection of Two Arrays Easy
-    96. Partition List Easy
-    64. Merge Sorted Array Easy
-    6. Merge Two Sorted Arrays Easy
+    548. Intersection of Two Arrays II
+    547. Intersection of Two Arrays
+    96. Partition List
+    64. Merge Sorted Array
+    6. Merge Two Sorted Arrays
     103. Linked List Cycle II
 
 7 - Two Pointers
@@ -113,16 +113,16 @@
     57. 3Sum
     31. Partition Array
 
-    604. Window Sum Easy
-    539. Move Zeroes Easy
-    415. Valid Palindrome Easy
-    56. Two Sum Easy
-    625. Partition Array II Medium
-    610. Two Sum - Difference equals to target Medium
-    443. Two Sum - Greater than target Medium
-    461. Kth Smallest Numbers in Unsorted Array Medium
-    382. Triangle Count Medium
-    59. 3Sum Closest Medium
+    604. Window Sum
+    539. Move Zeroes
+    415. Valid Palindrome
+    56. Two Sum
+    625. Partition Array II
+    610. Two Sum - Difference equals to target
+    443. Two Sum - Greater than target
+    461. Kth Smallest Numbers in Unsorted Array
+    382. Triangle Count
+    59. 3Sum Closest 
     58. 4Sum
 
 
@@ -138,9 +138,9 @@
     594. strStr II
     134. LRU Cache
 
-    601. Flatten 2D Vector Medium
-    545. Top k Largest Numbers II Medium
-    486. Merge k Sorted Arrays Medium
-    471. Top K Frequent Words Medium
-    130. Heapify Medium
+    601. Flatten 2D Vector
+    545. Top k Largest Numbers II
+    486. Merge k Sorted Arrays
+    471. Top K Frequent Words
+    130. Heapify
     124. Longest Consecutive Sequence

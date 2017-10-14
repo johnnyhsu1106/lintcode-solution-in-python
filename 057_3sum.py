@@ -63,6 +63,7 @@ class Solution:
         numbers.sort()
         for i in range(0, len(numbers) - 2):
             if i == 0 or numbers[i] != numbers[i - 1]:
+                # left, right = i + 1, len(numbers) - 1
                 left, right = i + 1, len(numbers) - 1
 
                 while left < right:
@@ -87,7 +88,7 @@ class Solution:
         return result
 
 
-# 
+# #
 # def main():
 #     s = Solution()
 #     nums = [-1, 0, 1, 2, -1, -4]

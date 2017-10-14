@@ -38,7 +38,7 @@ class Solution:
     def dfs(self, nums, visited, permutation, result):
 
         if len(permutation) == len(nums):
-            result.append([] + permutation)
+            result.append(list(permutation))
             return
 
         for num in nums:
@@ -49,7 +49,7 @@ class Solution:
                 permutation.pop()
                 visited.discard(num)
 
-
+# 
 # def main():
 #     s = Solution()
 #     nums = [1, 2, 3]

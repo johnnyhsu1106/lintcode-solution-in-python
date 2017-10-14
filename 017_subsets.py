@@ -64,7 +64,7 @@ class Solution:
 
     def dfs(self, nums, start_index, subset, result):
         # append new object with []
-        result.append([] + subset)
+        result.append(list(subset))
 
         for i in range(start_index, len(nums)):
             subset.append(nums[i])

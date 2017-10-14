@@ -31,7 +31,7 @@ class Solution:
     def dfs_partition(self, s, start_index, partitions, result):
 
         if start_index == len(s) :
-            result.append([] + partitions)
+            result.append(partitions.copy())
             return
 
         for i in range(start_index, len(s)):

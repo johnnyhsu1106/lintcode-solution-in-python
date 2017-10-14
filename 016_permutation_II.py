@@ -36,7 +36,7 @@ class Solution:
     def dfs(self, nums, visited, permutation, result):
         # base case
         if len(permutation) == len(nums):
-            result.append([] + permutation)
+            result.append(list(permutation))
             return
 
         for i in range(len(nums)):

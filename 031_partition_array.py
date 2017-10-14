@@ -30,7 +30,7 @@ class Solution:
             return 0
 
         left, right = 0, len(nums) - 1
-        
+
         while left < right:
             while left < right and nums[left] < k:
                 left += 1
