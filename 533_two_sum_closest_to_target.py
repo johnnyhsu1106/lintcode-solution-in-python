@@ -1,4 +1,4 @@
- class Solution:
+class Solution:
     def twoSumClosest(self, nums, target):
         if nums is None or len(nums) == 0:
             return -1;

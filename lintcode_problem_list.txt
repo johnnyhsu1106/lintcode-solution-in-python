@@ -1,4 +1,4 @@
-1 - strStr & Coding Style
+ 1 - strStr & Coding Style
     13. strStr
     18. Subsets II
     17. Subsets
@@ -122,7 +122,7 @@
     443. Two Sum - Greater than target
     461. Kth Smallest Numbers in Unsorted Array
     382. Triangle Count
-    59. 3Sum Closest 
+    59. 3Sum Closest
     58. 4Sum
 
 
@@ -144,3 +144,22 @@
     471. Top K Frequent Words
     130. Heapify
     124. Longest Consecutive Sequence
+
+
+9 - Dynamic Programming
+    115. Unique Paths II
+    114. Unique Paths
+    111. Climbing Stairs
+    110. Minimum Path Sum
+    109. Triangle
+    603. Largest Divisible Subset
+    611. Knight Shortest Path
+    513. Perfect Squares
+    116. Jump Game
+    76. Longest Increasing Subsequence
+
+    272. Climbing Stairs II
+    630. Knight Shortest Path II 
+    117. Jump Game II
+    602. Russian Doll Envelopes
+    622. Frog Jump
