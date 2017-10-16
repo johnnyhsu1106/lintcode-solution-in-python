@@ -40,3 +40,5 @@ class Solution:
     def buildingOutline(self, buildings):
         if len(buildings) == 0:
             return []
+
+        

@@ -101,6 +101,14 @@
     6. Merge Two Sorted Arrays
     103. Linked List Cycle II
 
+        35. Reverse Linked List
+        36. Reverse Linked List II
+        511. Swap Two Nodes in Linked List
+        167. Add Two Numbers
+        221. Add Two Numbers II
+
+
+
 7 - Two Pointers
     607. Two Sum - Data structure design
     521. Remove Duplicate Numbers in Array
@@ -159,7 +167,7 @@
     76. Longest Increasing Subsequence
 
     272. Climbing Stairs II
-    630. Knight Shortest Path II 
+    630. Knight Shortest Path II
     117. Jump Game II
     602. Russian Doll Envelopes
     622. Frog Jump
