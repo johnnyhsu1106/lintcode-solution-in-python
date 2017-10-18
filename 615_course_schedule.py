@@ -40,21 +40,21 @@ class Solution:
             return False
 
         queue = deque(precourses)
-        visited = set(precourses)
+        count_courses = 0
         while queue:
             size = len(queue)
             for i in range(size):
                 course = queue.popleft()
+                count_courses += 1
                 for next_course in course_map[course]:
                     indegree[next_course] -= 1
                     if indegree[next_course] == 0:
                         queue.append(next_course)
-                        visited.add(next_course)
 
-        return len(visited) == numCourses
+        return count_courses == numCourses
 
 
-#
+
 # def main():
 #     s = Solution()
 #     numCourses = 2

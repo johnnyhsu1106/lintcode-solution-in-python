@@ -36,39 +36,69 @@ class Solution:
     @return: nothing
     """
     def reorderList(self, head):
-        if not head:
+        if head is None or head.next is None:
             return head
 
-        tail = self.get_tail(head)
-        node = head.next
-        head.next = tail
-        if tail:
-            tail.next = node
+        middle = self.find_middle(head)
+        tail = self.reverse_list(middle.next)
+        middle.next = None
 
-        self.reorderList(node)
+        self.merge_two_lists(head, tail)
 
 
 
-    def get_tail(self, head):
+    def find_middle(self, head):
+        #  use slow and fast pointer
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
+
+
+    def reverse_list(self, head):
+        prev = None
         curr = head
-        while curr.next:
-            curr = curr.next
-        tail = curr
-        return
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
 
-def main():
-    s = Solution()
-    head = ListNode(1)
-    head.next = ListNode(2)
-    head.next.next = ListNode(3)
-    head.next.next.next = ListNode(4)
-    head.print_all()
-
-    s.reorderList(head)
-    head.print_all()
+        return prev
 
 
+    def merge_two_lists(self, head1, head2):
+        dummy = ListNode(0)
+        head = dummy
+        index = 0
+        while head1 and head2:
+            if index % 2 == 0:
+                head.next = head1
+                head1 = head1.next
+            else:
+                head.next = head2
+                head2 = head2.next
 
+            head = head.next
+            index += 1
 
-if __name__ == '__main__':
-    main()
+        if head1:
+            head.next = head1
+        if head2:
+            head.next = head2
+
+# def main():
+#     s = Solution()
+#     head = ListNode(1)
+#     head.next = ListNode(2)
+#     head.next.next = ListNode(3)
+#     head.next.next.next = ListNode(4)
+#     head.print_all()
+#
+#     s.reorderList(head)
+#     head.print_all()
+#
+# if __name__ == '__main__':
+#     main()

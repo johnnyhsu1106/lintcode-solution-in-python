@@ -1,11 +1,11 @@
 '''
 Given an array of integers, find a contiguous subarray which has the largest sum.
 
- Notice
+Notice
 
 The subarray should contain at least one number.
 
-Have you met this question in a real interview? Yes
+
 Example
 Given the array [−2,2,−3,4,−1,2,1,−5,3], the contiguous subarray [4,−1,2,1] has the largest sum = 6.
 '''
@@ -30,15 +30,16 @@ class Solution:
 
     def maxSubArray_2(self, nums):
         # prefix sum...
-        # p[0] = 0
-        # p[1] = 0 + nums[0]
-        # p[2] = 0 + nums[0] + nums[1]
-        # p[k] = 0 + nums[0] + nums[1]+..... + nums[k-1], sum of k elements
+        # p[0] = nums[0]
+        # p[1] = nums[0] + nums[1]
+        # p[2] = nums[0] + nums[1] + nums[2]
+        # p[k] = nums[0] + nums[1]+..... + nums[k], sum of k elements
         # =================================================================
-        # nums[i:j+1] = p[j+1] - p[i]
+        # sum(nums[i:j+1]) = p[j] - p[i - 1]
 
-        # max_subarry_sum[k] = p[k] - min(p[k-1],p[k-2,...,p[1], p[0]])
-        # max()
+        # max_subarry_sum[k] = p[k] - min(p[k-1],p[k-2,...,p[1], p[0]]) for k = 1 ~ n-1
+        # p[0] = nums[0] - 0
+
 
         if not nums or len(nums) == 0:
             return 0
@@ -60,11 +61,6 @@ class Solution:
 #     nums = [-2, 2, -3, 4, -1, 2, 1, -5, 3]
 #     pre_sum = [0]
 #     total = 0
-#     for num in nums:
-#         total += num
-#         pre_sum.append(total)
-#     print(pre_sum)
-#     # print(s.maxSubArray_1(nums))
 #     print(s.maxSubArray_2(nums))
 #
 # if __name__ == '__main__':

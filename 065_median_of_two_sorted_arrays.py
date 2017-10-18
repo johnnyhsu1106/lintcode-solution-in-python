@@ -30,14 +30,14 @@ class Solution:
 
         if k == 1:
             return min(nums1[0], nums2[0])
-
-        a = nums1[k // 2 - 1] if len(nums1) >= k // 2 else float('inf')
-        b = nums2[k // 2 - 1] if len(nums2) >= k // 2 else float('inf')
+        mid = k // 2
+        a = nums1[mid - 1] if len(nums1) >= mid else float('inf')
+        b = nums2[mid - 1] if len(nums2) >= mid else float('inf')
 
         if a  <  b:
-            return self.find_kth(nums1[k // 2:], nums2, k - k // 2)
+            return self.find_kth(nums1[mid:], nums2, k - mid)
         else:
-            return self.find_kth(nums1, nums2[k // 2:], k - k // 2)
+            return self.find_kth(nums1, nums2[mid:], k - mid)
 
 
     def findMedianSortedArrays_2(self, nums1, nums2):
@@ -60,7 +60,7 @@ class Solution:
         while j < len(nums2):
             nums.append(nums2[i])
             j += 1
-            
+
         if len(nums) % 2 == 1:
             return float(nums[len(nums) // 2])
         else:
@@ -69,9 +69,10 @@ class Solution:
 
 # def main():
 #     s = Solution()
-#     nums1 = [i for i in range(1, 7)]
-#     nums2 = [i for i in range(2, 6)]
+#     nums1 = [1,2,3,4,5,6]
+#     nums2 = [2,3,4,5]
 #     print(s.findMedianSortedArrays_1(nums1, nums2))
+#     # print(s.findMedianSortedArrays_2(nums1, nums2))
 #
 # if __name__ == '__main__':
 #     main()

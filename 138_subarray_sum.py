@@ -21,7 +21,7 @@ class Solution:
         Speace: O(1)
         '''
         result = []
-        for i in range(len(nums)):
+        for i in range(len(nums) - 1):
             total = 0
             for j in range(i, len(nums)):
                 total += nums[j]
@@ -32,13 +32,13 @@ class Solution:
 
     def subarraySum_2(self, nums):
         # p stands for prefix sum
-        # p[0] = 0
-        # p[j] = nums[0] + ... + nums[j-1]
-        # nums[i: j+1] = p[j+1] - p[i]
+        # p[0] = nums[0]
+        # p[j] = nums[0] + ... + nums[j]
+        # sum(nums[i: j+1]) = p[j] - p[i - 1]
 
 
-        # idea: subarray sum, nums[i:j+1] = 0
-        # p[j+1] = p[i]
+        # idea: subarray sum = sum(nums[i:j+1]) = 0
+        # p[j] = p[i - 1]
         # pre_sum_table = {key:value = pre[i]: i }
 
         pre_sum_table = {0: -1}
@@ -52,7 +52,7 @@ class Solution:
 
 # def main():
 #     s = Solution()
-#     nums = [1, -3, 1, 2, -3, 4]
+#     nums = [1, -1]
 #     print(s.subarraySum_1(nums))
 #     print(s.subarraySum_2(nums))
 #

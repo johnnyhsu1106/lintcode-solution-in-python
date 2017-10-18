@@ -10,7 +10,6 @@ Example
 Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].
 '''
 
-
 class Solution:
 
     """
@@ -20,12 +19,13 @@ class Solution:
     """
     def intersection_1(self, nums1, nums2):
         # idea: hash set
-        seen = set(nums1)
-        result = set()
+        unique = set(nums1)
+        result = []
         for num in nums2:
-            if nums in seen:
-                result.add(num)
-        return list(result)
+            if num in unique:
+                result.append(num)
+                unique.discard(num)
+        return result
 
 
     def intersection_2(self, nums1, nums2):
@@ -71,20 +71,27 @@ class Solution:
         # idea: two pointers
         nums1.sort()
         nums2.sort()
-        result = set()
+        result = []
 
         i, j = 0, 0
         while i < len(nums1) and j < len(nums2):
             if nums1[i] == nums2[j]:
-                result.add(nums1[i])
+                result.append(nums1[i])
                 i += 1
                 j += 1
+                while i < len(nums1) and nums1[i] == nums1[i - 1]:
+                    i += 1
+                while j < len(nums2) and nums2[j] == nums2[j - 1]:
+                    j += 1
+
             elif nums1[i] > nums2[j]:
                 j += 1
             else:
                 i += 1
 
-        return list(result)
+        return result
+
+
 
 # def main():
 #     s = Solution()

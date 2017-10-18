@@ -100,12 +100,14 @@
     64. Merge Sorted Array
     6. Merge Two Sorted Arrays
     103. Linked List Cycle II
-
-        35. Reverse Linked List
-        36. Reverse Linked List II
-        511. Swap Two Nodes in Linked List
-        167. Add Two Numbers
-        221. Add Two Numbers II
+    35. Reverse Linked List
+    36. Reverse Linked List II
+    511. Swap Two Nodes in Linked List
+    167. Add Two Numbers
+    221. Add Two Numbers II
+    170. Rotate List
+    90. Reorder List
+    380. Intersection of Two Linked Lists
 
 
 
@@ -171,3 +173,50 @@
     117. Jump Game II
     602. Russian Doll Envelopes
     622. Frog Jump
+
+
+1 - Follow up in Code Interview
+    401. Kth Smallest Number in Sorted Matrix
+    406. Minimum Size Subarray Sum
+    384. Longest Substring Without Repeating Characters
+    386. Longest Substring with At Most K Distinct Characters
+    465. Kth Smallest Sum In Two Sorted Arrays
+
+2 - Data Structure I
+    433. Number of Islands Easy
+    591. Connecting Graph III
+    590. Connecting Graph II
+    589. Connecting Graph
+    178. Graph Valid Tree
+    473. Add and Search Word
+    442. Implement Trie
+    432. Find the Weak Connected Component in the Directed Graph
+    431. Connected Component in Undirected Graph
+    123. Word Search
+    434. Number of Islands II
+    132. Word Search II
+
+3 - Data Structure II
+    575. Expression Expand
+    363. Trapping Rain Water
+    40. Implement Queue by Two Stacks
+    12. Min Stack
+    360. Sliding Window Median
+    364. Trapping Rain Water II
+    510. Maximal Rectangle
+    126. Max Tree
+    122. Largest Rectangle in Histogram
+    81. Data Stream Median
+    362. Sliding Window Maximum Super
+
+4 - Binary Search + Sweep Line
+    141. Sqrt(x) Easy
+    617. Maximum Average Subarray
+    586. Sqrt(x) II
+    391. Number of Airplanes in the Sky
+    414. Divide Two Integers
+    75. Find Peak Element
+    74. First Bad Version
+    437. Copy Books
+    390. Find Peak Element II
+    183. Wood Cut

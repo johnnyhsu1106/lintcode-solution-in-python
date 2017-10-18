@@ -21,30 +21,30 @@ class Solution:
     def copyRandomList_1(self, head):
         '''
         please see the problme 137 clone graph.
-        use the hash map/ dict to mapping the node: new node
+        use the hash map/ dict to map the node: new node
         Space: O(n)
         input:  1->2->3->4
-        mapping = {1: 1', 2: 2', 3: 3', 4: 4'}
+        node_map = {1: 1', 2: 2', 3: 3', 4: 4'}
         output: 1'->2'->3'->4'
 
         '''
         if not head:
             return None
-        #  mapping the node to new node
-        mapping = {}
+        #  node_map the node to new node
+        node_map = {}
         curr = head
         while curr:
-            mapping[curr] = RandomListNode(curr.label)
+            node_map[curr] = RandomListNode(curr.label)
             curr = curr.next
 
         #  copy the next and ramdon pointer
-        for node in mapping:
+        for node in node_map:
             if node.next:
-                mapping[node].next = mapping[node.next]
+                node_map[node].next = node_map[node.next]
             if node.random:
-                mapping[node].random = mapping[node.random]
+                node_map[node].random = node_map[node.random]
 
-        return mapping[head]
+        return node_map[head]
 
 
 

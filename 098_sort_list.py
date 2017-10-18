@@ -33,7 +33,6 @@ class Solution:
         return self.merge(left, right)
 
 
-
     def find_middle(self, head):
         slow = head
         fast = head.next
