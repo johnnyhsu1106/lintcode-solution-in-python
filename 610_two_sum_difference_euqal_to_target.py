@@ -20,13 +20,11 @@ class Solution:
     def twoSum7(self, nums, target):
         hashmap = dict()
         for i, num in enumerate(nums):
-            if num + target not in hashmap and num - target not in hashmap:
-                hashmap[num] = i
-            else:
-                if num + target in hashmap:
-                    return [hashmap[num + target] + 1, i + 1]
-                else:
-                    return [hashmap[num - target] + 1, i + 1]
+            if num in hashmap:
+                return [hashmap[num] + 1, i + 1]
+
+            hashmap[num + target] = i
+            hashmap[num - target] = i
 
 
 

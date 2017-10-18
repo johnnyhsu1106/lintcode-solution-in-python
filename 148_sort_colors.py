@@ -11,7 +11,6 @@ Notice
 You are not suppose to use the library's sort function for this problem.
 You should do it in-place (sort numbers in the original array).
 
-Have you met this question in a real interview? Yes
 Example
 Given [1, 0, 1, 2], sort it in-place to [0, 1, 1, 2].
 
@@ -45,10 +44,42 @@ class Solution:
                 right -= 1
 
 
+
+    def sortColors1(self, nums):
+
+        if nums is None or len(nums) == 0:
+            return
+
+        left, right = 0, len(nums) - 1
+        while left < right:
+            while left < right and nums[left] == 0:
+                left += 1
+            while left < right and nums[right] >= 1:
+                right -= 1
+
+            if left < right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+
+
+        left, right = 0, len(nums) - 1
+        while left < right:
+            while left < right and nums[left] <= 1:
+                left += 1
+            while left < right and nums[right] == 2:
+                right -= 1
+
+            if left < right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+
+
 # def main():
 #     s = Solution()
 #     nums = [0, 1, 2, 1, 0]
-#     s.sortColors(nums)
+#     s.sortColors1(nums)
 #     print(nums)
 #
 # if __name__ == '__main__':

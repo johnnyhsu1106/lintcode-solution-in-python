@@ -134,6 +134,9 @@
     382. Triangle Count
     59. 3Sum Closest
     58. 4Sum
+    39. Recover Rotated Sorted Array
+    8. Rotate String
+
 
 
 8 - Data Structure
