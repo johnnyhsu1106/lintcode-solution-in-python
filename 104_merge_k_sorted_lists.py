@@ -40,7 +40,7 @@ class Solution:
     @param lists: a list of ListNode
     @return: The head of one sorted list.
     """
-    def mergeKLists_1(self, lists):
+    def mergeKLists_heap(self, lists):
         # idea: Min Heap.
         if not lists or len(lists) == 0:
             return
@@ -64,7 +64,7 @@ class Solution:
 
 
 
-    def mergeKLists_2(self, lists):
+    def mergeKLists_merge(self, lists):
         # idea: Divide andn Conquer
         if not lists or len(lists) == 0:
             return
@@ -108,7 +108,7 @@ class Solution:
 
 
 
-    def mergeKLists_3(self, lists):
+    def mergeKLists_combine(self, lists):
         # idea: merge two lists at one time
         if not lists or len(lists) == 0:
             return

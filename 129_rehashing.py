@@ -73,18 +73,19 @@ class Solution:
                 hashcode = node.val % new_capacity
 
                 if new_hashTable[hashcode] is None:
-                    new_hashTable[hashcode] = ListNode(node.val)
+                    new_hashTable[hashcode] = node
                 else:
                     head = new_hashTable[hashcode]
                     while head.next:
                         head = head.next
-                    head.next = ListNode(node.val)
-
-                node = node.next
+                    head.next = node
+                next_node = node.next
+                node.next = None
+                node = next_node
 
         return new_hashTable
 
-
+# 
 # def main():
 #     s = Solution()
 #     capacity = 4

@@ -15,15 +15,13 @@ class Solution:
     """
     def topk(self, nums, k):
         result = []
-        max_heap = []
-
+        min_heap = []
         for num in nums:
-            heappush(max_heap, -num)
+            heappush(min_heap, num)
+            if len(min_heap) > k:
+                heappop(min_heap)
 
-        for i in range(k):
-            result.append(-heappop(max_heap))
-
-        return result
+        return sorted(min_heap, reverse= True)
 
 
 # def main():

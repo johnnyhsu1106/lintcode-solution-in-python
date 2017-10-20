@@ -18,13 +18,15 @@ class Solution:
     @return: the kth largest element
     """
     def kthLargestElement2(self, nums, k):
-        max_heap = []
+        # Please see the problem 5 Kth largest Element ! The only difference is N
+        # problem 606, N is much larger than k.
+        min_heap = []
         for num in nums:
-            heappush(max_heap, -num)
+            heappush(min_heap, num)
+            if len(min_heap) > k:
+                heappop(min_heap)
 
-        for i in range(k):
-            result = -heappop(max_heap)
-        return result
+        return heappop(min_heap)
 
 
 # def main():

@@ -18,10 +18,11 @@ class Solution:
     @param: arrays: k sorted integer arrays
     @return: a sorted array
     """
-    def mergekSortedArrays(self, arrays):
+    def mergekSortedArrays_heap(self, arrays):
         '''
-        If average array length is n
-        Time: O(nklogk)
+        N is the total number of integers.
+        k is the number of arrays.
+        Time: O(nlogk)
         Space: O(k)
         '''
         if not arrays or len(arrays) == 0:
@@ -30,9 +31,9 @@ class Solution:
         result = []
         min_heap = []
 
-        for idx, array in enumerate(arrays):
+        for x, array in enumerate(arrays):
             if len(array) != 0:
-                heappush(min_heap, (array[0], idx, 0))
+                heappush(min_heap, (array[0], x, 0))
 
         while min_heap:
             value, x, y = heappop(min_heap)
@@ -43,10 +44,44 @@ class Solution:
         return result
 
 
+    def mergekSortedArrays_merge(self, arrays):
+        if len(arrays) == 0:
+            return []
+        if len(arrays) == 1:
+            return arrays[0]
+
+        mid = len(arrays) // 2
+        left = self.mergekSortedArrays_merge(arrays[0:mid])
+        right = self.mergekSortedArrays_merge(arrays[mid:])
+
+        return self.merge_two_arrays(left, right)
+
+
+    def merge_two_arrays(self, arr1, arr2):
+        result = []
+        i, j = 0, 0
+        while i < len(arr1) and j < len(arr2):
+            if arr1[i] < arr2[j]:
+                result.append(arr1[i])
+                i += 1
+            else:
+                result.append(arr2[j])
+                j += 1
+
+        while i < len(arr1):
+            result.append(arr1[i])
+            i += 1
+
+        while j < len(arr2):
+            result.append(arr2[j])
+            j   += 1
+
+        return result
+
 
     def mergekSortedArrays_sort(self, arrays):
         '''
-        Time: O(nklognk)
+        Time: O(nlognn)
         Space: O(1) if used Quick Sort
         '''
         result = []
@@ -54,3 +89,16 @@ class Solution:
             for num in array:
                 result.append(num)
         return sorted(result)
+
+
+
+# def main():
+#     s = Solution()
+#     arrays = [[1, 3, 5, 7],
+#               [2, 4, 6],
+#               [0, 8, 9, 10, 11]]
+#     print(s.mergekSortedArrays_heap(arrays))
+#     print(s.mergekSortedArrays_merge(arrays))
+#
+# if __name__ == '__main__':
+#     main()

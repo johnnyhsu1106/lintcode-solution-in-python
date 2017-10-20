@@ -4,9 +4,9 @@ Given a list of words and an integer k, return the top k frequent words in the l
 Notice
 
 You should order the words by the frequency of them in the return list,
-the most frequent one comes first. If two words has the same frequency, the one with lower alphabetical order come first.
+the most frequent one comes first. If two words has the same frequency,
+the one with lower alphabetical order come first.
 
-Have you met this question in a real interview? Yes
 Example
 Given
 
@@ -33,10 +33,12 @@ class Solution:
     def topKFrequentWords(self, words, k):
         '''
         idea:
-        use the hash map (dict) to calculate the frequency of each word.
+        1. Use the hash map (dict) to calculate the frequency of each word.
         push each word and its frequency into max heap, (frequency, word)
         pop k words from max heap and append(push) into result(list).
-
+        Time: O(nlogn)
+        2. use min heap
+        Time O(nlogk)
         '''
         result = []
 
@@ -64,10 +66,10 @@ class Solution:
 #             "safari", "lint", "code",
 #             "body", "lint", "code"]
 #     k = 3
-#     print(s.topKFrequentWords(words, k))
+#     print(s.topKFrequentWords(words, k) == ["code", "lint", "baby"])
 #
 #     k = 4
-#     print(s.topKFrequentWords(words, k))
+#     print(s.topKFrequentWords(words, k) == ["code", "lint", "baby", "yes"])
 #
 #
 # if __name__ == '__main__':

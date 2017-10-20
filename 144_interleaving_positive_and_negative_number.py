@@ -23,31 +23,17 @@ class Solution:
             return
 
         self.partition(nums)
+        self.interleave(nums)
 
-        left, right = 0, len(nums) - 1
-        is_swap = False
-        while left <= right:
-            while left < right and nums[left] > 0:
-                left += 1
-            while left < right and nums[right] < 0:
-                right -= 1
-
-            if left < right and not is_swap:
-                nums[left], nums[right] = nums[right], nums[left]
-
-            is_swap = not is_swap
-            left += 1
-            right -= 1
-        print(nums)
         #check any continuous positive  number from beginning
         for i in range(0, len(nums) - 2):
             if nums[i] * nums[i + 1] > 0:
                 nums[i + 1], nums[i + 2] = nums[i + 2], nums[i + 1]
+
         # check any continuous negitive number from beginning
         for i in range(len(nums) - 1, 1, -1):
             if nums[i] *  nums[i - 1] > 0:
                 nums[i - 1], nums[i - 2] = nums[i - 2], nums[i - 1]
-
 
 
     def partition(self, nums):
@@ -64,11 +50,29 @@ class Solution:
                 right -= 1
 
 
+    def interleave(self, nums):
+        left, right = 0, len(nums) - 1
+        is_swap = False
 
+        while left < right:
+            while left < right and nums[left] > 0:
+                left += 1
+            while left < right and nums[right] < 0:
+                right -= 1
+
+            if left < right and not is_swap:
+                nums[left], nums[right] = nums[right], nums[left]
+
+            is_swap = not is_swap
+            left += 1
+            right -= 1
+
+
+# 
 # def main():
 #     s = Solution()
 #
-#     nums = [-13,-8,-12,-15,-14,35,7,-1,11,27,10,-7,-12,28,18]
+#     nums = [-1, -2, -3, 4, 5, 6, 7]
 #     s.rerange(nums)
 #     print(nums)
 #

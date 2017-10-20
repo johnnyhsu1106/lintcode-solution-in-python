@@ -10,7 +10,7 @@ Challenge
 An O(nlogn) algorithm is acceptable, if you can do it in O(n), that would be great.
 """
 
-from heapq import heappop
+from heapq import heappop, heappush
 class Solution:
     """
     @param: k: An integer
@@ -18,17 +18,25 @@ class Solution:
     @return: kth smallest element
     """
     def kthSmallest_1(self, k, nums):
-
+        # Time: O(nlogn)
         nums.sort()
         return nums[k-1]
 
 
     def kthSmallest_2(self, k, nums):
-        
-        for i in range(k):
-            kth_smallest = heappop(nums)
-            print(kth_smallest)
-        return kth_smallest
+        # Time: O(nlogk)
+        max_heap = []
+        for num in nums:
+            heappush(max_heap, -num)
+            if len(max_heap) > k:
+                heappop(max_heap)
+
+        return - heappop(max_heap)
+
+    # 
+    # def kthSmallest_3(self, k, nums):
+    #     # Time: O(n) ...quick select
+
 
 #
 # def main():
