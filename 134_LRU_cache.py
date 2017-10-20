@@ -70,20 +70,17 @@ class LRUCache:
 
 
 
-
-
+# def main():
+#     cache = LRUCache(2)
+#     cache.set(1, 1)
+#     cache.set(2, 2)
+#     print(cache.get(1) == 1)
+#     cache.set(3, 3)
+#     print(cache.get(2) == -1)
+#     cache.set(4, 4)
+#     print(cache.get(1) == -1)
+#     print(cache.get(3) == 3)
+#     print(cache.get(4) == 4)
 #
-def main():
-    cache = LRUCache(2)
-    cache.set(1, 1)
-    cache.set(2, 2)
-    print(cache.get(1) == 1)
-    cache.set(3, 3)
-    print(cache.get(2) == -1)
-    cache.set(4, 4)
-    print(cache.get(1) == -1)
-    print(cache.get(3) == 3)
-    print(cache.get(4) == 4)
-
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
