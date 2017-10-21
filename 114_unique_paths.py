@@ -23,20 +23,20 @@ class Solution:
         paths = [[0] * n for i in range(m)]
         # initial rows
         paths[0][0] = 1
-        for i in range(1, m):
-            paths[i][0] = 1
+        for x in range(1, m):
+            paths[x][0] = paths[x - 1][0]
         # initail columns
-        for j in range(1, n):
-            paths[0][j] = 1
+        for y in range(1, n):
+            paths[0][y] = paths[0][y - 1]
 
-        for i in range(1, m):
-            for j in range(1, n):
-                paths[i][j] = paths[i -1][j] + paths[i][j - 1]
+        for x in range(1, m):
+            for y in range(1, n):
+                paths[x][y] = paths[x -1][y] + paths[x][y - 1]
 
         return paths[m - 1][n - 1]
 
 
-# 
+
 # def main():
 #     s = Solution()
 #     print(s.uniquePaths(3, 3))

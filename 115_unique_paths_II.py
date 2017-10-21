@@ -31,31 +31,32 @@ class Solution:
         if not obstacleGrid or len(obstacleGrid) == 0 or len(obstacleGrid[0]) == 0:
             return 0
 
-        if obstacleGrid[0][0] == 1:
-            return 0
-
-        m, n = len(obstacleGrid), len(obstacleGrid[0])
         # initialize
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
         paths = [[0] * n for i in range(m)]
 
-        for i in range(m):
-            if  obstacleGrid[i][0] == 0:
-                paths[i][0] = 1
-            else:
-                break
+        if obstacleGrid[0][0] == 1:
+            paths[0][0] = 0
+        else:
+            paths[0][0] = 1
 
-        for j in range(n):
-            if obstacleGrid[0][j] == 0:
-                paths[0][j] = 1
-            else:
+        for x in range(1, m):
+            if obstacleGrid[x][0] == 1:
                 break
+            paths[x][0] = paths[x - 1][0]
+
+        for y in range(1, n):
+            if obstacleGrid[0][y] == 1:
+                break
+            paths[0][y] = paths[0][y - 1]
+
         # DP
-        for i in range(1, m):
-            for j in range(1, n):
-                if obstacleGrid[i][j] == 0:
-                    paths[i][j] = paths[i][j - 1] + paths[i - 1][j]
+        for x in range(1, m):
+            for y in range(1, n):
+                if obstacleGrid[x][y] == 0:
+                    paths[x][y] = paths[x][y - 1] + paths[x - 1][y]
                 else:
-                    paths[i][j] = 0
+                    paths[x][y] = 0
 
         return paths[m - 1][n - 1]
 

@@ -31,12 +31,10 @@ class Solution:
         n = len(nums)
 
         # initialize DP
-        dp = [0] * n
-        for i in range(n):
-            dp[i] = 1
+        dp = [1] * n
         #  the above code can be dp = [1] * n
 
-        for i in range(n):
+        for i in range(1, n):
             for j in range(i):
                 if nums[i] > nums[j]:
                     dp[i] = max(dp[j] + 1, dp[i])

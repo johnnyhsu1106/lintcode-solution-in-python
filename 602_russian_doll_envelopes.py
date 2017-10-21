@@ -19,7 +19,7 @@ class Solution:
             return 0
 
         envelopes.sort()
-
+        print(envelopes)
         n = len(envelopes)
 
         dp = [1] * n

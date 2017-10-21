@@ -20,31 +20,42 @@ class Solution:
     """
     def largestDivisibleSubset(self, nums):
         if not nums or len(nums) <= 1:
-            return []
+            return nums
 
-        # n = len(nums)
-        # nums.sort()
-        # dp = [[] for i in range(n)]
-        # # initialize
-        # for i in range(n):
-        #     dp[i].append(nums[i])
-        #
-        # for i in range(n):
-        #     for j in range(i):
-        #         if nums[i] % nums[j] == 0:
-        #             dp[i].append(nums[j])
-        # max_size = 0
-        # for i in range(n):
-        #     if len(dp[i]) > max_size:
-        #         max_size = len(dp[i])
-        #         largest_sub = dp[i]
-        #
-        # return largest_sub.sort()
+        n = len(nums)
+        nums.sort()
+        dp = [1 for i in range(n)] # a list for the length of subset if requirement is met.
+        pre_index = [-1 for i in range(n)] # a list for the pre_indexvious index if requirement is met.
+
+        # initialize
+        for i in range(1, n):
+            for j in range(0, i):
+                if nums[i] % nums[j] == 0:
+                    if dp[j] + 1 > dp[i]:
+                        dp[i] = dp[j] + 1
+                        pre_index[i] = j
+
+        max_i, index = 0 , -1
+        for i in range(n):
+            if dp[i] > max_i:
+                max_i = dp[i]
+                index = i
+
+        result = []
+        for i in range(max_i):
+            result.append(nums[index])
+            index = pre_index[index]
+
+        return result
+
 
 
 # def main():
 #     s = Solution()
 #     nums = [1,2,3]
+#     print(s.largestDivisibleSubset(nums))
+#
+#     nums = [1,2,4,8]
 #     print(s.largestDivisibleSubset(nums))
 # if __name__ == '__main__':
 #     main()
