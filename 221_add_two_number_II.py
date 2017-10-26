@@ -66,44 +66,28 @@ class Solution:
         if head1 is None and head2 is None:
             return None
 
-        if head1 is None:
-            return head2
-
-        if head2 is None:
-            return head1
-
         carry = 0
         dummy = ListNode(0)
-        curr = dummy
-        curr1 = head1
-        curr2 = head2
+        curr, curr1, curr2 = dummy, head1, head2
 
-        while curr1 and curr2:
-            total = curr1.val + curr2.val + carry
-            digit, carry = total % 10, total // 10
-            curr.next = ListNode(digit)
-            curr, curr1, curr2 = curr.next, curr1.next, curr2.next
+        while curr1 or curr2:
+            if curr1:
+                carry += curr1.val
+                curr1 = curr1.next
+            if curr2:
+                carry += curr2.val
+                curr2 = curr2.next
 
-        while curr1:
-            total = curr1.val + carry
-            digit, carry = total % 10, total // 10
-            curr.next = ListNode(digit)
-            curr, curr1 = curr.next, curr1.next
+            curr.next = ListNode(carry % 10)
+            carry = carry // 10
+            curr = curr.next
 
-        while curr2:
-            total = curr2.val + carry
-            digit, carry = total % 10, total // 10
-            curr.next = ListNode(digit)
-            curr, curr2 = curr.next, curr2.next
-
-        if carry != 0:
+        if carry > 0:
             curr.next = ListNode(carry)
 
         return dummy.next
 
 
-
-#
 # def main():
 #     s = Solution()
 #     l1 = ListNode(6)
@@ -115,7 +99,6 @@ class Solution:
 #
 #     l = s.addLists2(l1, l2)
 #     l.print_all()
-#
 #
 # if __name__ == '__main__':
 #     main()

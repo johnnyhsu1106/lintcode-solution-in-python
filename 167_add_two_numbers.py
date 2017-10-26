@@ -53,29 +53,59 @@ class Solution:
         curr = dummy
         carry = 0
 
+        while l1 or l2:
+            if l1:
+                carry += l1.val
+                l1 = l1.next
+            if l2:
+                carry += l2.val
+                l2 = l2.next
+
+            curr.next = ListNode(carry % 10)
+            carry = carry // 10
+            curr = curr.next
+
+        if carry > 0:
+            curr.next = ListNode(carry)
+
+        return dummy.next
+
+
+
+    def addLists_2(self, l1, l2):
+
+        if l1 is None and l2 is None:
+            return None
+
+        if l1 is None:
+            return l2
+
+        if l2 is None:
+            return l1
+
+        dummy =  ListNode(0)
+        curr = dummy
+        carry = 0
+
         while l1 and l2:
-            total = l1.val + l2.val + carry
-            digit = total % 10
-            carry = total // 10
-            curr.next = ListNode(digit)
+            carry += l1.val + l2.val
+            curr.next = ListNode(carry % 10)
+            carry = carry // 10
             l1 = l1.next
             l2 = l2.next
             curr = curr.next
 
         while l1:
-            total = l1.val + carry
-            digit = total % 10
-            carry = total // 10
-            curr.next = ListNode(digit)
-            carry = digit // 10
+            carry += l1.val
+            curr.next = ListNode(carry % 10)
+            carry = carry // 10
             l1 = l1.next
             curr = curr.next
 
         while l2:
-            total = l2.val + carry
-            digit = total % 10
-            carry = digit // 10
-            curr.next = ListNode(digit)
+            carry += l2.val
+            curr.next = ListNode(carry % 10)
+            carry = carry // 10
             l2 = l2.next
             curr = curr.next
 

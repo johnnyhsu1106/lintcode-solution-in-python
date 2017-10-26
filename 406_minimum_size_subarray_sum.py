@@ -14,7 +14,7 @@ class Solution:
     @return: an integer representing the minimum size of subarray
     """
     def minimumSize(self, nums, s):
-        
+
         total = 0
         j = 0
         min_length = float('inf')
@@ -28,3 +28,14 @@ class Solution:
         if min_length == float('inf'):
             return -1
         return min_length
+
+
+
+# def main():
+#     s = Solution()
+#     nums = [2,3,1,2,4,3]
+#     target = 7
+#     print(s.minimumSize(nums, target))
+#
+# if __name__ == '__main__':
+#     main()

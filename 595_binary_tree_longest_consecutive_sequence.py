@@ -40,19 +40,48 @@ class Solution:
     @param: root: the root of binary tree
     @return: the length of the longest consecutive sequence path
     """
+    def __init__(self):
+        self.longest_path = 0
+
     def longestConsecutive(self, root):
+        #  Traverse + Divide Conquer
+        self.helper(root)
+        return self.longest_path
 
-        return self.helper(root, None, 0)
+
+    def helper(self, root):
+        if not root:
+            return 0
+
+        left_path = self.helper(root.left)
+        right_path = self.helper(root.right)
+
+        subtree_path = 1
+
+        if root.left and root.val + 1 == root.left.val:
+            subtree_path = max(subtree_path, left_path + 1)
+        if root.right and root.val + 1 == root.right.val:
+            subtree_path = max(subtree_path, right_path + 1)
+
+        self.longest_path = max(self.longest_path, subtree_path)
+
+        return subtree_path
 
 
 
-    def helper(self, node, parent, length_without_root):
+
+    def longestConsecutive_2(self, root):
+        #  Traverse + Divide Conquer
+        return self.helper_2(root, None, 0)
+
+
+    def helper_2(self, node, parent, length_without_root):
         if not node:
             return 0
 
         length = length_without_root + 1 if parent and parent.val + 1 == node.val else 1
-        left_length = self.helper(node.left, node, length)
-        right_length = self.helper(node.right, node,length)
+        left_length = self.helper_2(node.left, node, length)
+        right_length = self.helper_2(node.right, node,length)
 
         return max(length, left_length, right_length)
 

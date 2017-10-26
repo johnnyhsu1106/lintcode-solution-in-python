@@ -36,26 +36,26 @@ class Solution:
         if grid is None or len(grid) == 0 or len(grid[0]) == 0:
             return -1
 
-        m, n = len(grid), len(grid[0])
-        dp = [ [float('inf') for y in range(n)] for _ in range(m)]
+        n, m = len(grid), len(grid[0])
+        dp = [ [float('inf') for y in range(m)] for _ in range(n)]
 
         dp[0][0] = 0
         # notice: two for loop can not exchange the order dp[x][y] depend smaller y first
-        for y in range(n):
-            for x in range(m):
+        for y in range(m):
+            for x in range(n):
                 if grid[x][y] == 0:
                     if x >= 1 and y >= 2 and dp[x - 1][y - 2] != float('inf'):
                         dp[x][y] = min(dp[x][y], dp[x - 1][y - 2] + 1)
-                    if x + 1 < m and y >= 2 and dp[x + 1][y - 2] != float('inf'):
+                    if x + 1 < n and y >= 2 and dp[x + 1][y - 2] != float('inf'):
                         dp[x][y] = min(dp[x][y], dp[x + 1][y - 2] + 1)
                     if x >= 2 and y >= 1 and dp[x - 2][y - 1] != float('inf'):
                         dp[x][y] = min(dp[x][y], dp[x - 2][y - 1] + 1)
-                    if x + 2 < m and y >= 1 and dp[x + 2][y - 1] != float('inf'):
+                    if x + 2 < n and y >= 1 and dp[x + 2][y - 1] != float('inf'):
                         dp[x][y] = min(dp[x][y], dp[x + 2][y - 1] + 1)
 
-        if dp[m - 1][n - 1] == float('inf'):
+        if dp[n - 1][m - 1] == float('inf'):
             return -1
-        return dp[m - 1][n - 1]
+        return dp[n - 1][m - 1]
 
 
     def shortestPath2_bfs(self, grid):

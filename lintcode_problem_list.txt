@@ -140,8 +140,6 @@
     144. Interleaving Positive and Negative Numbers
 
 
-
-
 8 - Data Structure
     128. Hash Function
     613. High Five
@@ -153,6 +151,7 @@
     4. Ugly Number II
     594. strStr II
     134. LRU Cache
+    517. Ugly Number
 
     601. Flatten 2D Vector
     545. Top k Largest Numbers II
@@ -189,7 +188,7 @@
     465. Kth Smallest Sum In Two Sorted Arrays
 
 2 - Data Structure I
-    433. Number of Islands Easy
+    433. Number of Island
     591. Connecting Graph III
     590. Connecting Graph II
     589. Connecting Graph

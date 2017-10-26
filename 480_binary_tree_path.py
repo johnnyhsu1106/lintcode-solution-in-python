@@ -35,10 +35,6 @@ class Solution:
         # if root is None, return []
         if not root:
             return []
-        # if root is leave, reterun [str(root.val)]
-        if not root.left and not root.right:
-            paths.append(str(root.val))
-            return paths
 
         # Divide
         left_paths = self.binaryTreePaths(root.left)
@@ -48,6 +44,9 @@ class Solution:
             paths.append(str(root.val) + '->' + path)
         for path in right_paths:
             paths.append(str(root.val) + '->' + path)
+
+        if not root.left and not root.right:
+            paths.append(str(root.val))
 
         return paths
 
@@ -69,17 +68,13 @@ class Solution:
             result.append(''.join(path))
 
         if root.left:
-            path.append('->')
-            path.append(str(root.left.val))
+            path.append('->' + str(root.left.val))
             self.dfs(root.left, path, result)
-            path.pop()
             path.pop()
 
         if root.right:
-            path.append('->')
-            path.append(str(root.right.val))
+            path.append('->' + str(root.right.val))
             self.dfs(root.right, path, result)
-            path.pop()
             path.pop()
 
 
