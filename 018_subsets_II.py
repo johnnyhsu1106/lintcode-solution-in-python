@@ -35,6 +35,7 @@ class Solution:
         self.dfs(nums, 0, subset, result)
         return result
 
+
     def dfs(self, nums, start_index, subset, result):
         result.append(list(subset))
 
