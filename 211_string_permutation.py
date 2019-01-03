@@ -1,7 +1,6 @@
 '''
 Given two strings, write a method to decide if one is a permutation of the other.
 
-Have you met this question in a real interview? Yes
 Example
 abcd is a permutation of bcad, but abbe is not a permutation of abe
 '''
