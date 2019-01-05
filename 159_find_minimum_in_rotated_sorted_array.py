@@ -20,6 +20,7 @@ class Solution:
 
         start, end = 0, len(nums) - 1
         target = nums[len(nums) - 1] # find the min, target = nums[-1]; find the max, target = nums[0]
+        
         while start + 1 < end:
             mid = start + (end - start) // 2
             if nums[mid] < target:

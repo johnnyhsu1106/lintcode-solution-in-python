@@ -25,12 +25,13 @@ class Solution:
             return -1
 
         start, end = 0, len(A) - 1
+
         while start + 1 < end:
             mid = start + (end - start) // 2
             if A[mid] == target:
                 return mid
 
-            if A[start] < A[mid]:
+            if A[start] < A[mid]: #judge the middle belongs which section
                 if A[start] <= target and target <= A[mid]:
                     end = mid
                 else:
@@ -45,6 +46,7 @@ class Solution:
             return start
         elif A[end] == target:
             return end
+
         return -1;
 
 

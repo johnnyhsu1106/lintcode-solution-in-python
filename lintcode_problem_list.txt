@@ -1,48 +1,51 @@
  1 - strStr & Coding Style
-    13. strStr
-    18. Subsets II
-    17. Subsets
+    013. strStr
+    018. Subsets II
+    017. Subsets
     594. strStr II
-    16. Permutations II
-    15. Permutations
+    016. Permutations II
+    015. Permutations
+
 
 2 - Binary Search
     459. Closest Number in Sorted Array
     458. Last Position of Target
-    28. Search a 2D Matrix
+    028. Search a 2D Matrix
     585. Maximum Number in Mountain Sequence
     447. Search in a Big Sorted Array
     159. Find Minimum in Rotated Sorted Array
-    75. Find Peak Element
-    74. First Bad Version
-    62. Search in Rotated Sorted Array
+    075. Find Peak Element
+    074. First Bad Version
+    062. Search in Rotated Sorted Array
 
     462. Total Occurrence of Target
     254. Drop Eggs
-    14. First Position of Target
+    014. First Position of Target
     460. K Closest Numbers In Sorted Array
     414. Divide Two Integers
-    61. Search for a Range
-    38. Search a 2D Matrix II
+    061. Search for a Range
+    038. Search a 2D Matrix II
     600. Smallest Rectangle Enclosing Black Pixels
+    160. Find Minimum in Rotated Sorted Array II
+
 
 3 - Binary Tree & Divide Conquer
     597. Subtree with Maximum Average
     596. Minimum Subtree
     480. Binary Tree Paths
     453. Flatten Binary Tree to Linked List
-    97. Maximum Depth of Binary Tree
-    93. Balanced Binary Tree
-    67. Binary Tree Inorder Traversal
-    66. Binary Tree Preorder Traversal
+    097. Maximum Depth of Binary Tree
+    093. Balanced Binary Tree
+    067. Binary Tree Inorder Traversal
+    066. Binary Tree Preorder Traversal
     578. Lowest Common Ancestor III
-    95. Validate Binary Search Tree
+    095. Validate Binary Search Tree
 
     595. Binary Tree Longest Consecutive Sequence
     376. Binary Tree Path Sum
     474. Lowest Common Ancestor II
     246. Binary Tree Path Sum II
-    68. Binary Tree Postorder Traversal
+    068. Binary Tree Postorder Traversal
     619. Binary Tree Longest Consecutive Sequence III
     614. Binary Tree Longest Consecutive Sequence II
     475. Binary Tree Maximum Path Sum II
@@ -50,16 +53,17 @@
     378. Convert Binary Search Tree to Doubly Linked List
     472. Binary Tree Path Sum III
 
+
 4 - Breadth First Search
     433. Number of Islands
-    69. Binary Tree Level Order Traversal
+    069. Binary Tree Level Order Traversal
     616. Course Schedule II
     618. Search Graph Nodes
     611. Knight Shortest Path
     598. Zombie in Matrix
     178. Graph Valid Tree
     137. Clone Graph
-    7. Binary Tree Serialization
+    007. Binary Tree Serialization
     573. Build Post Office II
 
     242. Convert Binary Tree to Linked Lists by Depth
@@ -73,42 +77,41 @@
     136. Palindrome Partitioning
     153. Combination Sum II
     135. Combination Sum
-    18. Subsets II
-    16. Permutations II
-    15. Permutations
+    018. Subsets II
+    016. Permutations II
+    015. Permutations
     121. Word Ladder II
     120. Word Ladder
-    52. Next Permutation
-    51. Previous Permutation
+    052. Next Permutation
+    051. Previous Permutation
     582. Word Break II
 
 6 - Linked List & Array
     599. Insert into a Cyclic Sorted List
     165. Merge Two Sorted Lists
     138. Subarray Sum
-    41. Maximum Subarray
+    041. Maximum Subarray
     139. Subarray Sum Closest
     105. Copy List with Random Pointer
     102. Linked List Cycle
-    98. Sort List
+    098. Sort List
     450. Reverse Nodes in k-Group
-    65. Median of two Sorted Arrays
+    065. Median of two Sorted Arrays
 
     548. Intersection of Two Arrays II
     547. Intersection of Two Arrays
-    96. Partition List
-    64. Merge Sorted Array
-    6. Merge Two Sorted Arrays
+    096. Partition List
+    064. Merge Sorted Array
+    006. Merge Two Sorted Arrays
     103. Linked List Cycle II
-    35. Reverse Linked List
-    36. Reverse Linked List II
+    035. Reverse Linked List
+    036. Reverse Linked List II
     511. Swap Two Nodes in Linked List
     167. Add Two Numbers
     221. Add Two Numbers II
     170. Rotate List
-    90. Reorder List
+    090. Reorder List
     380. Intersection of Two Linked Lists
-
 
 
 7 - Two Pointers
@@ -120,22 +123,22 @@
     533. Two Sum - Closest to target
     148. Sort Colors
     143. Sort Colors II
-    57. 3Sum
-    31. Partition Array
+    057. 3Sum
+    031. Partition Array
 
     604. Window Sum
     539. Move Zeroes
     415. Valid Palindrome
-    56. Two Sum
+    056. Two Sum
     625. Partition Array II
     610. Two Sum - Difference equals to target
     443. Two Sum - Greater than target
     461. Kth Smallest Numbers in Unsorted Array
     382. Triangle Count
-    59. 3Sum Closest
-    58. 4Sum
-    39. Recover Rotated Sorted Array
-    8. Rotate String
+    059. 3Sum Closest
+    058. 4Sum
+    039. Recover Rotated Sorted Array
+    008. Rotate String
     373. Partition Array by Odd and Even
     144. Interleaving Positive and Negative Numbers
 
@@ -148,7 +151,7 @@
     544. Top k Largest Numbers
     129. Rehashing
     104. Merge k Sorted Lists
-    4. Ugly Number II
+    004. Ugly Number II
     594. strStr II
     134. LRU Cache
     517. Ugly Number
@@ -171,7 +174,7 @@
     611. Knight Shortest Path
     513. Perfect Squares
     116. Jump Game
-    76. Longest Increasing Subsequence
+    076. Longest Increasing Subsequence
 
     272. Climbing Stairs II
     630. Knight Shortest Path II
@@ -204,14 +207,14 @@
 3 - Data Structure II
     575. Expression Expand
     363. Trapping Rain Water
-    40. Implement Queue by Two Stacks
-    12. Min Stack
+    040. Implement Queue by Two Stacks
+    012. Min Stack
     360. Sliding Window Median
     364. Trapping Rain Water II
     510. Maximal Rectangle
     126. Max Tree
     122. Largest Rectangle in Histogram
-    81. Data Stream Median
+    081. Data Stream Median
     362. Sliding Window Maximum Super
 
 4 - Binary Search + Sweep Line
@@ -220,8 +223,8 @@
     586. Sqrt(x) II
     391. Number of Airplanes in the Sky
     414. Divide Two Integers
-    75. Find Peak Element
-    74. First Bad Version
+    075. Find Peak Element
+    074. First Bad Version
     437. Copy Books
     390. Find Peak Element II
     183. Wood Cut

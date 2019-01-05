@@ -27,6 +27,7 @@ class Solution:
     """
     def searchBigSortedArray(self, reader, target):
 
+        # find the kth that reader.get(kth) >= target, and set kth is the end point.
         kth = 1
         while reader.get(kth - 1) < target:
             kth = kth * 2
@@ -34,7 +35,9 @@ class Solution:
         start, end = kth // 2, kth - 1
         while start + 1 < end:
             mid = start + (end - start) // 2
-            if reader.get(mid) >= target:
+            if reader.get(mid) == target:
+                end = mid
+            elif reader.get(mid) > target:
                 end = mid
             else:
                 start = mid
@@ -43,4 +46,5 @@ class Solution:
             return start
         elif reader.get(end) == target:
             return end
+
         return -1

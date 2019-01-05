@@ -4,7 +4,7 @@ Notice
 
 Elements in a subset must be in non-descending order.
 The solution set must not contain duplicate subsets.
-Have you met this question in a real interview? Yes
+
 Example
 If S = [1,2,3], a solution is:
 
@@ -56,8 +56,9 @@ class Solution:
         '''
         if nums is None:
             return []
+
         result = []
-        nums.sort()
+        nums.sort() # Elements in a subset must be in non-descending order.
         self.dfs(nums, 0, [], result)
         return result
 
@@ -71,10 +72,10 @@ class Solution:
             self.dfs(nums, i + 1, subset, result)
             subset.pop()
 
-# def main():
-#     s = Solution()
-#     # print(s.subsets_1([1,2,3]))
-#     print(s.subsets_3([1, 2, 3]))
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    s = Solution()
+    # print(s.subsets_1([1,2,3]))
+    print(s.subsets_3([1, 2, 3]))
+
+if __name__ == '__main__':
+    main()
