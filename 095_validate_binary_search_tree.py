@@ -31,20 +31,23 @@ class Solution:
     @param: root: The root of binary tree.
     @return: True if the binary tree is BST, or false
     """
-    def isValidBST(self, root):
+    def isValidBST_1(self, root):
+        # Divide and Conquer
         minimum = float('-inf')
         maximum = float('inf')
+
         return self.helper(root, minimum, maximum)
 
     def helper(self, root, minimum, maximum):
         if not root:
             return True
-        if root.val <= minimum or root.val >= maximum:
-            return False
 
-        return self.helper(root.left, minimum, root.val) and self.helper(root.right, root.val, maximum)
+        is_left_validated = self.helper(node.left, minimum, node.val)
+        is_right_validated = self.helper(node.right, node.val, maximum)
+        is_validated = node.val > minimum and node.val < maximum
 
-# 
+        return is_left_validated and is_right_validated and is_validated
+#
 # def main():
 #     root = TreeNode(-1)
 #     s = Solution()

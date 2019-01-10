@@ -25,7 +25,7 @@ class Solution:
         if n != len(edges) + 1:
             return False
 
-        node_map = self.edge_to_graph(edges)
+        node_map = self._initialize_graph(edges)
         # travser all nodes
         queue = deque()
         visited = set()
@@ -45,7 +45,7 @@ class Solution:
         return n == len(visited)
 
 
-    def edge_to_graph(self, edges):
+    def _initialize_graph(self, edges):
 
         node_map = defaultdict(set)
         for node_1, node_2 in edges:

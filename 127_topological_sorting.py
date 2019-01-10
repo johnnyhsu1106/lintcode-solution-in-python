@@ -39,30 +39,55 @@ class Solution:
     @return: Any topological order for the given graph.
     """
     def topSort(self, graph):
-        result = []
-        # edge case
-        if not graph:
-            return result
 
-        #  count each's node indegree (number of edge into node)
+        # edge case
+        if not graph: #len(graph) == 0
+            return []
+
+        # 1. Count each's node indegree (number of edge into node)
+        indegree = self._get_indegree(graph)
+
+        # 2. Topological Sorting: Get those nodes with indegree 0 (which meand those nodes in graph but not in indegree)
+        start_nodes = self._get_start_nodes(graph)
+
+        # 3. Use BFS to get the topological order (from indegree 1, 2, 3, 4)
+        result = self._get_topological_order(start_nodes, indegree)
+
+        return result
+
+
+    def _get_indegree(graph):
         indegree = defaultdict(int)
+
         for node in graph:
-            for neighbor in node.neighbors:
+            for neighbor in node.neighbor:
                 indegree[neighbor] += 1
 
-        # get those nodes with indegree 0 (which meand those nodes in graph but not in indegree)
+        return indegree
+
+
+    def _get_start_nodes(graph):
         start_nodes = set()
+
         for node in graph:
             if node not in indegree:
                 start_nodes.add(node)
 
-        # BFS(from indegree 1, 2, 3, 4)
+        return start_nodes
+
+
+    def _get_topological_order(start_nodes, indegree):
+        result = []
+
         queue = deque(start_nodes)
+        # no need the visited, this set to keep track of nodes we visited because this is directed graph
         while queue:
             node = queue.popleft()
             result.append(node)
+            
             for neighbor in node.neighbors:
                 indegree[neighbor] -= 1
                 if indegree[neighbor] == 0:
                     queue.append(neighbor)
+
         return result

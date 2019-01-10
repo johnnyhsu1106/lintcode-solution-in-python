@@ -33,7 +33,7 @@ class Solution:
     @return: Inorder in ArrayList which contains node values.
     """
     def inorderTraversal_1(self, root):
-
+        # recursion
         result = []
         self.traverse(root, result)
         return result
@@ -42,18 +42,21 @@ class Solution:
         if not node:
             return
 
-        self.traverse(node.left, result)
+        self.traverse(node.left, result)」」
         result.append(node.val)
         self.traverse(node.right, result)
 
 
-    def inorderTraversal(self, root):
+
+
+    def inorderTraversal_2(self, root):
+        # divide and conquer
         result = []
         if not root:
             return []
 
-        left = self.inorderTraversal(root.left)
-        right = self.inorderTraversal(root.right)
+        left = self.inorderTraversal_2(root.left)
+        right = self.inorderTraversal_2(root.right)
         result.extend(left)
         result.append(root.val)
         result.extend(right)

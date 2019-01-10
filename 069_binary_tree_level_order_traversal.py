@@ -41,28 +41,28 @@ class Solution:
         '''
         idea: BFS(Breadth First Search)
         '''
-        result = []
+        results = []
 
         # edge case
         if not root:
-            return result
+            return []
 
         queue = deque() # use deque to implement queue. Method: popleft(), pop(), appendleft(), append()
         queue.append(root) # initial the queue
 
         while queue:
-            curr_level = []
+            current_level = []
             size = len(queue) # store a current size of queue
 
             for i in range(size):
                 node = queue.popleft()
-                curr_level.append(node.val)
+                current_level.append(node.val)
                 # append the next level of nodes into queue
                 if node.left:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
 
-            result.append(curr_level)
+            results.append(current_level)
 
-        return result
+        return results

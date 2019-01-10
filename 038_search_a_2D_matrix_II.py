@@ -34,16 +34,16 @@ class Solution:
 
         m, n = len(matrix), len(matrix[0])
 
-        x, y = m - 1, 0
-        while x >= 0 and y < n:
+        row, col = m - 1, 0
+        while row >= 0 and col < n:
             if matrix[x][y] < target:
-                y += 1
+                col += 1
             elif matrix[x][y] > target:
-                x -= 1
+                row -= 1
             else:
                 count += 1
-                x -= 1
-                y += 1
+                row -= 1
+                col += 1
         return count
 
 

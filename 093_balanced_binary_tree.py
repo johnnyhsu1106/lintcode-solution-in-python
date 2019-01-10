@@ -28,8 +28,8 @@ class Solution:
     """
 
     def isBalanced(self, root):
-        balance, height = self.validtate(root)
-        return balance
+        is_balance, height = self.validtate(root)
+        return is_balance
 
     def validtate(self, node):
         '''
@@ -38,10 +38,10 @@ class Solution:
         if not node:
             return True, 0
 
-        left_balance, left_height = self.validtate(node.left)
-        right_balance, right_height = self.validtate(node.right)
+        is_left_balance, left_height = self.validtate(node.left)
+        is_right_balance, right_height = self.validtate(node.right)
 
-        if not left_balance or not right_balance:
+        if not is_left_balance or not is_right_balance:
             return False, max(left_height, right_height) + 1
             # reutrn False, 0     .... is fine, we don't care the depth any more.
             # once one subtree is not balance..... it will return Fasle from each subtree node

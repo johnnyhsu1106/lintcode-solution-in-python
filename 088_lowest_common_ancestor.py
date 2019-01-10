@@ -39,6 +39,7 @@ class Solution:
     def lowestCommonAncestor(self, root, A, B):
         if not root:
             return None
+            
         if root is A or root is B:
             return root
 
@@ -47,8 +48,10 @@ class Solution:
 
         if left and right:
             return root
+
         elif left and not right:
             return left
+
         elif not left and right:
             return right
 

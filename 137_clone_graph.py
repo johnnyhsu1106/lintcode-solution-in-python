@@ -39,32 +39,37 @@ class Solution:
     """
     def cloneGraph(self, node):
         # edge case
-        root = node
         if not node:
             return node
-        # 1. get all nodes: a Set of all nodes and mapping node to new node
+
+        # 1. get all nodes: use the bfs to get all nodes
+        nodes = self._get_nodes(node)
+
+        # mapping the node: copy nodes and sotre the ole-> new mapping information in hash map(dictionary)
         mapping ={}
-        nodes = self.get_nodes_and_mapping(node, mapping)
+        for node in nodes:
+            mapping[node] = UndirectedGraphNode(node.lable)
 
-        # 2. copy all neighbors
-
+        # 3. copy all neighbors (edges)
         for node in nodes:
             new_node = mapping[node]
             for neighbor in node.neighbors:
+                # use the mapping to find the corresponding node
                 new_neighbor = mapping[neighbor]
+                # append the corresponding neighbor to new node
                 new_node.neighbors.append(new_neighbor)
 
-        return mapping[node]
+        return mapping[node] # new_node
 
 
-    def get_nodes_and_mapping(self, node, mapping):
+    def _get_nodes(self, node):
         # travese all nodes (using BFS)
         queue = deque([node])
         visited = set([node])
 
         while queue:
             node = queue.popleft()
-            mapping[node] = UndirectedGraphNode(node.label)
+
             for neighbor in node.neighbors:
                 if neighbor not in visited:
                     visited.add(neighbor)

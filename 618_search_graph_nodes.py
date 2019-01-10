@@ -33,7 +33,7 @@ class UndirectedGraphNode:
         self.label = x
         self.neighbors = []
 
-from collections import deque, defaultdict
+from collections import deque
 class Solution:
     # @param {UndirectedGraphNode[]} graph a list of undirected graph node
     # @param {dict} values a dict, <UndirectedGraphNode, (int)value>

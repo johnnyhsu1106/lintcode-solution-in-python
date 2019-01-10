@@ -46,8 +46,9 @@ class Solution:
         right_sum, right_size = self.subtree_avg(node.right)
         total_sum = left_sum + right_sum + node.val
         total_size = left_size + right_size + 1
-        avg = float(total_sum) / total_size
+        avg = total_sum / total_size
 
+        # keep track of the node with the maximum average during recurssion
         if avg >= self.max_avg:
             self.max_avg = avg
             self.subtree = node
