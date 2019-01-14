@@ -45,25 +45,26 @@ class Solution:
         if not head:
             return head
 
-        left_dummy = ListNode(0)
-        right_dummy = ListNode(0)
-        left, right = left_dummy, right_dummy
+        dummy_1, dummy_2 = ListNode(0), ListNode(0)
+        curr_node_1, curr_node_2 = dummy_1, dummy_2
+        curr_node = head
 
-        curr = head
-        while curr:
-            if curr.val < x:
-                left.next = curr
-                left = left.next
+        while curr_node:
+            if curr_node.val < x:
+                curr_node_1.next = curr_node
+                curr_node_1 = curr_node_1.next
             else:
-                right.next = curr
-                right = right.next
-            curr = curr.next
+                curr_node_2.next = curr_node
+                curr_node_2 = curr_node_2.next
+
+            curr_node = curr_node.next
 
         # D1->1->2->2
         # D2->4->3->5
-        right.next = None
-        left.next = right_dummy.next
-        return left_dummy.next
+        curr_node_2.next = None
+        curr_node_1.next = dummy_2.next
+
+        return dummy_1.next
 
 
 # def main():

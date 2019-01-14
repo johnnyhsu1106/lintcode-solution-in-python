@@ -52,17 +52,13 @@ class Solution:
     """
     def shortestPath(self, grid, source, destination):
 
-        m = len(grid)
-        n = len(grid[0])
-
-        if grid is None or m == 0 or n == 0:
+        if not grid or len(grid) == 0 or len(grid[0]) == 0:
             return -1
 
         dx = [1, 1, -1, -1, 2, 2, -2, -2]
         dy = [2, -2, 2, -2, 1, -1, 1, -1]
 
-        queue = deque()
-        queue.append(source)
+        queue = deque([source])
         step = 0
 
         while queue:

@@ -42,7 +42,7 @@ class Solution:
                     people += 1
         # edge case
         if people == 0:
-            return 0
+            return -1
 
         queue = deque()
         while queue:

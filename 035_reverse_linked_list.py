@@ -24,9 +24,11 @@ class Solution:
     def reverse(self, head):
         prev_node = None
         curr_node = head
-        while curr:
-            next_node = curr_node.next
-            curr_node.next = prev
-            prev_node = curr_node
-            curr_node = next_node
+
+        while curr_node:
+            next_node = curr_node.next # store the curr_node.next to a vairable called next_node
+            curr_node.next = prev_node
+            prev_node = curr_node # move the pointer `prev_node` to next node
+            curr_node = next_node # move the pointer 'curr_node' to next node
+
         return prev_node

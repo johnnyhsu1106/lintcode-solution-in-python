@@ -43,11 +43,12 @@ class Solution:
             return False
 
         visited = set()
-        curr = head
-        while curr:
-            if curr not in visited:
-                visited.add(curr)
+        curr_node = head
+        while curr_node:
+            if curr_node not in visited:
+                visited.add(curr_node)
             else:
                 return True
-            curr = curr.next
+            curr_node = curr_node.next
+            
         return False

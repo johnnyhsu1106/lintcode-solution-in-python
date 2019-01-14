@@ -26,16 +26,18 @@ class Solution:
         if not head or not head.next:
             return head
 
-        middle = self.find_middle(head)
-        right = self.sortList(middle.next)
-        middle.next = None
-        left = self.sortList(head)
-        return self.merge(left, right)
+        middle_node = self.find_middle(head)
+        right_list = self.sortList(middle_node.next)
+        middle_node.next = None # disconnect the right_list and left_list
+        left_list = self.sortList(head)
+
+        return self.merge(left_list, right_list)
 
 
     def find_middle(self, head):
         slow = head
         fast = head.next
+
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
@@ -44,23 +46,23 @@ class Solution:
 
     def merge(self, head1, head2):
         dummy = ListNode(0)
-        tail = dummy
-        curr1, curr2 = head1, head2
+        curr_node = dummy
+        curr_node_1, curr_node_2 = head1, head2
 
-        while curr1 and curr2:
+        while curr_node_1 and curr_node_2:
 
-            if curr1.val < curr2.val:
-                tail.next = curr1
-                curr1 = curr1.next
+            if curr_node_1.val < curr_node_2.val:
+                curr_node.next = curr_node_1
+                curr_node_1 = curr_node_1.next
             else:
-                tail.next = curr2
-                curr2 = curr2.next
+                curr_node.next = curr_node_2
+                curr_node_2 = curr_node_2.next
 
-            tail = tail.next
+            curr_node = curr_node.next
 
-        if curr1:
-            tail.next = curr1
+        if curr_node_1:
+            curr_node.next = curr_node_1
         else:
-            tail.next = curr2
+            curr_node.next = curr_node_2
 
         return dummy.next

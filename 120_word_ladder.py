@@ -46,11 +46,8 @@ class Solution:
         dictionary.add(start)
         dictionary.add(end)
         #  initialize the BFS (queue<deque> and visited<set>)
-        queue = deque()
-        queue.append(start)
-        visited = set()
-        visited.add(start)
-
+        queue = deque([start])
+        visited_words = set([start])
         path = 0
 
         while queue:
@@ -65,15 +62,16 @@ class Solution:
                 words = self.get_next_words(word, dictionary)
 
                 for new_word in words:
-                    if new_word not in visited:
+                    if new_word not in visited_words:
                         queue.append(new_word)
-                        visited.add(new_word)
+                        visited_words.add(new_word)
 
         return 0
 
 
     def get_next_words(self, word, dictionary):
         next_words = []
+
         for i in range(len(word)):
             for j in range(25):
                 index = (ord(word[i]) + j - ord('a')) % 26 + ord('a')
@@ -85,8 +83,11 @@ class Solution:
         return next_words
 
 
-    def replace_char(self, i, new_char, word):
-        return word[:i] + new_char + word[i + 1:]
+    def replace_char(self, replace_index, new_char, word):
+        return word[:replace_index] + new_char + word[replace_index + 1:]
+        # word_list = list(word)
+        # word_list[replace_char] = new_char
+        # return "".join(word_list)
 
 
 # def main():

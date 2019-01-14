@@ -23,15 +23,16 @@ class Solution:
         if len(s) == 0:
             return reuslt
 
-        self.dfs_partition(s, 0, [], result)
+        partition = []
+        self.dfs_partition(s, 0, partition, results)
 
-        return result
+        return results
 
 
-    def dfs_partition(self, s, start_index, partitions, result):
+    def dfs_partition(self, s, start_index, partitions, results):
 
         if start_index == len(s) :
-            result.append(partitions.copy())
+            results.append(partitions.copy()) #list(partition)
             return
 
         for i in range(start_index, len(s)):
@@ -39,7 +40,7 @@ class Solution:
 
             if self.is_palindrome(substring):
                 partitions.append(substring)
-                self.dfs_partition(s, i + 1, partitions, result)
+                self.dfs_partition(s, i + 1, partitions, results)
                 partitions.pop()
 
 

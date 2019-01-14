@@ -22,34 +22,71 @@ class Solution:
     @param: target: An integer
     @return: A list of lists of integers
     """
-    def combinationSum(self, candidates, target):
+    def combinationSum_1(self, candidates, target):
         '''
         Please see the problem 017 and 153
         '''
-        if candidates is None:
+        '''
+        idea: the candicate in candicates set might be duplicate so need to remove the duplicate
+        '''
+        if not candidates:
             return []
 
-        result = []
+        results = []
         candidates.sort()
         combination = []
 
-        self.dfs(candidates, 0, combination, target, result)
+        self.dfs(candidates, 0, combination, target, results)
+
         return result
 
 
-    def dfs(self, candidates, start_index, combination, remain_target, result):
+    def dfs(self, candidates, start_index, combination, remain_target, results):
         #  base case (stoppig condition)
         if remain_target == 0:
-            result.append(list(combination))
+            results .append(list(combination))
+            # results.append(combination.copy())
             return
 
         for i in range(start_index, len(candidates)):
-            if candidates[i] > remain_target:
+            if remain_target < candidates[i] :
                 break
-            if i == 0 or candidates[i] != candidates[i - 1]:
+
+            if i == 0 or candidates[i] != candidates[i - 1]: #avoid add the other duplicate number into combination
                 combination.append(candidates[i])
                 self.dfs(candidates, i, combination, remain_target - candidates[i], result)
                 combination.pop()
+
+
+    def combinationSum_2(self, candidates, target):
+        '''
+        Please see the problem 017 and 153
+        '''
+        if not candidates:
+            return []
+
+        results = []
+        candicates = sorted(list(set(candidates)))
+        combination = []
+
+        self.dfs(candidates, 0, combination, target, results)
+
+        return result
+
+
+    def dfs(self, candidates, start_index, combination, remain_target, results):
+        #  base case (stoppig condition)
+        if remain_target == 0:
+            results .append(combination.copy())
+            return
+
+        for i in range(start_index, len(candidates)):
+            if remain_target < candidates[i] :
+                break
+
+            combination.append(candidates[i])
+            self.dfs(candidates, i, combination, remain_target - candidates[i], result)
+            combination.pop()
 
 # def main():
 #     s = Solution()

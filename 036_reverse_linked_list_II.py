@@ -42,46 +42,51 @@ class Solution:
     @return: The head of the reversed ListNode
     """
     def reverseBetween(self, head, m, n):
-        # Given 1->2->3->4->5->NULL, m = 2 and n = 4, return 1->4->3->2->5->NULL.
-
         dummy = ListNode(0)
         dummy.next = head
 
-        prev_m_node = self.find_kth(dummy, m - 1)
-        m_node = prev_m_node.next
-        n_node = self.find_kth(dummy, n)
-        next_n_node = n_node.next #  store the all node after n_node
+        # 1. Find the node m - 1
+        node_m_prev = self._find_kth_node(dummy, m - 1)
+        node_m = node_m_prev.next
 
-        n_node.next = None
-        # 1->2->3->4->5->NULL
-        # 1->2  4->3->2->NULL,
-        # 5->NUL
-        n_node = self.reverse(m_node)
-        
-        prev_m_node.next = n_node
-        m_node.next = next_n_node
+        # 2. Find the node n and node n + 1
+        node_n = self._find_kth_node(dummy, n)
+        node_n_next = node_n.next
+
+        # 3. Disconnect the node n and node_n_next
+        node_n.next = None
+
+        # 4. Reverse the link list from node m to node n
+        node_n = self._reverse(node_m)
+
+        # 5. Connect the reversed link list
+        node_m_prev.next = node_n
+        node_m.next = node_n_next
 
         return dummy.next
 
 
-    def reverse(self, head):
-        prev = None
-        curr = head
-        while curr:
-            next = curr.next
-            curr.next = prev
-            prev = curr
-            curr = next
-        new_head = prev
-        return new_head
+    def _find_kth_node(self, dummy, k):
+        curr_node = dummy
 
-
-    def find_kth(self, dummy, k):
-        curr = dummy
         for i in range(k):
-            curr = curr.next
-        kth_node = curr
-        return kth_node
+            curr_node = curr_node.next
+
+        return curr_node
+        
+
+    def _reverse(self, head):
+        prev_node = None
+        curr_node = head
+
+        while curr_node:
+            next_node = curr_node.next
+            curr_node.next = prev_node
+
+            prev_node = curr_node
+            curr_node = next_node
+
+        return prev_node
 
 
 

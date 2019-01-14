@@ -22,22 +22,26 @@ class Solution:
     @return: The node where the cycle begins. if there is no cycle, return null
     """
     def detectCycle(self, head):
-        if not head:
+        if not head or not head.next:
             return None
 
-        slow = head
-        fast = head.next
+        slow, fast = head, head
 
         while fast and fast.next:
-            if slow is fast:
-                break
+
             slow = slow.next
             fast = fast.next.next
 
-        if slow is fast:
+            if fast == slow:
+                break
+
+        if slow == fast:
             slow = head
-            while show is not fast:
+
+            while slow is not fast:
                 slow = slow.next
                 fast = fast.next
+
             return slow
+
         return None
