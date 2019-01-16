@@ -32,14 +32,13 @@ class Solution:
     it will repeat after 7 times, which is len(string)
     '''
     def rotateString(self, lst, offset):
-
         size = len(lst)
         if size <= 1 or offset == 0:
             return
 
         offset = offset % size
-        self.swap(lst, size - offset, size - 1)
         self.swap(lst, 0, size - 1 - offset)
+        self.swap(lst, size - offset, size - 1)
         self.swap(lst, 0, size - 1)
 
 

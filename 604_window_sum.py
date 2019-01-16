@@ -22,7 +22,7 @@ class Solution:
         if not nums or n == 0 or k > n or k <=0:
             return []
 
-        result = [0] * (n - k + 1)
+        result = [0] * (n - k + 1) # [0 for i in range(n-k+1)]
         for i in range(k):
             result[0] += nums[i]
 

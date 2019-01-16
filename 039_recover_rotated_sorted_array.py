@@ -24,6 +24,7 @@ class Solution:
         for i in range(len(nums) - 1):
             if nums[i] > nums[i + 1]:
                 mid = i
+                
         if mid != 0:
             self.swap(nums, 0, mid)
             self.swap(nums, mid + 1, len(nums) - 1)

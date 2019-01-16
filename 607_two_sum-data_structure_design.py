@@ -53,7 +53,8 @@ class TwoSum_2:
 
 
     def find(self, value):
-        start, end = 0, len(self.nums) - 1
+        start, end = 0, len(self.nums) - 1 
+
         while start < end:
             total = self.nums[start] + self.nums[end]
             if total < value:
@@ -62,6 +63,7 @@ class TwoSum_2:
                 end -= 1
             else:
                 return True
+
         return False
 
 

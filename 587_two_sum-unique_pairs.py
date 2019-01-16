@@ -20,24 +20,24 @@ class Solution:
     """
     def twoSum6(self, nums, target):
         nums.sort()
-        start, end = 0, len(nums) - 1
+        left, right = 0, len(nums) - 1
         count = 0
 
-        while start < end:
-            if nums[start] + nums[end] > target:
-                end -= 1
-            elif nums[start] + nums[end] < target:
-                start += 1
+        while left < right:
+            if nums[left] + nums[right] > target:
+                right -= 1
+            elif nums[left] + nums[right] < target:
+                left += 1
             else:
                 count += 1
-                start += 1
-                end -= 1
+                left += 1
+                right -= 1
+                # skip the duplicate (inner loop: nleft <right must be satisfied)
+                while left < right and nums[right] == nums[right + 1]:
+                    right -= 1
 
-                while start < end and nums[end] == nums[end + 1]:
-                    end -= 1
-
-                while start < end and nums[start] == nums[start - 1]:
-                    start += 1
+                while left < right and nums[left] == nums[left - 1]:
+                    left += 1
 
         return count
 

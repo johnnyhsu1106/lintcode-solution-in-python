@@ -25,7 +25,10 @@ class Solution:
         S.sort()
         count = 0
         for i in range(2, len(S)):
-            count += self.two_sum(S, 0, i - 1, S[i])
+            left = 0
+            right = i - 1
+            target = S[i]
+            count += self.two_sum(self, S, left, right, target)
 
         return count
 

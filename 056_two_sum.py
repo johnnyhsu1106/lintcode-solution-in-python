@@ -22,6 +22,7 @@ O(n) Space, O(n) Time
 '''
 
 from collections import defaultdict
+
 class Solution:
     """
     @param: numbers: An array of Integer
@@ -31,13 +32,13 @@ class Solution:
     def twoSum_1(self, numbers, target):
         # O(n) Space, O(n) Time
         # hash set
-        visited = dict()
+        visited_nums = dict()
         for i in range(len(numbers)):
             num = numbers[i]
-            if target - num not in visited:
-                visited[num] = i
+            if target - num not in visited_nums:
+                visited_nums[num] = i
             else:
-                return [visited[target - num] + 1, i + 1]
+                return [visited_nums[target - num] + 1, i + 1]
 
 
 

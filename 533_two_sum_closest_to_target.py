@@ -1,20 +1,20 @@
 class Solution:
     def twoSumClosest(self, nums, target):
-        if nums is None or len(nums) == 0:
+        if not nums or len(nums) == 0:
             return -1;
 
         nums.sort()
-        start, end = 0, len(nums) - 1
+        left, right = 0, len(nums) - 1
         diff = float('inf')
 
-        while start < end:
-            diff = min(diff, abs(target - (nums[end] + nums[start])))
-            if nums[start] + nums [end] == target:
+        while left < right:
+            diff = min(diff, abs(target - (nums[right] + nums[left])))
+            if nums[left] + nums [right] == target:
                 return 0
-            elif nums[start] + nums[end] > target:
-                end -= 1
+            elif nums[left] + nums[right] > target:
+                right -= 1
             else:
-                start += 1
+                left += 1
 
         return diff
 
