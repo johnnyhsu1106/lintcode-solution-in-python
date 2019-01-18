@@ -39,8 +39,6 @@ class Solution:
         Remember
         left pointer can go right direction only (left += 1)
         right pointer can go left direction only (right -= 1)
-
-
         '''
         count = 0
         while left < right:
@@ -54,21 +52,32 @@ class Solution:
 
 
     def triangleCount_2(self, S):
-        count = 0
-        if not S or len(S) == 0:
-            return count
+        if not S or len(S) < 3:
+            return 0
 
         S.sort()
+        count = 0
 
         for i in range(2, len(S)):
-            left, right = 0, i  - 1
+
+            target = S[i]
+            left, right = 0, i - 1
 
             while left < right:
-                if S[left] + S[right] > S[i]:
+                total = S[left] + S[right]
+
+                if total < target:
+                    left += 1
+
+                elif total > target:
+                    # all the sum of S[left] + S[right], S[left + 1] + S[right], .....S[right- 1] + S[right] must greater than target
+                    # count would be right - left
                     count += right - left
                     right -= 1
-                elif S[left] + S[right] <= S[i]:
+
+                else:
                     left += 1
+
         return count
 
 

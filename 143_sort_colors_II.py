@@ -35,6 +35,7 @@ class Solution:
         '''
         if not colors or len(colors) == 0:
             return
+
         self.rainbow_sort(colors, 0, len(colors) - 1, 1, k)
 
 
@@ -49,9 +50,11 @@ class Solution:
         # pivot
         color_mid = (color_to + color_from) // 2
         left, right = start, end
+
         while left <= right:
             while left <= right and colors[left] <= color_mid:
                 left += 1
+                
             while left <= right and colors[right] > color_mid:
                 right -= 1
 

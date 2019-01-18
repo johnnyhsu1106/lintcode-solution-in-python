@@ -53,14 +53,14 @@ class TwoSum_2:
 
 
     def find(self, value):
-        start, end = 0, len(self.nums) - 1 
+        left, right = 0, len(self.nums) - 1
 
-        while start < end:
-            total = self.nums[start] + self.nums[end]
+        while left < right:
+            total = self.nums[left] + self.nums[right]
             if total < value:
-                start += 1
+                left += 1
             elif total > value:
-                end -= 1
+                right -= 1
             else:
                 return True
 

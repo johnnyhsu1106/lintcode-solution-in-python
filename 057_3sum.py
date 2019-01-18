@@ -22,7 +22,7 @@ class Solution:
         if not numbers or len(numbers) < 3:
             return []
 
-        result = []
+        results = []
         numbers.sort()
 
         for i in range(len(numbers) - 2):
@@ -30,12 +30,12 @@ class Solution:
                 left = i + 1
                 right = len(numbers) - 1
                 target = -numbers[i]
-                self.two_sum(self, nums, left, right, target, result)
+                self.two_sum(self, nums, left, right, target, results)
 
-        return result
+        return results
 
 
-    def two_sum(self, nums, left, right, target, result):
+    def two_sum(self, nums, left, right, target, results):
 
         while left < right:
             if nums[left] + nums[right] < target:
@@ -46,7 +46,7 @@ class Solution:
 
             else:
                 triple = [-target, nums[left], nums[right]]
-                result.append(triple)
+                results.append(triple)
                 left += 1
                 right -= 1
                 #  avoind all duplicate pair, which is equal to nums[left - 1](the previous one)
@@ -61,33 +61,40 @@ class Solution:
         if not numbers or len(numbers) < 3:
             return []
 
-        result = []
+        results = []
         numbers.sort()
-        for i in range(0, len(numbers) - 2):
+
+        for i in range(len(numbers) - 2):
             if i == 0 or numbers[i] != numbers[i - 1]:
-                # left, right = i + 1, len(numbers) - 1
-                left, right = i + 1, len(numbers) - 1
+                target = -numbers[i]
+
+                left = i + 1
+                right = len(numbers) - 1
 
                 while left < right:
-                    total = numbers[left] + numbers[right] + numbers[i]
+                    total = numbers[left] + numbers[right]
 
-                    if total == 0:
-                        tripple = [numbers[i], numbers[left], numbers[right]]
-                        result.append(tripple)
+                    if total < target:
+                        left += 1
+
+                    elif total > target:
+                        right -= 1
+
+                    else:
+
+                        results.append([numbers[i], numbers[left], numbers[right]])
                         left += 1
                         right -= 1
 
-                        while left < right and numbers[left] == numbers[left - 1]:
+                        while left < right and numbers[left - 1] == numbers[left]:
                             left += 1
+
                         while left < right and numbers[right] == numbers[right + 1]:
                             right -= 1
 
-                    elif total > 0:
-                        right  -= 1
-                    else:
-                        left += 1
+        return results
 
-        return result
+
 
 
 # #

@@ -3,8 +3,6 @@ Given an array of integers, find two numbers such that they add up to a specific
 
 The function twoSum should return indices of the two numbers
 such that they add up to the target, where index1 must be less than index2.
-Please note that your returned answers (both index1 and index2) are NOT zero-based.
-
 Notice
 
 You may assume that each input would have exactly one solution
@@ -27,18 +25,18 @@ class Solution:
     """
     @param: numbers: An array of Integer
     @param: target: target = numbers[index1] + numbers[index2]
-    @return: [index1 + 1, index2 + 1] (index1 < index2)
+    @return: [index1, index2] (index1 < index2)
     """
     def twoSum_1(self, numbers, target):
         # O(n) Space, O(n) Time
         # hash set
-        visited_nums = dict()
+        visited_nums = {}
         for i in range(len(numbers)):
             num = numbers[i]
             if target - num not in visited_nums:
                 visited_nums[num] = i
             else:
-                return [visited_nums[target - num] + 1, i + 1]
+                return [visited_nums[target - num], i]
 
 
 
@@ -47,32 +45,40 @@ class Solution:
         # O(n) Space, O(nlogn) Time ....Terrible Idea!!!!!
         #  Use two pointers... however, still need to use the hash map to store index before sorting.
 
+        if not nums or len(nums) <= 1:
+            return []
+
+        size = len(nums)
+
         mapping = defaultdict(list)
-        for i, num in enumerate(numbers):
-            mapping[num].append(i + 1)
+        for i in range(size):
+            mapping[nums[i]].append(i)
 
-        numbers.sort()
-        start, end = 0, len(numbers) - 1
+        nums.sort()
 
-        while start < end:
-            num = numbers[start] + numbers[end]
-            if num > target:
-                end -= 1
-            elif num < target:
-                start += 1
+        left, right = 0, size - 1
+        result = []
+
+        while left < right:
+            total = nums[left] + nums[right]
+
+            if total > target:
+                right -= 1
+
+            elif total < target:
+                left += 1
+
             else:
-                pair = [numbers[start], numbers[end]]
+                value1 = nums[left]
+                value2 = nums[right]
+                if value1 == value2:
+                    result = mapping[value1]
+                else:
+                    result = mapping[value1] + mapping[value2]
                 break
 
-        result = []
-        for num in pair:
-            result.append(mapping[num].pop())
 
         return sorted(result)
-
-
-
-
 # def main():
 #     s = Solution()
 #     nums = [2, 7, 11,  15]

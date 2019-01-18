@@ -36,6 +36,9 @@ class Solution:
         idea: two pointer, left and right .
         First sort the nums
         '''
+        if not nums or len(nums) < 2:
+            return 0
+
         count = 0
         left , right = 0, len(nums) - 1
         nums.sort()

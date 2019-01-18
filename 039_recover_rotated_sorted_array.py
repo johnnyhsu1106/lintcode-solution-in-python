@@ -19,19 +19,23 @@ class Solution:
     @return: nothing
     """
     def recoverRotatedSortedArray(self, nums):
-        # write your code here
-        mid = 0
-        for i in range(len(nums) - 1):
-            if nums[i] > nums[i + 1]:
-                mid = i
-                
-        if mid != 0:
-            self.swap(nums, 0, mid)
-            self.swap(nums, mid + 1, len(nums) - 1)
-            self.swap(nums, 0, len(nums) - 1)
+        breakpoint = -1
+        size = len(nums)
 
-    def swap(self, nums, i, j):
-        while i < j:
-            nums[i], nums[j] = nums[j], nums[i]
-            i += 1
-            j -= 1
+        for i in range(size - 1):
+            if nums[i] > nums[i + 1]:
+                breakpoint = i
+
+        if breakpoint == -1:
+            return
+
+        self.swap(nums, 0, breakpoint)
+        self.swap(nums, breakpoint + 1, size - 1)
+        self.swap(nums, 0, size - 1)
+
+
+    def swap(self, nums, left, right):
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1

@@ -188,7 +188,7 @@
     406. Minimum Size Subarray Sum
     384. Longest Substring Without Repeating Characters
     386. Longest Substring with At Most K Distinct Characters
-    465. Kth Smallest Sum In Two Sorted Arrays
+    465. Kth Smallest Sum In Two   Sorted Arrays
 
 2 - Data Structure I
     433. Number of Island

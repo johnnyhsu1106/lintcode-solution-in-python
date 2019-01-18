@@ -42,12 +42,12 @@ class Solution:
         self.swap(lst, 0, size - 1)
 
 
-    def swap(self, lst, i, j):
-        while i < j:
-            lst[i], lst[j] = lst[j], lst[i]
-            i += 1
-            j -= 1
-
+    def _swap(self, lst, left, right):
+        while left < right:
+            lst[left], lst[right] = lst[right], lst[left]
+            left += 1
+            right -= 1
+            
 
 
     def rotateString(self, lst, offset):

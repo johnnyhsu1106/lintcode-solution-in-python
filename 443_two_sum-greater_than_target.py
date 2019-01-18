@@ -15,18 +15,21 @@ class Solution:
     @return: an integer
     """
     def twoSum2(self, nums, target):
+        if not nums or len(nums) < 2:
+            return 0
         # use two pointer (please see the problem 382 triangle count as well.)
         nums.sort()
         left, right = 0, len(nums) - 1
         count = 0
-        while left < right:
 
-            if nums[left] + nums[right] > target:
+        while left < right:
+            total = nums[left] + nums[right]
+
+            if total > target:
                 count += right - left
                 right -= 1
 
-
-            elif nums[left] + nums[right] <= target:
+            else:
                 left += 1
 
         return count

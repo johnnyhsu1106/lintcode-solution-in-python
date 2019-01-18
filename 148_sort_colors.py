@@ -46,7 +46,6 @@ class Solution:
 
 
     def sortColors1(self, nums):
-
         if nums is None or len(nums) == 0:
             return
 
@@ -54,6 +53,7 @@ class Solution:
         while left < right:
             while left < right and nums[left] == 0:
                 left += 1
+
             while left < right and nums[right] >= 1:
                 right -= 1
 
@@ -67,6 +67,7 @@ class Solution:
         while left < right:
             while left < right and nums[left] <= 1:
                 left += 1
+
             while left < right and nums[right] == 2:
                 right -= 1
 

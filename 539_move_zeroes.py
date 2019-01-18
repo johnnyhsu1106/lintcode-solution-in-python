@@ -1,9 +1,25 @@
+"""
+Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+Example
+Given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].
+
+Notice
+You must do this in-place without making a copy of the array.
+Minimize the total number of operations.
+
+@param: nums: an integer array
+@return:
+"""
+
 class Solution:
-    """
-    @param: nums: an integer array
-    @return:
-    """
     def moveZeroes_1(self, nums):
+        '''
+        idea: find th non zero number and put it in th front in order and assign zero for rest
+        '''
+        if not nums or len(nums) ==0:
+            return
+
         # two pointers:
         # assign the non-zero number in the nums, starting from the beginning of nums
         # assign 0 to from start to end of nums
@@ -26,16 +42,22 @@ class Solution:
 
 
     def moveZeroes_2(self, nums):
-        #
-        index = 0
-        right = 0
+        '''
+        idea: find th non-zero number and swap to the front in order
+        '''
+        if not nums or len(nums) == 0:
+            return
 
-        while right < len(nums):
-            if nums[right] != 0:
-                nums[right], nums[index] = nums[index], nums[right]
+        index = 0 # the index
+        start = 0 # the poiter, which will point to non zero number
+
+        while start < len(nums):
+            if nums[start] != 0:
+                nums[start], nums[index] = nums[index], nums[start]
                 index += 1
 
-            right += 1
+            start += 1
+
 
 #
 # def main():
