@@ -64,6 +64,7 @@ class Solution:
     def add(self, num):
         if len(self.min_heap) < self.k:
             heappush(self.min_heap, num)
+            
         elif num > self.min_heap[0]:
             heappop(self.min_heap)
             heappush(self.min_heap, num)

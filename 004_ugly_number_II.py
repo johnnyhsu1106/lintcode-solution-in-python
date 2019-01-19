@@ -24,16 +24,19 @@ class Solution:
         if n <= 1:
             return n
 
-        primes = [2, 3, 5]
+        prime_nums = [2, 3, 5]
         min_heap = [1]
-        visited = set()
+        visited_nums = set()
 
         for i in range(n):
             result = heappop(min_heap)
-            for j in range(len(primes)):
-                if result * primes[j] not in visited:
-                    heappush(min_heap, result * primes[j])
-                    visited.add(result * primes[j])
+
+            for j in range(len(prime_nums)):
+                next_ugly_num = result * prime_nums[j]
+
+                if next_ugly_num not in visited_nums:
+                    heappush(min_heap, next_ugly_num)
+                    visited_nums.add(next_ugly_num)
 
         return result
 

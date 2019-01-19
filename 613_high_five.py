@@ -23,38 +23,48 @@ class Solution:
     # @return {dict(id, average)} find the average of 5 highest scores for each person
     # <key, value> (student_id, average_score)
     def highFive1(self, records):
-        scores = defaultdict(list)
+        top_5_scores = defaultdict(list)
         for record in records:
-            scores[record.id].append(record.score)
+            top_5_scores[record.id].append(record.score)
 
-        scores_avg = {}
-        for id in scores:
-            scores[id].sort()
-            scores_avg[id] = float(sum(scores[id][-5:])) / 5
+        top_5_avg_scores = {}
+        for id in top_5_scores:
+            top_5_scores[id].sort()
+            top_5_avg_scores[id] = sum(top_5_scores[id][-5:]) / 5
 
-        return scores_avg
+        return top_5_avg_scores
 
 
     def highFive2(self, records):
-        scores = defaultdict(list)
+        if not results:
+            return {}
 
+        top_5_scores = defaultdict(list)
+        '''
+        { id1: [score1, score2, score3, score4, score5],
+          id2: [score1, score2, score3, score4, score5],
+          ...
+        }
+        '''
         for record in records:
-            heappush(scores[record.id], record.score)
-            if (len(scores[record.id])) > 5:
-                heappop(scores[record.id])
-            # from line 42 to line 44 is equal to the line 47 to 54
+            heappush(top_5_scores[record.id], record.score)
 
-            # if len(scores[record.id]) < 5:
-            #     heappush(scores[record.id], record.score)
+            if (len(top_5_scores[record.id])) > 5:
+                heappop(top_5_scores[record.id])
+
+            # From line 50 to 53 is euqal to from line 57 to 62
+
+            # if len(top_5_scores[record.id]) < 5:
+            #     heappush(top_5_scores[record.id], record.score)
             # else:
-            #
-            #     if record.score > scores[record.id][0]:
-            #         heappop(scores[record.id])
-            #         heappush(scores[record.id], record.score)
-        scores_avg = {}
-        for id in scores:
-            scores_avg[id] = sum(scores[id]) / 5.0
-        return scores_avg
+            #     if record.score > top_5_scores[record.id][0]:
+            #         heappop(top_5_scores[record.id])
+            #         heappush(top_5_scores[record.id], record.score)
+
+        top_5_avg_scores = defaultdict(float)
+        for id in top_5_scores:
+            top_5_avg_scores[id] = sum(top_5_scores[id]) / 5
+        return top_5_avg_scores
 
 
 # def main():

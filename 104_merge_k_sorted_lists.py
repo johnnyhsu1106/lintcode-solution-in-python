@@ -51,14 +51,14 @@ class Solution:
                 heappush(min_heap, (node.val, node))
 
         dummy = ListNode(0)
-        tail = dummy
+        curr_node = dummy
 
         while min_heap:
             value, node = heappop(min_heap)
             if node.next:
                 heappush(min_heap, (node.next.val, node.next))
-            tail.next = node
-            tail = tail.next
+            curr_node.next = node
+            curr_node = curr_node.next
 
         return dummy.next
 
@@ -85,24 +85,26 @@ class Solution:
 
     def merge_two_sorted_lists(self, list_1, list_2):
         dummy = ListNode(0)
-        tail = dummy
-        head_1 = list_1
-        head_2 = list_2
+        curr_node = dummy
+        curr_node_1 = list_1
+        curr_node_2 = list_2
 
-        while head_1 and head_2:
-            if head_1.val < head_2.val:
-                tail.next = head_1
-                head_1 = head_1.next
+        while curr_node_1 and curr_node_2:
+            if curr_node_1.val < curr_node_2.val:
+                curr_node.next = curr_node_1
+                curr_node_1 = curr_node_1.next
             else:
-                tail.next = head_2
-                head_2 = head_2.next
+                curr_node.next = curr_node_2
+                curr_node_2 = curr_node_2.next
 
-            tail = tail.next
+            curr_node = curr_node.next
 
-        if head_2:
-            tail.next = head_2
-        else:
-            tail.next = head_1
+        if curr_node_1:
+            curr_node.next = curr_node_1
+
+        if curr_node_2:
+            curr_node.next = curr_node_2
+
 
         return dummy.next
 

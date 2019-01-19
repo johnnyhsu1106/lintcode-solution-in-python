@@ -47,6 +47,8 @@ class Point:
 #         return str(self.dist) + ',' + str(self.point)
 
 from heapq import heappush, heappop
+from collections import defaultdict
+
 class Solution:
     """
     @param: points: a list of points
@@ -55,29 +57,34 @@ class Solution:
     @return: the k closest points
     """
     def kClosest_hash(self, points, origin, k):
-        from collections import defaultdict
+        if not points or not origin or k == 0:
+            return
 
         # use hash map (dictionary) to store the {dictance : (x, y)}
 
-        result = []
-        distances = defaultdict(list)
+        k_closest_points = []
+        distance_mapping = defaultdict(list)
 
         for point in points:
-            dist = self.get_distance(point, origin)
-            distances[dist].append((point.x, point.y))
+            dist = self._get_distance(point, origin)
+            distance_mapping[dist].append((point.x, point.y))
 
-        i = 1
-        for distance in sorted(distances.keys()):
-            points = distances[distance]
+        count = 0
+        for distance in sorted(distance_mapping.keys()):
+            points = distance_mapping[distance]
+
             for x, y in sorted(points):
-                result.append(Point(x,y))
-                if i == k:
-                    return result
-                i += 1
+                k_closest_points.append(Point(x, y))
+                count += 1
+
+                if count == k:
+                    return k_closest_points
 
 
-    def get_distance(self, point, origin):
+    def _get_distance(self, point, origin):
         return abs(point.x - origin.x) ** 2 + abs(point.y - origin.y) ** 2
+
+        
 
 
     def kClosest_heap(self, points, origin, k):
@@ -86,53 +93,31 @@ class Solution:
         # before push element, reverse the sign
         # after pop elemnt, reverse sign
 
+        if not points or not origin or k == 0:
+            return
+
         max_heap = []
-        result = []
+
         for point in points:
-            dist = self.get_distance(point, origin)
-            if len(max_heap) < k:
-                heappush(max_heap, [-dist, point.x, point.y])
-            else:
-                if dist < -max_heap[0][0]:
-                    heappop(max_heap)
-                    heappush(max_heap, [-dist, point.x, point.y])
-                elif dist == -max_heap[0][0]:
-                    if point.x < max_heap[0][1]:
-                        heappop(max_heap)
-                        heappush(max_heap, [-dist, point.x, point.y])
-                    elif point.x == max_heap[0][1]:
-                        if point.y < max_heap[0][2]:
-                            heappop(max_heap)
-                            heappush(max_heap, [-dist, point.x, point.y])
+            distance = self._get_distance(point, origin)
+            heappush(max_heap, (-distance, -point.x, -point.y))
+
+            if len(max_heap) > k:
+                heappop(max_heap)
+
+        k_closest_points = []
+
+        while len(max_heap) > 0:
+            distance, x, y = heappop(max_heap)
+            k_closest_points.append(Point(-x, -y))
+
+        k_closest_points.reverse();
+
+        return k_closest_points
 
 
-            # heappush(max_heap, [-dist, point.x, point.y])
-            # if len(max_heap) > k:
-            #     heappop(max_heap)
-
-        ###################################################################
-        # Notice: It might goes wrong if we use the following code.
-        # However, among all LintCode test case, it can still pass all tests cases.
-
-        # Assume Point(x1, y1) and oint(x2, y2) is same distance far from origin.
-        # x1 < x1 or x1 == x1 and y1 < y2, so they are both kth point
-        # We should keep Point(x1, y1) instead of Point(x2, y2)
-        # However, the following method might keep Point(x2, y2) instead of Point(x1, y1)
-        # Unless, you create the class Type, include dist and point
-        # In python 3, __cmp__() is removed. You have to implemnt __ne__(), __lt__() yourself
-
-        ####################################################################
-
-
-        for i in range(k):
-            max_heap[i][0] = - max_heap[i][0]
-
-        for dist, x, y in sorted(max_heap):
-            result.append(Point(x,y))
-
-        return result
-
-
+    def _get_distance(self, point, origin):
+        return abs(point.x - origin.x) ** 2 + abs(point.y - origin.y) ** 2
 
 # def main():
 #     s = Solution()
