@@ -14,14 +14,24 @@ class Solution:
     @return: the top k largest numbers in array
     """
     def topk(self, nums, k):
-        result = []
+        if not nums or k == 0:
+            return []
+
+        top_k = []
         min_heap = []
+
         for num in nums:
             heappush(min_heap, num)
+
             if len(min_heap) > k:
                 heappop(min_heap)
 
-        return sorted(min_heap, reverse= True)
+        while min_heap:
+            top_k.append(heappop(min_heap))
+
+        top_k.reverse()
+
+        return top_k
 
 
 # def main():

@@ -32,11 +32,12 @@ class Solution:
 
 
     def winSum_2(self, nums, k):
-        n = len(nums)
-        if not nums or n == 0 or k > n or k <=0:
+
+        if not nums or k > len(nums) or k <=0:
             return []
 
-        result = [0] * (n - k + 1)
+        n = len(nums)
+        result = [0 for i in range(n - k + 1)]
         result[0] = sum(nums[0:k])
         i = k
         while i < n:

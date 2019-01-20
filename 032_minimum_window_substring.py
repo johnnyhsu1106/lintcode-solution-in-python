@@ -30,23 +30,29 @@ class Solution:
 
         j = 0
         min_substr = ''
-        min_length = float('inf')
+        min_length = len(source) + 1
 
         for i in range(len(source)):
-            while j < len(source) and not self.is_contain(s_char_count, t_char_count):
+            while j < len(source) and not self._is_contain(s_char_count, t_char_count):
                 s_char_count[source[j]] += 1
                 j += 1
 
-            if self.is_contain(s_char_count, t_char_count):
+            if self._is_contain(s_char_count, t_char_count):
                 if min_length > j - i:
                     min_length = j - i
                     min_substr = source[i:j]
+
             s_char_count[source[i]] -= 1
 
         return min_substr
 
-    def is_contain(self, s_char_count, t_char_count):
+
+
+    def _is_contain(self, s_char_count, t_char_count):
+        # the condition in if statate can be like above because use the defaultdict, the default value of each key is 0 (defaultdict(int))
+        #char not in s_char_count or s_char_count[char] < t_char_count[char]:
         for char in t_char_count:
-            if char not in s_char_count or s_char_count[char] < t_char_count[char]:
+            if s_char_count[char] < t_char_count[char]: 
                 return False
+
         return True

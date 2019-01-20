@@ -60,7 +60,7 @@ class Solution:
     @return: A list of The first node of linked list which have twice size
     """
     def rehashing(self, hashTable):
-        if not hashTable or len(hashTable) == 0:
+        if not hashTable:
             return hashTable
 
         capacity = len(hashTable)
@@ -72,7 +72,7 @@ class Solution:
             while node:
                 hashcode = node.val % new_capacity
 
-                if new_hashTable[hashcode] is None:
+                if not new_hashTable[hashcode]:
                     new_hashTable[hashcode] = node
                 else:
                     head = new_hashTable[hashcode]
@@ -85,7 +85,7 @@ class Solution:
 
         return new_hashTable
 
-# 
+#
 # def main():
 #     s = Solution()
 #     capacity = 4

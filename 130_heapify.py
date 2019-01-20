@@ -65,18 +65,22 @@ class Solution:
 
 
     def heapify_2(self, nums):
-        for i in range(1, len(nums)):
-            self.percolate_up(i ,nums)
+        for i in range(len(nums)):
+            self._percolate_up(i ,nums)
 
 
-    def percolate_up(self, i, nums):
-        while self.parent(i) >= 0 and nums[self.parent(i)] > nums[i]:
-            self.swap(nums, i, self.parent(i))
-            i = self.parent(i)
+    def _percolate_up(self, i, nums):
+        while self._get_parent_index(i) >= 0 and nums[self._get_parent_index(i)] > nums[i]:
+            self.swap(nums, i, self._get_parent_index(i))
+            i = self._get_parent_index(i)
 
-    def parent(self, i):
+
+    def _get_parent_index(self, i):
         return (i - 1) // 2
 
+
+    def swap(self, nums, i, j):
+        nums[i], nums[j] = nums[j], nums[i]
 
 
 # def main():

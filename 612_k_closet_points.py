@@ -84,7 +84,7 @@ class Solution:
     def _get_distance(self, point, origin):
         return abs(point.x - origin.x) ** 2 + abs(point.y - origin.y) ** 2
 
-        
+
 
 
     def kClosest_heap(self, points, origin, k):
@@ -95,7 +95,7 @@ class Solution:
 
         if not points or not origin or k == 0:
             return
-
+        # get top k closest points in max_heap
         max_heap = []
 
         for point in points:
@@ -105,12 +105,13 @@ class Solution:
             if len(max_heap) > k:
                 heappop(max_heap)
 
-        k_closest_points = []
 
-        while len(max_heap) > 0:
+        k_closest_points = []
+        # get top k closest points from max heap in descending order
+        while max_heap > 0:
             distance, x, y = heappop(max_heap)
             k_closest_points.append(Point(-x, -y))
-
+        # get top k closest points in ascending order as problem requested.
         k_closest_points.reverse();
 
         return k_closest_points

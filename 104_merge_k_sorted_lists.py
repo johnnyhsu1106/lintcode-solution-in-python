@@ -42,7 +42,7 @@ class Solution:
     """
     def mergeKLists_heap(self, lists):
         # idea: Min Heap.
-        if not lists or len(lists) == 0:
+        if not lists:
             return
         # min Heap
         min_heap = []
@@ -66,7 +66,7 @@ class Solution:
 
     def mergeKLists_merge(self, lists):
         # idea: Divide andn Conquer
-        if not lists or len(lists) == 0:
+        if not lists:
             return
 
         return self.helper(lists, 0, len(lists) -1)

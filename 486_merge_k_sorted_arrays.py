@@ -25,24 +25,25 @@ class Solution:
         Time: O(nlogk)
         Space: O(k)
         '''
-        if not arrays or len(arrays) == 0:
+        if not arrays:
             return []
 
         result = []
         min_heap = []
 
-        for x, array in enumerate(arrays):
-            if len(array) != 0:
-                heappush(min_heap, (array[0], x, 0))
+        for row in range(len(arrays)):
+            if arrays[row]:
+                num = arrays[row][0]
+                heappush(min_heap, (num, row, 0))
 
         while min_heap:
-            value, x, y = heappop(min_heap)
-            result.append(value)
-            if y + 1 < len(arrays[x]):
-                heappush(min_heap, (arrays[x][y + 1], x, y + 1))
+            num, row, col = heappop(min_heap)
+            result.append(num)
+            if col < len(arrays[row]) - 1:
+                heappush(min_heap, (arrays[row][col+ 1], row, col + 1))
 
         return result
-
+            
 
     def mergekSortedArrays_merge(self, arrays):
         if len(arrays) == 0:

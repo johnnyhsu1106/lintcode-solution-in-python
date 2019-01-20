@@ -17,14 +17,19 @@ class Solution:
     @return: an integer
     """
     def lengthOfLongestSubstring(self, s):
+        if not s:
+            return -1
 
-        seen = set()
-        j = 0
         longest_length = 0
+        visited_char = set()
+        j = 0
+
         for i in range(len(s)):
-            while j < len(s) and s[j] not in seen:
-                seen.add(s[j])
+            while j < len(s) and s[j] not in visited_char:
+                visited_char.add(s[j])
                 j += 1
+
             longest_length = max(longest_length, j - i)
-            seen.discard(s[i])
+            visited_char.discard(s[i])
+
         return longest_length

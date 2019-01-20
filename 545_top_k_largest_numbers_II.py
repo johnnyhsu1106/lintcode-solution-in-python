@@ -62,12 +62,10 @@ class Solution:
     @return: nothing
     """
     def add(self, num):
-        if len(self.min_heap) < self.k:
-            heappush(self.min_heap, num)
-            
-        elif num > self.min_heap[0]:
+        heappush(self.min_heap, num)
+
+        if len(self.min_heap) > self.k:
             heappop(self.min_heap)
-            heappush(self.min_heap, num)
 
     """
     @return: Top k element
