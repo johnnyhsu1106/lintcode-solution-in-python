@@ -16,36 +16,6 @@ class Point:
     def __repr__(self):
         return '[' + str(self.x) + ', '  + str(self.y) + ']'
 
-# class Type:
-#     def __init__(self, dist, point):
-#         self.dist = dist
-#         self.point = point
-#
-#     def __eq__(self, other):
-#         return self.dist, self.point.x, self.point.y == other.dist, other.point.x, other.point.y
-#
-#     def __ne__(self, other):
-#         return self.dist != self.dist or self.point.x != other.point.x or self.other.y != other.point.y
-#
-#     def __gt__(self, other):
-#         if self.dist < other.dist:
-#             return self.dist < other.dist
-#         if self.point.x < other.point.x:
-#             return self.point.x < other.point.x
-#         if self.point.y < other.point.y:
-#             return self.point.y < other.point.y
-#
-#     def __lt__(self, other):
-#         if self.dist > other.dist:
-#             return self.dist > other.dist
-#         if self.point.x > other.point.x:
-#             return self.point.x > other.point.x
-#         if self.point.y > other.point.y:
-#             return self.point.y > other.point.y
-#
-#     def __repr__(self):
-#         return str(self.dist) + ',' + str(self.point)
-
 from heapq import heappush, heappop
 from collections import defaultdict
 

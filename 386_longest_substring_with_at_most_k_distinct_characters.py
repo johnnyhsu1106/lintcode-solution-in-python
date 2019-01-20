@@ -20,21 +20,24 @@ class Solution:
     def lengthOfLongestSubstringKDistinct(self, s, k):
 
         max_length = 0
-        lookup = defaultdict(int)
-        i = 0
+        char_count = defaultdict(int)
         j = 0
+
         for i in range(len(s)):
-            # if len(lookup) < k , keep searching next char
-            # if s[j] in look, this char alread in lookup. keep searching next char, unitl find char not in lookup
-            while j < len(s) and (len(lookup) < k or s[j] in lookup):
-                lookup[s[j]] += 1
+            # if len(char_count) < k , keep searching next char
+            # if s[j] in char_count,  keep searching next char, unit l find char not in char_count
+            while j < len(s) and (len(char_count) < k or s[j] in char_count):
+                char_count[s[j]] += 1
                 j += 1
+
             max_length = max(max_length, j - i)
-            if s[i] in lookup:
-                if lookup[s[i]] > 1:
-                    lookup[s[i]] -= 1
+
+            if s[i] in char_count:
+                if char_count[s[i]] > 1:
+                    char_count[s[i]] -= 1
                 else:
-                    del lookup[s[i]]
+                    del char_count[s[i]]
+
         return max_length
 
 # def main():
