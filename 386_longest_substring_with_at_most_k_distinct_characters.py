@@ -31,12 +31,11 @@ class Solution:
                 j += 1
 
             max_length = max(max_length, j - i)
-
-            if s[i] in char_count:
-                if char_count[s[i]] > 1:
-                    char_count[s[i]] -= 1
-                else:
-                    del char_count[s[i]]
+            # remove the s[i] from char_count
+            if char_count[s[i]] > 1:
+                char_count[s[i]] -= 1
+            else:
+                del char_count[s[i]]
 
         return max_length
 

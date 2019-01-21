@@ -186,9 +186,14 @@
 1 - Follow up in Code Interview
     401. Kth Smallest Number in Sorted Matrix
     406. Minimum Size Subarray Sum
+    032. Minimum Window Substring
     384. Longest Substring Without Repeating Characters
     386. Longest Substring with At Most K Distinct Characters
-    465. Kth Smallest Sum In Two   Sorted Arrays
+    465. Kth Smallest Sum In Two Sorted Arrays
+
+    174. Remove Nth Node From End of List
+
+
 
 2 - Data Structure I
     433. Number of Island

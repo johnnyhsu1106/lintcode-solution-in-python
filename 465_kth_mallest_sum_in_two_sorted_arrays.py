@@ -27,12 +27,15 @@ class Solution:
     """
     '''
     idea:
+    BFS + Heap
     Please see the problem 401 as well. The whole concept is like the one in problem 401
-    Image there is a matrix, each element is the sume of A[i] and B[j], 0 <= i < m, 0 <= j < n.
+    Image there is a matrix, each element is the sume of A[i] and B[j], 0 <= i <= m - 1, 0 <= j <= n - 1.
     sum_matrix[i][j] = A[i] + B[j]
+
     For example:
     A = [1, 7, 11],i(col)
     B = [2, 4, 6], j(row)
+
     sum_marix =
     [ [3, 5, 7],
       [9, 11, 13],
@@ -41,27 +44,39 @@ class Solution:
 
     '''
     def kthSmallestSum(self, A, B, k):
-        
+        if not A or not B or k == 0:
+            return
+
         m, n = len(A), len(B)
-        visited = [[False] * n for _ in range(m)]
-        # Initialize the min heap and change the status of visited
-        visited[0][0] = True
+        visited_matrix = [[False] * n for i in range(m)]
+        # Initialize the min heap and change the status of visited_matrix
+
         #  The node format: (A[i] + B[j], i, j)
         min_heap = [(A[0] + B[0], 0, 0)]
-        for step in range(k):
-            kth_smallest, i, j = heappop(min_heap)
-            # push element into min heap (below)
-            if i + 1 < m and not visited[i + 1][j]:
-                visited[i + 1][j] = True
-                heappush(min_heap, (A[i+1] + B[j], i + 1, j))
-            # push element into min heap (right)
-            if j + 1 < n and not visited[i][j + 1]:
-                visited[i][j + 1] = True
-                heappush(min_heap, (A[i] + B[j+1], i, j + 1))
+        visited_matrix[0][0] = True
+        count = 0
 
-        return kth_smallest
+        while min_heap:
+            kth_smallest, x, y = heappop(min_heap)
+            count += 1
+
+            if count == k:
+                return kth_smallest
+
+            dx = [1, 0]
+            dy = [0, 1]
+
+            for i in range(len(dx)):
+                new_x = x + dx[i]
+                new_y = y + dy[i]
+
+                if self._is_bound(new_x, new_y, m, n) and not visited_matrix[new_x][new_y]:
+                    visited_matrix[new_x][new_y] = True
+                    heappush(min_heap, (A[new_x] + B[new_y], new_x, new_y))
 
 
+    def _is_bound(self, row, col, m, n):
+        return 0 <= row <= m - 1 and 0 <= col <= n - 1
 
 # def main():
 #     s = Solution()

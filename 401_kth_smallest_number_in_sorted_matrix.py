@@ -27,39 +27,41 @@ class Solution:
         '''
 
         m, n = len(matrix), len(matrix[0])
+        if not matrix or m == 0 or n == 0 or k <= 0 or k > m * n:
+            return
 
         # Create a matrix called visited_matrix, default value is False,\
         # Initialize the min heap as tuple of list, element = (value, i, j)
         # In Python, if you pass the tuple, heap will be automatically using the first value of each element in tuple
         # Element could be list or tuple
-        visited_matrix = [[False] * n for i in range(m)]
-        visited_matrix[0][0] = True
-
         min_heap = []
+        visited_matrix = [[False] * n for i in range(m)]
+
         heappush(min_heap, (matrix[0][0], 0, 0))
+        visited_matrix[0][0] = True
         count = 0 # the number of smallest number
 
         while min_heap:
-            kth_smallest, x, y = heappop(min_heap)
+            value, x, y = heappop(min_heap)
             count += 1
+
+            if count == k:
+                return value
+
             dx = [1, 0]
             dy = [0, 1]
 
-            if count == k:
-                return kth_smallest
-
-            for i in range(2):
+            for i in range(len(dx)):
                 new_x = x + dx[i]
                 new_y = y + dy[i]
 
-                if self._is_bound(new_x, new_y, matrix) and not visited_matrix[new_x][new_y]:
-                    visited_matrix[new_x][new_y] = True
+                if self._is_bound(new_x, new_y, m ,n) and not visited_matrix[new_x][new_y]:
                     heappush(min_heap, (matrix[new_x][new_y], new_x, new_y))
-
+                    visited_matrix[new_x][new_y] = True
 
 
     def _is_bound(self, x, y, matrix):
-        return 0 <= x <= len(matrix) - 1 and 0 <= y <= len(matrix[0]) - 1
+        return 0 <= x <= m - 1 and 0 <= y <= n - 1
 
 
 # def main():

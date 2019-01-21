@@ -39,11 +39,12 @@ class Solution:
         while min_heap:
             num, row, col = heappop(min_heap)
             result.append(num)
+            
             if col < len(arrays[row]) - 1:
                 heappush(min_heap, (arrays[row][col+ 1], row, col + 1))
 
         return result
-            
+
 
     def mergekSortedArrays_merge(self, arrays):
         if len(arrays) == 0:

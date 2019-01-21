@@ -21,7 +21,11 @@ class Solution:
     @return: A string denote the minimum window, return "" if there is no such a string
     """
     def minWindow(self, source, target):
-        # create a hashmap/dictionary for target, {key: value = char: count}
+        if not source or not target:
+            return ''
+
+        # create a hashmap/dictionary for source and target`
+        # to store the number of characters:  {key: value = char: count}
         s_char_count = defaultdict(int)
         t_char_count = defaultdict(int)
 
@@ -30,7 +34,7 @@ class Solution:
 
         j = 0
         min_substring = ''
-        min_length = len(source) + 1
+        min_substring_length = len(source) + 1
 
         for i in range(len(source)):
             while j < len(source) and not self._is_contain(s_char_count, t_char_count):
@@ -38,8 +42,8 @@ class Solution:
                 j += 1
 
             if self._is_contain(s_char_count, t_char_count):
-                if min_length > j - i:
-                    min_length = j - i
+                if j - i < min_substring_length:
+                    min_substring_length = j - i
                     min_substring = source[i:j]
 
             s_char_count[source[i]] -= 1

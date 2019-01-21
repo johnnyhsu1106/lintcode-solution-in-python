@@ -57,6 +57,7 @@ class Solution:
             value, node = heappop(min_heap)
             if node.next:
                 heappush(min_heap, (node.next.val, node.next))
+                
             curr_node.next = node
             curr_node = curr_node.next
 

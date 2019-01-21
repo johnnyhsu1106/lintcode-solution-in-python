@@ -15,40 +15,29 @@ class Solution:
     @return: An integer
     """
     def longestConsecutive_1(self, nums):
+        if not nums:
+            return 0
+
+        if len(nums) == 1:
+            return 1
+
         hashset = set(nums)
-        longest = 0
+        longest_consecutive_length = 0
 
         for num in nums:
             down = num - 1
             while down in hashset:
-                # hashset.discard(down)
+                hashset.discard(down)
                 down -= 1
 
             up = num + 1
             while up in hashset:
-                # hashset.discard(up)
+                hashset.discard(up)
                 up += 1
 
-            longest = max(longest, up - down - 1)
+            longest_consecutive_length = max(longest_consecutive_length, up - down - 1)
 
-        return longest
-
-
-
-    def longestConsecutive_2(self, nums):
-        if not nums or len(nums) == 0:
-            return 0
-        if len(nums) == 1:
-            return 1
-
-        nums.sort()
-        result = 1
-        for i in range(1, len(nums)):
-            if nums[i] == nums[i - 1] + 1:
-                result += 1
-            else:
-                break
-        return result
+        return longest_consecutive_length
 
 
 # def main():
