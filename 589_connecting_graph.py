@@ -14,7 +14,6 @@ connect(2, 4)
 query(1, 4) return true
 '''
 
-from collections import defaultdict
 class ConnectingGraph:
     '''
     idea: two way to implement Union Find data structure
@@ -30,12 +29,12 @@ class ConnectingGraph:
     def __init__(self, n):
 
         #  array
-        self.father = [ i for i in range(1 + n)]
+        # self.father = [ i for i in range(1 + n)]
 
         # dict
-        # self.father = defaultdict(int)
-        # for i in range(1, n + 1):
-        #     self.father[i] = i
+        self.father = {}
+        for i in range(1, n + 1):
+            self.father[i] = i
 
     """
     @param: a: An integer
@@ -45,6 +44,7 @@ class ConnectingGraph:
     def connect(self, a, b):
         root_a = self.find(a)
         root_b = self.find(b)
+
         if root_a != root_b:
             self.father[root_a] = root_b
 
@@ -61,7 +61,9 @@ class ConnectingGraph:
     def find(self, x):
         if self.father[x] == x:
             return x
+
         self.father[x] = self.find(self.father[x])
+
         return self.father[x]
 
 
@@ -78,7 +80,7 @@ class ConnectingGraph_BFS:
     @param: n: An integer
     """
     def __init__(self, n):
-        self.mapping = defaultdict(set)
+        self.node_mapping = defaultdict(set)
 
 
     """
@@ -87,8 +89,8 @@ class ConnectingGraph_BFS:
     @return: nothing
     """
     def connect(self, a, b):
-        self.mapping[a].add(b)
-        self.mapping[b].add(a)
+        self.node_mapping[a].add(b)
+        self.node_mapping[b].add(a)
 
     """
     @param: a: An integer
@@ -97,16 +99,20 @@ class ConnectingGraph_BFS:
     """
     def query(self, a, b):
         queue = deque([a])
-        visited = set([a])
+        visited_points = set([a])
+
         while queue:
             node = queue.popleft()
+
             if node == b:
                 return True
-            neighbors = self.mapping[node]
+
+            neighbors = self.node_mapping[node]
             for neighbor in neighbors:
-                if neighbor not in visited:
-                    visited.add(neighbor)
+                if neighbor not in visited_points:
                     queue.append(neighbor)
+                    visited_points.add(neighbor)
+
         return False
 
 # def main():

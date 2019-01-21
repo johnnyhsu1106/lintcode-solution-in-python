@@ -21,24 +21,26 @@ class Solution:
     @return: the nth prime number as description.
     """
     def nthUglyNumber(self, n):
-        if n <= 1:
-            return n
+        if n <= 0:
+            return 0
 
         prime_nums = [2, 3, 5]
         min_heap = [1]
-        visited_nums = set()
+        visited_nums = set([1])
 
-        for i in range(n):
-            result = heappop(min_heap)
+        while min_heap:
+            ugly_num = heappop(min_heap)
+            count += 1
 
-            for j in range(len(prime_nums)):
-                next_ugly_num = result * prime_nums[j]
+            if count == n:
+                return ugly_num
 
-                if next_ugly_num not in visited_nums:
-                    heappush(min_heap, next_ugly_num)
-                    visited_nums.add(next_ugly_num)
+            for prime_num in prime_nums:
+                new_ugly_num = ugly_num * prime_num
 
-        return result
+                if new_ugly_num not in visited_nums:
+                    heappush(min_heap, new_ugly_num)
+                    visited_nums.add(new_ugly_num)
 
 
 
