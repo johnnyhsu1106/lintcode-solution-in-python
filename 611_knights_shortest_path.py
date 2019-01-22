@@ -55,11 +55,9 @@ class Solution:
         if not grid or len(grid) == 0 or len(grid[0]) == 0:
             return -1
 
-        dx = [1, 1, -1, -1, 2, 2, -2, -2]
-        dy = [2, -2, 2, -2, 1, -1, 1, -1]
-
         queue = deque([source])
         step = 0
+        directions = [(1, 2), (1, -2), (-1, 2), (-1, -2), (2, 1), (2, -1), (-2, 1), (-2, -1)]
 
         while queue:
             size = len(queue)
@@ -68,8 +66,8 @@ class Solution:
                 if point.x == destination.x and point.y == destination.y:
                     return step
 
-                for i in range(8):
-                    new_point = Point(point.x + dx[i], point.y + dy[i])
+                for dx, dy in directions:
+                    new_point = Point(point.x + dx, point.y + dy)
 
                     if self.is_bound(new_point, grid) and grid[new_point.x][new_point.y] == 0:
                         queue.append(new_point)

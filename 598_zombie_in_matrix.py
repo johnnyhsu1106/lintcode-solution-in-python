@@ -30,9 +30,7 @@ class Solution:
         people = 0
         m = len(grid)
         n = len(grid[0])
-
-        dx = [1, -1, 0, 0]
-        dy = [0, 0, 1, -1]
+        directions = [(1, 0), (-1, 0), (0, -1), (0, -1)]
 
         for x in range(m):
             for y in range(n):
@@ -51,10 +49,10 @@ class Solution:
             #  traverse each level
             for i in range(size): # for all zombie in the queue
                 (x, y) = queue.popleft()
-                
-                for i in range(4):
-                    new_x = x + dx[i]
-                    new_y = y + dy[i]
+
+                for dx, dy in directions:
+                    new_x = x + dx
+                    new_y = y + dy
 
                     if self.is_people_bound(new_x, new_y, grid):
                         grid[new_x][new_y] = ZOMBIE

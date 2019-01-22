@@ -3,7 +3,7 @@ Given a n,m which means the row and column of the 2D matrix
 and an array of pair A( size k).
 Originally, the 2D matrix is all 0 which means there is only sea in the matrix.
 The list pair has k operator and each operator has two integer A[i].x, A[i].y
-means that you can change the visited_grid matrix[A[i].x][A[i].y] from sea to island.
+means that you can change the is_island_grid matrix[A[i].x][A[i].y] from sea to island.
 Return how many island are there in the matrix after each operator.
 
  Notice
@@ -73,25 +73,23 @@ class Solution:
         total = 0
         result = []
 
-        visited_grid = [[False] * m for i in range(n)]
+        is_island_grid = [[False] * m for i in range(n)]
         union_find = UnionFind(n * m)
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
         for point in operators:
             x, y = point.x, point.y
 
-            if not visited_grid[x][y]:
+            if not is_island_grid[x][y]:
                 total += 1
-                visited_grid[x][y] = True
+                is_island_grid[x][y] = True
                 union_find.set_count(total)
 
-                dx = [1, -1, 0, 0]
-                dy = [0, 0, 1, -1]
-
-                for direction in range(len(dx)):
-                    new_x = x + dx[direction]
-                    new_y = y + dy[direction]
-                    # visited_grid[new_x][new_y] is True (noted)
-                    if self.is_bound(new_x, new_y, n, m) and visited_grid[new_x][new_y]:
+                for dx, dy in directions:
+                    new_x = x + dx
+                    new_y = y + dy
+                    # is_island_grid[new_x][new_y] is True (noted)
+                    if self.is_bound(new_x, new_y, n, m) and is_island_grid[new_x][new_y]:
                         union_find.connect(x * m + y, new_x * m + new_y)
             # update the total (based on currnt number of seperate islands)
             total = union_find.query()

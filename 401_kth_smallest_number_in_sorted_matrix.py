@@ -40,8 +40,7 @@ class Solution:
         heappush(min_heap, (matrix[0][0], 0, 0))
         visited_matrix[0][0] = True
         count = 0 # the number of smallest number
-        dx = [1, 0]
-        dy = [0, 1]
+        directions = [(1, 0), (0, 1)]
 
         while min_heap:
             value, x, y = heappop(min_heap)
@@ -50,9 +49,9 @@ class Solution:
             if count == k:
                 return value
 
-            for direction in range(len(dx)):
-                new_x = x + dx[direction]
-                new_y = y + dy[direction]
+            for dx, dy in directions:
+                new_x = x + dx
+                new_y = y + dy
 
                 if self._is_bound(new_x, new_y, m ,n) and not visited_matrix[new_x][new_y]:
                     heappush(min_heap, (matrix[new_x][new_y], new_x, new_y))
