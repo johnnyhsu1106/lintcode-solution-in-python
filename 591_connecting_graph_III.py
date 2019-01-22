@@ -21,9 +21,10 @@ class ConnectingGraph3:
     @param: n: An integer
     """
     def __init__(self, n):
-        self.count = n # a instance variable, storing number of components
-        self.father = [ i for i in range(n + 1)]
-
+        self.num_of_connected_component = n # a instance variable, storing number of components
+        self.father = {}
+        for i in range(1, n + 1):
+            self.father[i] = i
     """
     @param: a: An integer
     @param: b: An integer
@@ -35,14 +36,14 @@ class ConnectingGraph3:
 
         if root_a != root_b:
             self.father[root_a] = root_b
-            self.count -= 1
+            self.num_of_connected_component -= 1
 
 
     """
     @return: An integer
     """
     def query(self):
-        return self.count
+        return self.num_of_connected_component
 
 
     def find(self, x):

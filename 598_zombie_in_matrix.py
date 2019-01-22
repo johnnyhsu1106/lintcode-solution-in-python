@@ -51,9 +51,11 @@ class Solution:
             #  traverse each level
             for i in range(size): # for all zombie in the queue
                 (x, y) = queue.popleft()
+                
                 for i in range(4):
                     new_x = x + dx[i]
                     new_y = y + dy[i]
+
                     if self.is_people_bound(new_x, new_y, grid):
                         grid[new_x][new_y] = ZOMBIE
                         people -= 1

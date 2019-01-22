@@ -42,7 +42,7 @@ class Solution:
         if not node:
             return
 
-        self.traverse(node.left, result)」」
+        self.traverse(node.left, result)
         result.append(node.val)
         self.traverse(node.right, result)
 

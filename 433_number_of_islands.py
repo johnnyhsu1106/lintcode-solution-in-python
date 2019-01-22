@@ -27,17 +27,15 @@ class Solution:
         if not grid or len(grid) == 0 or len(grid[0]) ==0:
             return 0
 
+        m, n = len(grid), len(grid[0])
+        num_of_island = 0
 
-        m = len(grid)
-        n = len(grid[0])
-
-        count = 0
         for x in range(m):
             for y in range(n):
                 if grid[x][y]:
                     self.marked_by_dfs(x, y, grid)
-                    count += 1
-        return count
+                    num_of_island += 1
+        return num_of_island
 
 
     def marked_by_dfs(self, x, y, grid):
@@ -67,17 +65,17 @@ class Solution:
 
         m = len(grid)
         n = len(grid[0])
-        count = 0 # count stands for number of islands
+        num_of_island = 0 # count stands for number of islands
 
         for x in range(m):
             for y in range(n):
                 if grid[x][y]:
-                    self.marked_by_bfs(x, y, grid)
-                    count += 1
-        return count
+                    self._marked_by_bfs(x, y, grid)
+                    num_of_island += 1
+        return num_of_island
 
 
-    def marked_by_bfs(self, x, y, grid):
+    def _marked_by_bfs(self, x, y, grid):
         queue = deque()
         queue.append((x, y))
         dx = [1, -1, 0, 0]
@@ -85,14 +83,17 @@ class Solution:
 
         while queue:
             (x, y) = queue.popleft()
-            grid[x][y] = False
 
-            for i in range(4):
-                new_x = x + dx[i]
-                new_y = y + dy[i]
-                if self.is_bound(new_x, new_y, grid) and grid[new_x][new_y]:
+            for direction in range(len(dx)):
+                new_x = x + dx[direction]
+                new_y = y + dy[direction]
+
+                if self.is_bound(new_x, new_y, m, n) and grid[new_x][new_y]:
                     queue.append((new_x, new_y))
+                    grid[x][y] = False
 
+    def _is_bound(self, x, y, grid):
+        return 0 <= x <= len(grid) - 1 and 0 <= y <= len(grid[0]) - 1
 
 ###############################################################################
 
@@ -102,7 +103,7 @@ class Solution:
             # Please also see the problem 591
             def __init__(self, n):
                 self.father = [ i for i in range(n)]
-                self.count =  0
+                self.num_of_island =  0
 
             def find(self, x):
                 if self.father[x] == x:
@@ -116,14 +117,14 @@ class Solution:
 
                 if root_a != root_b:
                     self.father[root_a] = root_b
-                    self.count -= 1
+                    self.num_of_island -= 1
 
             def query(self):
                 # return the number of components
-                return self.count
+                return self.num_of_island
 
-            def set_count(self, total):
-                self.count = total
+            def set_num_of_island(self, total):
+                self.num_of_island = total
 
 
         m, n = len(grid), len(grid[0])
@@ -137,7 +138,7 @@ class Solution:
                     total_island += 1
 
         union_find = UnionFind(m * n)
-        union_find.set_count(total_island)
+        union_find.set_num_of_island(total_island)
 
         dx = [1, -1, 0, 0]
         dy = [0, 0, 1, -1]

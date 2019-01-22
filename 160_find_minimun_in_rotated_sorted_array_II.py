@@ -17,9 +17,9 @@ class Solution:
     @param nums: a rotated sorted array
     @return: the minimum number in the array
     """
-    def findMin(self, nums):
-        start = 0
-        end = len(nums) - 1
-        target = 
-
-        while start + 1 < end:
+    # def findMin(self, nums):
+        # start = 0
+        # end = len(nums) - 1
+        # target =
+        #
+        # while start + 1 < end:

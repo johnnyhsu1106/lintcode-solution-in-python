@@ -21,10 +21,14 @@ class ConnectingGraph2:
     """
     def __init__(self, n):
         # every node is connected to itself
-        self.father = [ i for i in range(n + 1)]
-        # every node is 1 (only connected to itself)
-        self.size = [1 for i in range(n + 1)]
+        self.father = {}
+        for i in range(1, n + 1):
+            self.father[i] = i
 
+        # every node is 1 (only connected to itself)
+        self.num_of_connected_nodes = {}
+        for i in range(1, n+ 1):
+            self.num_of_connected_nodes[i] = 1
 
     """
     @param: a: An integer
@@ -34,9 +38,10 @@ class ConnectingGraph2:
     def connect(self, a, b):
         root_a = self.find(a)
         root_b = self.find(b) # root_b is the representative of set
+
         if root_a != root_b:
             self.father[root_a] = root_b
-            self.size[root_b] += self.size[root_a]
+            self.num_of_connected_nodes[root_b] += self.num_of_connected_nodes[root_a]
 
     """
     @param: a: An integer
@@ -44,7 +49,8 @@ class ConnectingGraph2:
     """
     def query(self, a):
         root_a = self.find(a)
-        return self.size[root_a]
+
+        return self.num_of_connected_nodes[root_a]
 
 
     def find(self, a):

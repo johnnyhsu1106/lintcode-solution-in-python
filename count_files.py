@@ -10,9 +10,9 @@ def count_files():
     print(len(py_files))
 
 
-def main():
-    count_files()
-
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     count_files()
+# 
+#
+# if __name__ == '__main__':
+#     main()

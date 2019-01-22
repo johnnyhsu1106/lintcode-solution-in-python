@@ -62,12 +62,12 @@ class Solution:
 
 
     def topKFrequentWords__min_heap(self, words, k):
-         if not words or k == 0:
+        if not words or k == 0:
             return []
 
         result = []
-
         words_count = defaultdict(int)
+
         for word in words:
             words_count[word] += 1
 

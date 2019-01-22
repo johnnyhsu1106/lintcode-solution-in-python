@@ -72,10 +72,10 @@ class Solution:
             self.dfs(nums, i + 1, subset, result)
             subset.pop()
 
-def main():
-    s = Solution()
-    # print(s.subsets_1([1,2,3]))
-    print(s.subsets_3([1, 2, 3]))
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     s = Solution()
+#     # print(s.subsets_1([1,2,3]))
+#     print(s.subsets_3([1, 2, 3]))
+#
+# if __name__ == '__main__':
+#     main()

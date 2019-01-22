@@ -55,24 +55,23 @@ class Solution:
         min_heap = [(A[0] + B[0], 0, 0)]
         visited_matrix[0][0] = True
         count = 0
+        dx = [1, 0]
+        dy = [0, 1]
 
         while min_heap:
-            kth_smallest, x, y = heappop(min_heap)
+            value, x, y = heappop(min_heap)
             count += 1
 
             if count == k:
-                return kth_smallest
+                return value
 
-            dx = [1, 0]
-            dy = [0, 1]
-
-            for i in range(len(dx)):
-                new_x = x + dx[i]
-                new_y = y + dy[i]
+            for direction in range(len(dx)):
+                new_x = x + dx[direction]
+                new_y = y + dy[direction]
 
                 if self._is_bound(new_x, new_y, m, n) and not visited_matrix[new_x][new_y]:
-                    visited_matrix[new_x][new_y] = True
                     heappush(min_heap, (A[new_x] + B[new_y], new_x, new_y))
+                    visited_matrix[new_x][new_y] = True
 
 
     def _is_bound(self, row, col, m, n):
