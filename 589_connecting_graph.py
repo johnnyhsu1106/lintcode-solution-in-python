@@ -27,14 +27,7 @@ class ConnectingGraph:
     @param: n: An integer
     """
     def __init__(self, n):
-
-        #  array
-        # self.father = [ i for i in range(1 + n)]
-
-        # dict
-        self.father = {}
-        for i in range(1, n + 1):
-            self.father[i] = i
+        self.father = {i : i for i in range(1, n + 1)}
 
     """
     @param: a: An integer
@@ -42,8 +35,8 @@ class ConnectingGraph:
     @return: nothing
     """
     def connect(self, a, b):
-        root_a = self.find(a)
-        root_b = self.find(b)
+        root_a = self._find(a)
+        root_b = self._find(b)
 
         if root_a != root_b:
             self.father[root_a] = root_b
@@ -55,14 +48,14 @@ class ConnectingGraph:
     @return: A boolean
     """
     def query(self, a, b):
-        return self.find(a) == self.find(b)
+        return self._find(a) == self._find(b)
 
 
-    def find(self, x):
+    def _find(self, x):
         if self.father[x] == x:
             return x
 
-        self.father[x] = self.find(self.father[x])
+        self.father[x] = self._find(self.father[x])
 
         return self.father[x]
 
