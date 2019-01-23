@@ -28,6 +28,8 @@ class UnDirectedGraphNode:
         self.neighbors = []
 
 
+from collections import deque
+from collections import defaultdict
 
 class Solution:
     """
@@ -39,72 +41,75 @@ class Solution:
         bfs
         '''
 
-        result = []
-        visited = set()
+        results = []
+        visited_nodes = set()
 
         for node in nodes:
-            if node not in visited:
-                subgraph = []
-                self.bfs(node, visited, subgraph)
-                result.append(sorted(subgraph))
-        return result
+            if node not in visited_nodes:
+                subgraph = [] # initialize every time when BFS
+                self.bfs(node, visited_nodes, subgraph)
+                results.append(sorted(subgraph))
+
+        return results
 
 
-    def bfs(self, node, visited, subgraph):
-        from collections import deque
+    def bfs(self, node, visited_nodes, subgraph):
         queue = deque([node])
-        visited.add(node)
+        visited_nodes.add(node)
 
         while queue:
             node = queue.popleft()
             subgraph.append(node.label)
-            for neighbor in node.neighbors:
-                if neighbor not in visited:
-                    visited.add(neighbor)
+            neighbors = node.neighbors
+
+            for neighbor in neighbors:
+                if neighbor not in visited_nodes:
                     queue.append(neighbor)
+                    visited_nodes.add(neighbor)
 
 
 
     def connectedSet_union_find(self, nodes):
-
-
         class UnionFind:
-            def __init__(self):
-                self.father = dict()
+            def __init__(self, nodes):
+                self.father = {node.label : node.label for node in nodes}
 
             def find(self, x):
                 if self.father[x] == x:
                     return x
+
                 self.father[x] = self.find(self.father[x])
+
                 return self.father[x]
 
             def connect(self, a, b):
                 root_a = self.find(a)
                 root_b = self.find(b)
+
                 if root_a != root_b:
                     self.father[root_a] = root_b
 
         # Initialize the union_find data structre
-        from collections import defaultdict
-        union_find = UnionFind()
-        for node in nodes:
-            union_find.father[node.label] = node.label
+        union_find = UnionFind(nodes)
 
         # connect node and its neighbors
         for node in nodes:
-            for neighbor in node.neighbors:
+            neighbors = node.neighbor
+            for neighbor in neighbors:
                 union_find.connect(node.label, neighbor.label)
 
+        # add those nodes with the same root in dictionary
         subgraph = defaultdict(set)
         for node in nodes:
             root = union_find.find(node.label)
             subgraph[root].add(node.label)
 
-        result = []
+        # sort the result as problem requested.
+        results = []
         for root in subgraph:
-            result.append(sorted(subgraph[root]))
+            results.append(sorted(subgraph[root]))
 
-        return result
+        return results
 
 
 

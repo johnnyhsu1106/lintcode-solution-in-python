@@ -21,14 +21,9 @@ class ConnectingGraph2:
     """
     def __init__(self, n):
         # every node is connected to itself
-        self.father = {}
-        for i in range(1, n + 1):
-            self.father[i] = i
-
+        self.father = {i: i for i in range(1, n + 1)}
         # every node is 1 (only connected to itself)
-        self.num_of_connected_nodes = {}
-        for i in range(1, n+ 1):
-            self.num_of_connected_nodes[i] = 1
+        self.num_of_connected_nodes = {i: 1 for i in range(1, n + 1)}
 
     """
     @param: a: An integer
@@ -49,7 +44,7 @@ class ConnectingGraph2:
     """
     def query(self, a):
         root_a = self.find(a)
-
+        
         return self.num_of_connected_nodes[root_a]
 
 

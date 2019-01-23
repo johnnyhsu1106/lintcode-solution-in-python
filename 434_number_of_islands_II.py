@@ -24,12 +24,9 @@ class Point:
         self.y = y
 
 class UnionFind:
-    # Please also see the problem 433
-    def __init__(self, n):
-        self.count = n
-        self.father = {}
-        for i in range(n):
-            self.father[i] = i
+    def __init__(self, size):
+        self.num_of_connected_component = 0
+        self.father = [i for i in range(size)]
 
 
     def find(self, x):
@@ -47,16 +44,15 @@ class UnionFind:
 
         if root_a != root_b:
             self.father[root_a] = root_b
-            self.count -= 1
+            self.num_of_connected_component -= 1
 
 
     def query(self):
-        # return the number of components
-        return self.count
+        return self.num_of_connected_component
 
 
-    def set_count(self, count):
-        self.count = count
+    def set_num(self, num):
+        self.num_of_connected_component = num
 
 
 class Solution:
@@ -70,9 +66,8 @@ class Solution:
         if n == 0 or m == 0 or not operators:
             return []
 
-        total = 0
-        result = []
-
+        results = []
+        num_of_islands = 0
         is_island_grid = [[False] * m for i in range(n)]
         union_find = UnionFind(n * m)
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
@@ -81,27 +76,26 @@ class Solution:
             x, y = point.x, point.y
 
             if not is_island_grid[x][y]:
-                total += 1
+                num_of_islands += 1
+                union_find.set_num(num_of_islands)
                 is_island_grid[x][y] = True
-                union_find.set_count(total)
 
                 for dx, dy in directions:
                     new_x = x + dx
                     new_y = y + dy
-                    # is_island_grid[new_x][new_y] is True (noted)
-                    if self.is_bound(new_x, new_y, n, m) and is_island_grid[new_x][new_y]:
+
+                    if self._is_bound(new_x, new_y, n, m) and is_island_grid[new_x][new_y]:
                         union_find.connect(x * m + y, new_x * m + new_y)
-            # update the total (based on currnt number of seperate islands)
-            total = union_find.query()
-            result.append(total)
 
-        return result
+            num_of_islands = union_find.query()
+            results.append(num_of_islands)
+
+        return results
 
 
-    def is_bound(self, x, y, n, m):
+
+    def _is_bound(self, x, y, n, m):
         return 0 <= x <= n - 1 and 0 <= y <= m - 1
-
-
 # def main():
 #     s = Solution()
 #     n = 3

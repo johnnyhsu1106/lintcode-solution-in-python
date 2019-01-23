@@ -22,9 +22,7 @@ class ConnectingGraph3:
     """
     def __init__(self, n):
         self.num_of_connected_component = n # a instance variable, storing number of components
-        self.father = {}
-        for i in range(1, n + 1):
-            self.father[i] = i
+        self.father = {i: i for i in range(1, n + 1)}
     """
     @param: a: An integer
     @param: b: An integer
@@ -51,6 +49,7 @@ class ConnectingGraph3:
             return x
 
         self.father[x] = self.find(self.father[x])
+        
         return self.father[x]
 
 

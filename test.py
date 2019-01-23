@@ -13,7 +13,7 @@ import sys
 def run_all_files():
     execute_fname = 'run_files.py'
     dirs = os.listdir(os.getcwd())
-    py_files = [py_file for py_file in dirs if py_file[-3:]=='.py' and py_file != execute_fname]
+    py_files = [py_file for py_file in dirs if py_file.find('_') > -1 and py_file[-3:]=='.py' and py_file != execute_fname]
     count = 0
 
     # file_list('lintcode_problem_list.txt', py_files)
