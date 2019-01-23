@@ -31,7 +31,7 @@ trie.startsWith("lint") will return true
 
 class TrieNode:
     def __init__(self):
-        self.children = dict()
+        self.children = {}
         self.is_complete_word = False
         self.word = ''
 
@@ -44,6 +44,7 @@ class Trie:
 
         for char in word:
             child = node.children.get(char)
+
             if not child:
                 child = TrieNode()
                 node.children[char] = child
@@ -71,6 +72,7 @@ class Trie:
             child = node.children.get(char)
             if not child:
                 return False
+
             node = child
 
         return node.is_complete_word
@@ -83,6 +85,7 @@ class Trie:
             child = node.children.get(char)
             if not child:
                 return False
+                
             node = child
 
         return True
