@@ -28,38 +28,36 @@ class Solution:
             return 0
 
         m, n = len(heights), len(heights[0])
-        visited = [[False]* n for i in range(m)]
+        visited_matrix = [[False]* n for i in range(m)]
         min_heap = []
-
         # put all outer elements, (height, x, y), into min_heap
-        for i in range(m):
-            heappush(min_heap, (heights[i][0], i, 0))
-            heappush(min_heap, (heights[i][n - 1], i, n - 1))
-            visited[i][0] = True
-            visited[i][n - 1] = True
+        for x in range(m):
+            heappush(min_heap, (heights[x][0], x, 0))
+            heappush(min_heap, (heights[x][n - 1], x, n - 1))
+            visited_matrix[x][0] = True
+            visited_matrix[x][n - 1] = True
 
-        for j in range(n):
-            heappush(min_heap, (heights[0][j], 0, j))
-            heappush(min_heap, (heights[m - 1][j], m - 1, j))
-            visited[0][j] = True
-            visited[m - 1][j] = True
+        for y in range(n):
+            heappush(min_heap, (heights[0][y], 0, y))
+            heappush(min_heap, (heights[m - 1][y], m - 1, y))
+            visited_matrix[0][y] = True
+            visited_matrix[m - 1][y] = True
 
-        # BFS ... using min_heap as queue (priority queue), 2D visited as set
+        # BFS ... using min_heap as queue (priority queue), 2D visited_matrix as set
         result = 0
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
         while min_heap:
             h, x, y = heappop(min_heap)
-            visited[x][y] = True
 
-            dx = [1, -1, 0, 0]
-            dy = [0, 0, 1, -1]
+            for dx, dy in directions:
+                new_x = x + dx
+                new_y = y + dy
 
-            for i in range(4):
-                new_x = x + dx[i]
-                new_y = y + dy[i]
-                if self.is_bound(new_x, new_y, heights) and not visited[new_x][new_y]:
-                    visited[new_x][new_y] = True
+                 if self._is_bound(new_x, new_y, m, n) and not visited_matrix[new_x][new_y]:
                     new_h = heights[new_x][new_y]
                     heappush(min_heap, (max(h, new_h), new_x, new_y))
+                    visited_matrix[new_x][new_y] = True
                     # if new_h < h:
                         # result += h - new_h
                     result += max(0, h - new_h) # above two lines is equal to this line
@@ -67,8 +65,7 @@ class Solution:
         return result
 
 
-    def is_bound(self, x, y, heights):
-        m, n = len(heights), len(heights[0])
+    def _is_bound(self, x, y, m, n):
         return 0 <= x <= m - 1 and 0 <= y <= n - 1
 
 

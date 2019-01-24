@@ -34,7 +34,7 @@ class Solution:
         result = 0
 
         while left < right:
-            if left_height < right_height:
+            if left_height <= right_height:
                 left += 1
                 if heights[left] <= left_height:
                     result += left_height - heights[left]
