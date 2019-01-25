@@ -21,7 +21,8 @@ class Solution:
     def expressionExpand(self, s):
         stack = []
         num = ''
-        for char in s:
+
+         for char in s:
             if char.isdigit():
                 num += char
 
@@ -31,8 +32,10 @@ class Solution:
 
             elif char == ']':
                 strings = []
+
                 while stack:
                     top = stack.pop()
+
                     if type(top) == int:
                         stack.append(''.join(reversed(strings)) * top)
                         break

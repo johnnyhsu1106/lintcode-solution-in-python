@@ -32,44 +32,46 @@ class Solution:
     @return: The median of the element inside the window at each moving
     """
     def medianSlidingWindow(self, nums, k):
-        if not nums or len(nums) == 0 or k == 0:
+        if not nums or k == 0:
             return []
+
         if k == 1:
             return nums
 
-        result = []
+        results = []
         max_heap, min_heap = [],[]
+
         for i in range(k):
             num = nums[i]
             self.add_to_heap(max_heap, min_heap, num)
             self.balance_heaps(max_heap, min_heap)
+
         median = -max_heap[0]
-        result.append(median)
+        results.append(median)
 
         for i in range(k, len(nums)):
             add_num = nums[i]
             remove_num = nums[i - k]
             self.add_to_heap(max_heap, min_heap, add_num)
-
             self.remove_from_heap(max_heap, min_heap, remove_num)
             self.balance_heaps(max_heap, min_heap)
 
             median = -max_heap[0]
-            result.append(median)
+            results.append(median)
 
-        return result
+        return results
 
 
     def add_to_heap(self, max_heap, min_heap, num):
         if len(max_heap) == 0 or num < - max_heap[0]:
-            heappush(max_heap, -num)
+            heappush(max_heap, - num)
         else:
             heappush(min_heap, num)
 
 
     def remove_from_heap(self, max_heap, min_heap, num):
-        if -num in max_heap:
-            max_heap.remove(-num)
+        if num <= - max_heap[0]:
+            max_heap.remove(- num)
             heapify(max_heap)
         else:
             min_heap.remove(num)
@@ -79,10 +81,10 @@ class Solution:
     def balance_heaps(self, max_heap, min_heap):
 
         while len(max_heap) < len(min_heap):
-            heappush(max_heap, -heappop(min_heap))
+            heappush(max_heap, - heappop(min_heap))
 
-        while len(max_heap) > len(min_heap) + 1: 
-            heappush(min_heap, -heappop(max_heap))
+        while len(max_heap) > len(min_heap) + 1:
+            heappush(min_heap, - heappop(max_heap))
 
 # def main():
 #     s = Solution()

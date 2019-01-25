@@ -28,13 +28,13 @@ class Solution:
     def subsets_1(self, nums):
 
         nums.sort()
-        result = [[]]
+        results = [[]]
         for i in range(len(nums)):
-            size = len(result)
+            size = len(results)
             for j in range(size):
-                result.append(list(result[j]))
-                result[-1].append(nums[i])
-        return result
+                results.append(list(results[j]))
+                results[-1].append(nums[i])
+        return results
 
 
     def subsets_2(self, nums):
@@ -47,6 +47,7 @@ class Solution:
     def subsetsRecu(self, curr_result, nums):
         if not nums:
             return [curr_result]
+
         return self.subsetsRecu(curr_result, nums[1:]) + self.subsetsRecu(curr_result+ [nums[0]], nums[1:])
 
 
@@ -57,19 +58,21 @@ class Solution:
         if nums is None:
             return []
 
-        result = []
+        results = []
         nums.sort() # Elements in a subset must be in non-descending order.
-        self.dfs(nums, 0, [], result)
-        return result
+        start_index = 0
+        subset = []
+        self.dfs(nums, start_index, subset, results)
+        return results
 
 
-    def dfs(self, nums, start_index, subset, result):
+    def dfs(self, nums, start_index, subset, results):
         # append new object with []
-        result.append(list(subset))
+        results.append(list(subset))
 
         for i in range(start_index, len(nums)):
             subset.append(nums[i])
-            self.dfs(nums, i + 1, subset, result)
+            self.dfs(nums, i + 1, subset, results)
             subset.pop()
 
 # def main():

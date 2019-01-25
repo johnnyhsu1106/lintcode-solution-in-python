@@ -22,30 +22,30 @@ push, pop and top should be O(1) by AVERAGE.
 class MyQueue:
     def __init__(self):
         # do intialization if necessary
-        self.stack1 = [] # old stack (keep older element)
-        self.stack2 = [] # new stack
+        self.stack_1 = [] # old stack (keep older element)
+        self.stack_2 = [] # new stack
 
 
     def push(self, element):
-        self.stack2.append(element)
+        self.stack_2.append(element)
 
 
     def pop(self):
 
-        if len(self.stack1) == 0:
-            while len(self.stack2) != 0:
-                self.stack1.append(self.stack2.pop())
+        if len(self.stack_1) == 0:
+            while len(self.stack_2) != 0:
+                self.stack_1.append(self.stack_2.pop())
 
-        return self.stack1.pop()
+        return self.stack_1.pop()
 
 
     def top(self):
-        if len(self.stack1) == 0:
-            while len(self.stack2) != 0:
-                self.stack1.append(self.stack2.pop())
+        if len(self.stack_1) == 0:
+            while len(self.stack_2) != 0:
+                self.stack_1.append(self.stack_2.pop())
 
-        if len(self.stack1) != 0:
-            return self.stack1[-1]
+        if len(self.stack_1) != 0:
+            return self.stack_1[-1]
 
         return None
 
@@ -61,6 +61,6 @@ class MyQueue:
 #     print(queue.top() == 2)
 #     print(queue.pop() == 2)
 #
-# 
+#
 # if __name__ == '__main__':
 #     main()

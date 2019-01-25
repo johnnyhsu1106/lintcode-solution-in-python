@@ -34,10 +34,8 @@ class MinStack:
         # use the list(treat list as stack) to implement stack.
         # stack.pop() is equal to list.pop()
         # stack.push() is equal to list.append()
-
         self.items = []
         self.mins = [] # use the stack to store all min values.
-        #
 
 
     def push(self, number):

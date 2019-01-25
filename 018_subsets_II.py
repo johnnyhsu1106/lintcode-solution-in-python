@@ -28,21 +28,21 @@ class Solution:
     @return: A list of lists. All valid subsets.
     """
     def subsetsWithDup(self, nums):
-        result, subset = [], []
+        results, subset = [], []
         if nums is None:
-            return result
+            return results
         nums.sort()
-        self.dfs(nums, 0, subset, result)
-        return result
+        self.dfs(nums, 0, subset, results)
+        return results
 
 
-    def dfs(self, nums, start_index, subset, result):
-        result.append(list(subset))
+    def dfs(self, nums, start_index, subset, results):
+        results.append(list(subset))
 
         for i in range(start_index, len(nums)):
             if i == start_index or nums[i] != nums[i-1]:
                 subset.append(nums[i])
-                self.dfs(nums, i + 1, subset, result)
+                self.dfs(nums, i + 1, subset, results)
                 subset.pop()
 
 

@@ -1,4 +1,4 @@
-'''
+ '''
 Given n non-negative integers representing the histogram's bar height
 where the width of each bar is 1, find the area of largest rectangle in the histogram.
 
@@ -20,14 +20,14 @@ class Solution:
     @return: The area of largest rectangle in the histogram
     """
     def largestRectangleArea(self, height):
-        if not height or len(height) == 0:
+        if not height:
             return 0
 
         stack = []
         area = 0
         i = 0
-        while i < len(height):
 
+        while i < len(height):
             if not stack or height[i] > height[stack[-1]]:
                 stack.append(i)
             else:
@@ -36,7 +36,6 @@ class Solution:
                 area = max(area, width * height[curr])
                 i -= 1
             i += 1
-
 
         while stack:
             curr = stack.pop()
