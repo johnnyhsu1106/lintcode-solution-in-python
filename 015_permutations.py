@@ -27,29 +27,29 @@ class Solution:
         if len(nums) == 0:
             return [[]]
 
-        visited = set()
-        result = []
+        results = []
+        visited_index = set()
         permutation = []
-        self.dfs(nums, visited, permutation, result)
 
-        return result
+        self.dfs(nums, visited_index, permutation, results)
+
+        return results
 
 
-    def dfs(self, nums, visited, permutation, result):
-
+    def dfs(self, nums, visited_index, permutation, results):
         if len(permutation) == len(nums):
-            result.append(list(permutation))
+            results.append(permutation.copy())
             return
 
-        for num in nums:
-            if num not in visited:
-                permutation.append(num)
-                visited.add(num)
-                self.dfs(nums, visited, permutation, result)
+        for i in range(len(nums)):
+            if i not in visited_index:
+                permutation.append(nums[i])
+                visited_index.add(i)
+                self.dfs(nums, visited_index, permutation, results)
                 permutation.pop()
-                visited.discard(num)
+                visited_index.discard(i)
 
-# 
+#
 # def main():
 #     s = Solution()
 #     nums = [1, 2, 3]

@@ -23,30 +23,29 @@ class Solution:
         if len(nums) == 0:
             return [[]]
 
-        result = []
+        results = []
         permutation = []
-        # visited = [False for i in range(len(nums))]
-        visited = set()
+        visited_index = set()
         nums.sort()
 
-        self.dfs(nums, visited, permutation, result)
+        self.dfs(nums, visited_index, permutation, results)
 
-        return result
+        return results
 
-    def dfs(self, nums, visited, permutation, result):
-        # base case
+    def dfs(self, nums, visited_index, permutation, results):
         if len(permutation) == len(nums):
-            result.append(list(permutation))
+            results.append(permutation.copy())
             return
 
         for i in range(len(nums)):
-            if  i not in visited:
-                if i == 0 or nums[i] != nums[i - 1] or i - 1 in visited:
+            if  i not in visited_index:
+                if i == 0 or nums[i] != nums[i - 1] or i - 1 in visited_index:
                     permutation.append(nums[i])
-                    visited.add(i)
-                    self.dfs(nums, visited, permutation, result)
-                    visited.discard(i)
+                    visited_index.add(i)
+                    self.dfs(nums, visited_index, permutation, results)
                     permutation.pop()
+                    visited_index.discard(i)
+
 
 
 # def main():

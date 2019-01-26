@@ -54,7 +54,7 @@ class Solution:
                 new_x = x + dx
                 new_y = y + dy
 
-                 if self._is_bound(new_x, new_y, m, n) and not visited_matrix[new_x][new_y]:
+                if self._is_bound(new_x, new_y, m, n) and not visited_matrix[new_x][new_y]:
                     new_h = heights[new_x][new_y]
                     heappush(min_heap, (max(h, new_h), new_x, new_y))
                     visited_matrix[new_x][new_y] = True

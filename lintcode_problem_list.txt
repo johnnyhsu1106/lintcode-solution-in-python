@@ -86,6 +86,7 @@
     052. Next Permutation
     051. Previous Permutation
     582. Word Break II
+    033. N-Queens
 
 6 - Linked List & Array
     599. Insert into a Cyclic Sorted List

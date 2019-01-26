@@ -22,7 +22,7 @@ class Solution:
         stack = []
         num = ''
 
-         for char in s:
+        for char in s:
             if char.isdigit():
                 num += char
 

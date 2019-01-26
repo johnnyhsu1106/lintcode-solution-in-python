@@ -35,7 +35,6 @@ class Solution:
         From one transformation to another transformation and
         find the shortest path to reach the goal
         '''
-
         if start == end:
             return 1
 
@@ -59,7 +58,7 @@ class Solution:
                 if word == end:
                     return path
 
-                words = self.get_next_words(word, dictionary)
+                words = self._get_next_words(word, dictionary)
 
                 for new_word in words:
                     if new_word not in visited_words:
@@ -69,25 +68,25 @@ class Solution:
         return 0
 
 
-    def get_next_words(self, word, dictionary):
+    def _get_next_words(self, word, dictionary):
         next_words = []
+        NUM_OF_ALPHABETS = 26
 
         for i in range(len(word)):
-            for j in range(25):
-                index = (ord(word[i]) + j - ord('a')) % 26 + ord('a')
+            for j in range(NUM_OF_ALPHABETS - 1):
+                index = (ord(word[i]) + j - ord('a')) % NUM_OF_ALPHABETS + ord('a')
                 new_char = chr(index)
-                next_word = self.replace_char(i, new_char, word)
+                next_word = self._replace_char(i, new_char, word)
+
                 if next_word in dictionary:
                     next_words.append(next_word)
 
         return next_words
 
 
-    def replace_char(self, replace_index, new_char, word):
+    def _replace_char(self, replace_index, new_char, word):
         return word[:replace_index] + new_char + word[replace_index + 1:]
-        # word_list = list(word)
-        # word_list[replace_char] = new_char
-        # return "".join(word_list)
+
 
 
 # def main():

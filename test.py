@@ -18,7 +18,7 @@ def run_all_files():
 
     # file_list('lintcode_problem_list.txt', py_files)
 
-    for py_file in py_files:
+    for py_file in sorted(py_files):
         print(py_file)
         count += 1
         os.system( "python " + py_file)
