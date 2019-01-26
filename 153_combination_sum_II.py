@@ -36,27 +36,29 @@ class Solution:
         if candidates is None:
             return []
 
-        result = []
+        results = []
         # candidates = list(set(candidates))
         candidates.sort()
         combination = []
-        self.dfs(candidates, 0, combination, target, result)
-        return result
+        start_index = 0
+
+        self.dfs(candidates, start_index, combination, target, results)
+        return results
 
 
-    def dfs(self, candidates, start_index, combination, remain_target, result):
+    def dfs(self, candidates, start_index, combination, remain_target, results):
         #  base case (stoppig condition)
         if remain_target == 0:
-            result.append(list(combination))
+            results.append(combination.copy())
             return
 
         for i in range(start_index, len(candidates)):
             if candidates[i] > remain_target:
                 break
 
-            if i == 0 or i == start_index or candidates[i] != candidates[i - 1]:
+            if i == 0 or candidates[i] != candidates[i - 1] or i == start_index:
                 combination.append(candidates[i])
-                self.dfs(candidates, i + 1, combination, remain_target - candidates[i], result)
+                self.dfs(candidates, i + 1, combination, remain_target - candidates[i], results)
                 combination.pop()
 
 # def main():

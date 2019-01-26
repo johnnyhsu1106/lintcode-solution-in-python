@@ -48,7 +48,7 @@ class Solution:
         results.append(subset.copy()) #deep copy
 
         for i in range(start_index, len(nums)):
-            if i == start_index or nums[i] != nums[i - 1]:
+            if i == 0 or nums[i] != nums[i - 1] or i == start_index:
                 subset.append(nums[i])
                 self.dfs(nums, i + 1, subset, results)
                 subset.pop()

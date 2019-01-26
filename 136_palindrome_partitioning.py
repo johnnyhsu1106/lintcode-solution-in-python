@@ -19,37 +19,40 @@ class Solution:
     @return: A list of lists of string
     """
     def partition(self, s):
-        result = []
-        if len(s) == 0:
-            return reuslt
+        if not s:
+            return []
 
         partition = []
-        self.dfs_partition(s, 0, partition, results)
+        start_index = 0
+        self._dfs_partition(s, start_index, partition, results)
 
         return results
 
 
-    def dfs_partition(self, s, start_index, partitions, results):
-
+    def _dfs_partition(self, s, start_index, partitions, results):
         if start_index == len(s) :
-            results.append(partitions.copy()) #list(partition)
+            results.append(partitions.copy())
             return
 
         for i in range(start_index, len(s)):
-            substring = s[start_index: i + 1]
+            substring = s[start_index : i + 1]
 
-            if self.is_palindrome(substring):
+            if self._is_palindrome(substring):
                 partitions.append(substring)
-                self.dfs_partition(s, i + 1, partitions, results)
+                self._dfs_partition(s, i + 1, partitions, results)
                 partitions.pop()
 
 
-    def is_palindrome(self, s):
-        for i in range(len(s) // 2):
-            if s[i] != s[len(s) - 1 - i]:
-                return False
-        return True
+    def _is_palindrome(self, s):
+        i, j = 0, len(s) - 1
 
+        while i < j:
+            if s[i] != s[j]:
+                return False
+            i += 1
+            j -= 1
+
+        return True
 
 # def main():
 #     s = Solution()
