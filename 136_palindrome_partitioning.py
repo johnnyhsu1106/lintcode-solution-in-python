@@ -48,6 +48,7 @@ class Solution:
     def _is_palindrome(self, string):
         if not string:
             return True
+
         i, j = 0, len(string) - 1
 
         while i < j:

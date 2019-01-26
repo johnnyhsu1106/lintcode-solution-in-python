@@ -41,7 +41,7 @@ class Solution:
         if start == end:
             return 1
 
-        # use the bfs to tranverse all paths
+        # use the bfs to traverse all paths
         dictionary.add(end)
         queue = deque([start])
         visited_words = set([start])

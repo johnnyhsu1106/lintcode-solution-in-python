@@ -19,15 +19,16 @@ class Solution:
     @return: A list of integers
     """
     def nextPermutation(self, nums):
-        if not nums or len(nums) == 0:
+        if not nums:
             return []
+
         if len(nums) == 1:
             return nums
 
         i = len(nums) - 1
+        
         while i > 0 and nums[i] <= nums[i - 1]:
             i -= 1
-        print(i)
         self.swap_list(nums, i, len(nums) - 1)
 
         if i != 0:
@@ -39,14 +40,9 @@ class Solution:
         return nums
 
 
-
-    def swap(self, nums, i, j):
-        nums[i], nums[j] = nums[j], nums[i]
-
-
     def swap_list(self, nums, i, j):
         while i < j:
-            self.swap(nums, i, j)
+            nums[i], nums[j] = nums[j], nums[i]
             i += 1
             j -= 1
 
