@@ -61,18 +61,18 @@ class Solution:
         if len(nums) == 0:
             return [[]]
 
-        results = []
         nums.sort() # Elements in a subset must be in non-descending order.
+
         start_index = 0
         subset = []
+        results = []
 
         self._dfs(nums, start_index, subset, results)
-        
+
         return results
 
 
     def _dfs(self, nums, start_index, subset, results):
-        # append new object with []
         results.append(subset.copy())
 
         for i in range(start_index, len(nums)):

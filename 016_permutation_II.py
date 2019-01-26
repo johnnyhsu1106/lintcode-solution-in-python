@@ -20,13 +20,14 @@ class Solution:
         if nums is None:
             return []
 
-        if len(nums) == 0:
-            return [[]]
+        if len(nums) <= 1:
+            return [nums]
 
-        results = []
-        permutation = []
-        visited_index = set()
         nums.sort()
+
+        visited_index = set()
+        permutation = []
+        results = []
 
         self.dfs(nums, visited_index, permutation, results)
 
@@ -39,7 +40,7 @@ class Solution:
 
         for i in range(len(nums)):
             if  i not in visited_index:
-                if i == 0 or nums[i] != nums[i - 1] or i - 1 in visited_index:
+                if i == 0 or nums[i] != nums[i - 1] or i - 1 in visited_index: # i - 1 the previous number is used  1 2' 2"
                     permutation.append(nums[i])
                     visited_index.add(i)
                     self.dfs(nums, visited_index, permutation, results)

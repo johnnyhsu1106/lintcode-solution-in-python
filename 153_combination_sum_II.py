@@ -33,32 +33,34 @@ class Solution:
         Please see the problem 018 and 135
         '''
 
-        if candidates is None:
+        if not candidates:
             return []
 
-        results = []
-        # candidates = list(set(candidates))
         candidates.sort()
-        combination = []
-        start_index = 0
 
-        self.dfs(candidates, start_index, combination, target, results)
+        start_index = 0
+        combination = []
+        remains = target
+        results = []
+
+        self._dfs(candidates, start_index, combination, remains, results)
+
         return results
 
 
-    def dfs(self, candidates, start_index, combination, remain_target, results):
+    def _dfs(self, candidates, start_index, combination, remains, results):
         #  base case (stoppig condition)
-        if remain_target == 0:
+        if remains == 0:
             results.append(combination.copy())
             return
 
         for i in range(start_index, len(candidates)):
-            if candidates[i] > remain_target:
+            if candidates[i] > remains:
                 break
 
             if i == 0 or candidates[i] != candidates[i - 1] or i == start_index:
                 combination.append(candidates[i])
-                self.dfs(candidates, i + 1, combination, remain_target - candidates[i], results)
+                self.dfs(candidates, i + 1, combination, remains - candidates[i], results)
                 combination.pop()
 
 # def main():

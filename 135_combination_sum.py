@@ -32,28 +32,30 @@ class Solution:
         if not candidates:
             return []
 
-        results = []
         candidates.sort()
+
         combination = []
         start_index = 0
+        results = []
+
         self._dfs(candidates, start_index, combination, target, results)
 
         return results
 
 
-    def _dfs(self, candidates, start_index, combination, remain_target, results):
+    def _dfs(self, candidates, start_index, combination, remains, results):
         #  base case (stoppig condition)
-        if remain_target == 0:
+        if remains == 0:
             results .append(combination.copy())
             return
 
         for i in range(start_index, len(candidates)):
-            if candidates[i] > remain_target:
+            if candidates[i] > remains:
                 break
 
-            if i == 0 or candidates[i] != candidates[i - 1]: #avoid add the other duplicate number into combination
+            if i == 0 or candidates[i] != candidates[i - 1] or i == start_index: #avoid add the other duplicate number into combination
                 combination.append(candidates[i])
-                self._dfs(candidates, i, combination, remain_target - candidates[i], results)
+                self._dfs(candidates, i, combination, remains - candidates[i], results)
                 combination.pop()
 
 
@@ -74,18 +76,18 @@ class Solution:
         return results
 
 
-    def _dfs(self, candidates, start_index, combination, remain_target, results):
+    def _dfs(self, candidates, start_index, combination, remains, results):
         #  base case (stoppig condition)
-        if remain_target == 0:
+        if remains == 0:
             results .append(combination.copy())
             return
 
         for i in range(start_index, len(candidates)):
-            if candidates[i] > remain_target:
+            if candidates[i] > remains:
                 break
 
             combination.append(candidates[i])
-            self._dfs(candidates, i, combination, remain_target - candidates[i], results)
+            self._dfs(candidates, i, combination, remains - candidates[i], results)
             combination.pop()
 
 # def main():

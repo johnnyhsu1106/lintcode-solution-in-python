@@ -34,10 +34,10 @@ class Solution:
         if len(nums) == 0:
             return [[]]
 
-        results = []
         nums.sort()
         start_index = 0
         subset = []
+        results = []
 
         self._dfs(nums, start_index, subset, results)
 

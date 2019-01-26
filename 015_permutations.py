@@ -24,12 +24,12 @@ class Solution:
         if nums is None:
             return []
 
-        if len(nums) == 0:
-            return [[]]
+        if len(nums) <= 1:
+            return [nums]
 
-        results = []
         visited_index = set()
         permutation = []
+        results = []
 
         self.dfs(nums, visited_index, permutation, results)
 
