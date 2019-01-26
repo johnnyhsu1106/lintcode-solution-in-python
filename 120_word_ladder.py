@@ -35,57 +35,51 @@ class Solution:
         From one transformation to another transformation and
         find the shortest path to reach the goal
         '''
+        if not start or not end or len(dictionary) == 0:
+            return 0
+
         if start == end:
             return 1
 
-        if len(dictionary) == 0:
-            return 0
-
-        #  add the end to the dictionary
-        dictionary.add(start)
+        # use the bfs to tranverse all paths
         dictionary.add(end)
-        #  initialize the BFS (queue<deque> and visited<set>)
         queue = deque([start])
         visited_words = set([start])
-        path = 0
+        distance = 0
 
         while queue:
-            path += 1
-            size = len(queue)
+            distance += 1
 
-            for i in range(size):
+            for i in range(len(queue)):
                 word = queue.popleft()
+
                 if word == end:
-                    return path
+                    return distance
 
-                words = self._get_next_words(word, dictionary)
+                next_words = self._get_next_words(word, dictionary)
 
-                for new_word in words:
-                    if new_word not in visited_words:
-                        queue.append(new_word)
-                        visited_words.add(new_word)
+                for next_word in next_words:
+                    if next_word not in visited_words:
+                        queue.append(next_word)
+                        visited_words.add(next_word)
+
 
         return 0
 
 
     def _get_next_words(self, word, dictionary):
         next_words = []
-        NUM_OF_ALPHABETS = 26
+        CHARS = 'abcdefghijklmnopqrstuvwxyz'
 
         for i in range(len(word)):
-            for j in range(NUM_OF_ALPHABETS - 1):
-                index = (ord(word[i]) + j - ord('a')) % NUM_OF_ALPHABETS + ord('a')
-                new_char = chr(index)
-                next_word = self._replace_char(i, new_char, word)
+            for char in CHARS:
+                if word[i] != char:
+                    next_word = word[: i] + char + word[i + 1: ]
 
-                if next_word in dictionary:
-                    next_words.append(next_word)
+                    if next_word in dictionary:
+                        next_words.append(next_word)
 
         return next_words
-
-
-    def _replace_char(self, replace_index, new_char, word):
-        return word[:replace_index] + new_char + word[replace_index + 1:]
 
 
 

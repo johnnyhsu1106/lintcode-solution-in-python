@@ -22,8 +22,10 @@ class Solution:
         if not s:
             return []
 
-        partition = []
         start_index = 0
+        partition = []
+        results = []
+
         self._dfs_partition(s, start_index, partition, results)
 
         return results
@@ -43,11 +45,13 @@ class Solution:
                 partitions.pop()
 
 
-    def _is_palindrome(self, s):
-        i, j = 0, len(s) - 1
+    def _is_palindrome(self, string):
+        if not string:
+            return True
+        i, j = 0, len(string) - 1
 
         while i < j:
-            if s[i] != s[j]:
+            if string[i] != string[j]:
                 return False
             i += 1
             j -= 1

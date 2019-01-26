@@ -21,6 +21,7 @@ Return
   ]
 '''
 from collections import deque, defaultdict
+
 class Solution:
     """
     @param: start: a string
@@ -29,74 +30,75 @@ class Solution:
     @return: a list of lists of string
     """
     def findLadders(self, start, end, dictionary):
+        if not start or not end or len(dictionary) == 0:
+            return []
 
         results = []
         words_distance = defaultdict(int) # a dict to store word(key) and distance from end
         next_words_mapping = defaultdict(list) # a dict to store word(key) and set of next words (value)
-        dictionary.add(start) # add the start to dictionary (must-do)
-        dictionary.add(end) # add the end to dictionary (must-do)
+        dictionary.add(start) # use on bfs
+        dictionary.add(end) # use on dfs
         path = []
+
         # use bfs from end to start to get number of each word's transformation
-        self.bfs(start, end, dictionary, words_distance, next_words_mapping)
+        self._bfs(start, end, dictionary, words_distance, next_words_mapping)
+
         # use dfs from start to end to get all the result
-        self.dfs(start, end, path, words_distance, next_words_mapping, results)
+        current_word = start
+        self._dfs(current_word, end, path, words_distance, next_words_mapping, results)
 
         return results
 
 
-        def bfs(self, start, end, dictionary, words_distance, next_words_mapping):
-            '''
-            use BFS to traverse all word transformation from end to begin.
-            store the distance (the step of transformation)
-            for each word in Dictionary/Hash Map, called words_distance
+    def _bfs(self, start, end, dictionary, words_distance, next_words_mapping):
+        '''
+        use BFS to traverse all word transformation from end to begin.
+        store the distance (the step of transformation)
+        for each word in Dictionary/Hash Map, called words_distance
 
-            words_distance = {word: distance, ...}
-            next_words_mapping = {word: [next_word1, next_word2,...]}
-            '''
+        words_distance = {word: distance, ...}
+        next_words_mapping = {word: [next_word1, next_word2,...]}
+        '''
 
-            queue = deque([end])
-            visited_words = set([end])
-            distance = 0
+        queue = deque([end])
+        visited_words = set([end])
+        distance = 0
 
-            while queue:
-                size = len(queue)
+        while queue:
+            size = len(queue)
 
-                # traverse by level
-                for i in range(size):
-                    word = queue.popleft()
-                    words_distance[word] = distance
+            # traverse by level
+            for i in range(size):
+                word = queue.popleft()
+                words_distance[word] = distance
 
-                    next_words = self._get_next_words(word, dictionary)
-                    next_words_mapping[word] = next_words
+                next_words = self._get_next_words(word, dictionary)
+                next_words_mapping[word] = next_words
 
-                    for next_word in next_words:
-                        if next_word not in visited_words:
-                            queue.append(next_word)
-                            visited_words.add(next_word)
-                distance += 1
-
-
-        def _get_next_words(self, word, dictionary):
-
-            next_words = []
-            NUM_OF_ALPHABETS = 26
-
-            for i in range(len(word)):
-                for j in range(NUM_OF_ALPHABETS - 1):
-                    index = (ord(word[i]) + j - ord('a')) % NUM_OF_ALPHABETS + ord('a')
-                    new_char = chr(index)
-                    new_word = self._replace_char(i,new_char, word)
-
-                    if new_word in dictionary:
-                        next_words.append(new_word)
-
-            return next_words
-
-        def _replace_char(self, i, char, word):
-            return word[ : i] + char + word[i + 1 : ]
+                for next_word in next_words:
+                    if next_word not in visited_words:
+                        queue.append(next_word)
+                        visited_words.add(next_word)
+            distance += 1
 
 
-    def dfs(self, current_word, end, path, words_distance, next_words_mapping, results):
+    def _get_next_words(self, word, dictionary):
+        next_words = []
+        CHARS = 'abcdefghijklmnopqrstuvwxyz'
+
+        for i in range(len(word)):
+            for char in CHARS:
+                if word[i] != char:
+                    next_word = word[: i] + char + word[i + 1: ]
+
+                    if next_word in dictionary:
+                        next_words.append(next_word)
+
+        return next_words
+
+
+
+    def _dfs(self, current_word, end, path, words_distance, next_words_mapping, results):
         '''
         use DFS to traverse each word and next word recursively, following the distance
         '''
@@ -106,10 +108,12 @@ class Solution:
             path.pop()
             return
 
-        for next_word in next_words_mapping[current_word]:
+        next_words = next_words_mapping[current_word]
+
+        for next_word in next_words:
             if words_distance[current_word] == words_distance[next_word] + 1:
                 path.append(current_word)
-                self.dfs(next_word, end, path, words_distance, next_words_mapping, results)
+                self._dfs(next_word, end, path, words_distance, next_words_mapping, results)
                 path.pop()
 
 
