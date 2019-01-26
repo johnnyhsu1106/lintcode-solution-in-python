@@ -35,26 +35,25 @@ class Solution:
         results = []
         candidates.sort()
         combination = []
+        start_index = 0
+        self._dfs(candidates, start_index, combination, target, results)
 
-        self.dfs(candidates, 0, combination, target, results)
-
-        return result
+        return results
 
 
-    def dfs(self, candidates, start_index, combination, remain_target, results):
+    def _dfs(self, candidates, start_index, combination, remain_target, results):
         #  base case (stoppig condition)
         if remain_target == 0:
-            results .append(list(combination))
-            # results.append(combination.copy())
+            results .append(combination.copy())
             return
 
         for i in range(start_index, len(candidates)):
-            if remain_target < candidates[i] :
+            if candidates[i] > remain_target:
                 break
 
             if i == 0 or candidates[i] != candidates[i - 1]: #avoid add the other duplicate number into combination
                 combination.append(candidates[i])
-                self.dfs(candidates, i, combination, remain_target - candidates[i], result)
+                self._dfs(candidates, i, combination, remain_target - candidates[i], results)
                 combination.pop()
 
 
@@ -68,24 +67,25 @@ class Solution:
         results = []
         candicates = sorted(list(set(candidates)))
         combination = []
+        start_index = 0
 
-        self.dfs(candidates, 0, combination, target, results)
+        self._dfs(candidates, 0, combination, target, results)
 
-        return result
+        return results
 
 
-    def dfs(self, candidates, start_index, combination, remain_target, results):
+    def _dfs(self, candidates, start_index, combination, remain_target, results):
         #  base case (stoppig condition)
         if remain_target == 0:
             results .append(combination.copy())
             return
 
         for i in range(start_index, len(candidates)):
-            if remain_target < candidates[i] :
+            if candidates[i] > remain_target:
                 break
 
             combination.append(candidates[i])
-            self.dfs(candidates, i, combination, remain_target - candidates[i], result)
+            self._dfs(candidates, i, combination, remain_target - candidates[i], results)
             combination.pop()
 
 # def main():

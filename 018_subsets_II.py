@@ -28,19 +28,27 @@ class Solution:
     @return: A list of lists. All valid subsets.
     """
     def subsetsWithDup(self, nums):
-        results, subset = [], []
         if nums is None:
-            return results
+            return []
+
+        if len(nums) == 0:
+            return [[]]
+
+        results = []
         nums.sort()
-        self.dfs(nums, 0, subset, results)
+        start_index = 0
+        subset = []
+
+        self._dfs(nums, start_index, subset, results)
+
         return results
 
 
-    def dfs(self, nums, start_index, subset, results):
-        results.append(list(subset))
+    def _dfs(self, nums, start_index, subset, results):
+        results.append(subset.copy()) #deep copy
 
         for i in range(start_index, len(nums)):
-            if i == start_index or nums[i] != nums[i-1]:
+            if i == start_index or nums[i] != nums[i - 1]:
                 subset.append(nums[i])
                 self.dfs(nums, i + 1, subset, results)
                 subset.pop()
