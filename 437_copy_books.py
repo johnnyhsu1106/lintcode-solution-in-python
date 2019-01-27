@@ -19,41 +19,45 @@ and second person spends 4 minutes to copy book 3. )
 '''
 class Solution:
     """
-    @param: pages: an array of integers
-    @param: k: An integer
+    @param pages: an array of integers
+    @param k: An integer
     @return: an integer
     """
     def copyBooks(self, pages, k):
         if not pages or k <= 0:
             return 0
-        # time from max(pages), if k is len(pages), to sum(pags), if k = 1
-        start, end = max(pages), sum(pages)
+
+        start, end = max(pages) ,sum(pages)
 
         while start + 1 < end:
-             mid = start + (end - start) // 2
+            mid = start + (end - start) // 2
 
-             if self._count_copier(pages, mid) <= k:
-                 end = mid
-             elif self._count_copier(pages, mid) > k:
-                 start = mid
+            if self._count_coiper(pages, mid) <= k:
+                end = mid
+            else:
+                start = mid
 
-        if self._count_copier(pages, start) <= k:
+
+        if self._count_coiper(pages, start) <= k:
             return start
 
         return end
 
 
-    def _count_copier(self, pages, time):
-        copiers = 1
-        total = pages[0]
+    def _count_coiper(self, pages, time_limit):
+        total_pages = 0
+        num_of_copier = 0
 
-        for i in range(1, len(pages)):
-            if total + pages[i] > time:
-                copiers += 1
-                total = 0
-            total += pages[i]
+        for page in pages:
+            if total_pages + page > time_limit:
+                num_of_copier += 1
+                total_pages = page
+            else:
+                total_pages += page
 
-        return copiers
+        num_of_copier += 1
+
+        return num_of_copier
 
 
 # def main():

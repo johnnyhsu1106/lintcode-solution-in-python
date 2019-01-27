@@ -17,11 +17,14 @@ class Solution:
     @return: the square root of x
     """
     def sqrt(self, x):
+        if x < 0:
+            return
+
         eps = 1e-12
 
-        start, end = 0.0, x
-        if x < 1.0:
-            end = 1.0
+        start, end = 0, x
+        if x < 1:
+            end = 1
 
         while end - start > eps:
             mid = start + (end - start) / 2

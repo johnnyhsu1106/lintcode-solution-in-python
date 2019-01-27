@@ -24,7 +24,7 @@ class Solution:
     @return: The maximum length of the small pieces
     """
     def woodCut(self, L, k):
-        if sum(L) < k:
+        if not L or k <= 0 or k > sum(L):
             return 0
 
         start, end = 1, max(L) # define the range
@@ -42,7 +42,7 @@ class Solution:
 
         return start
 
- 
+
     def _count_piece(self, L, length):
         piece = 0
 

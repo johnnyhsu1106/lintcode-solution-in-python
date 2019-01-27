@@ -22,10 +22,14 @@ class Solution:
         idea: binary search.
         Time: O(logn)
         '''
-        start, end = 1, x
+        if x < 0:
+            return
+
+        start, end = 0, x
 
         while start + 1 < end:
-            mid = start + (end - start) / 2
+            mid = start + (end - start) // 2
+
             if mid * mid == x:
                 return mid
             elif mid * mid < x:
@@ -35,14 +39,14 @@ class Solution:
 
         #  the value closet to the x (last number that number * number <= x)
         if end * end <= x:
-            return int(end)
-            
-        return int(start)
+            return end
+
+        return start
 
 
     def sqrt_1(self, x):
         '''
-        Time: O(n*1/2)
+        Time: O(n)
         '''
         i = 1
         while i * i <= x:
