@@ -24,6 +24,7 @@ then the window move one step forward again.
 Challenge
 O(nlog(n)) time
 '''
+
 from heapq import heappush, heappop, heapify
 class Solution:
     """
@@ -38,53 +39,56 @@ class Solution:
         if k == 1:
             return nums
 
-        results = []
+        medians = []
         max_heap, min_heap = [],[]
 
         for i in range(k):
-            num = nums[i]
-            self.add_to_heap(max_heap, min_heap, num)
-            self.balance_heaps(max_heap, min_heap)
+            self._add_num_to_heaps(nums[i], max_heap, min_heap)
+            self._balance_heaps(max_heap, min_heap)
 
-        median = -max_heap[0]
-        results.append(median)
+        self._add_median_to_medians(medians, max_heap)
+
 
         for i in range(k, len(nums)):
             add_num = nums[i]
             remove_num = nums[i - k]
-            self.add_to_heap(max_heap, min_heap, add_num)
-            self.remove_from_heap(max_heap, min_heap, remove_num)
-            self.balance_heaps(max_heap, min_heap)
 
-            median = -max_heap[0]
-            results.append(median)
+            self._add_num_to_heaps(add_num, max_heap, min_heap)
+            self._remove_num_from_heaps(remove_num, max_heap, min_heap)
+            self._balance_heaps(max_heap, min_heap)
+            self._add_median_to_medians(medians, max_heap)
 
-        return results
+        return medians
 
 
-    def add_to_heap(self, max_heap, min_heap, num):
+    def _add_num_to_heaps(self, num, max_heap, min_heap):
         if len(max_heap) == 0 or num < - max_heap[0]:
-            heappush(max_heap, - num)
+            heappush(max_heap, -num)
         else:
             heappush(min_heap, num)
 
 
-    def remove_from_heap(self, max_heap, min_heap, num):
+    def _remove_num_from_heaps(self, num, max_heap, min_heap):
         if num <= - max_heap[0]:
-            max_heap.remove(- num)
+            max_heap.remove(-num)
             heapify(max_heap)
         else:
             min_heap.remove(num)
             heapify(min_heap)
 
 
-    def balance_heaps(self, max_heap, min_heap):
+    def _balance_heaps(self, max_heap, min_heap):
+        while len(max_heap) > len(min_heap) + 1:
+            heappush(min_heap, - heappop(max_heap))
 
         while len(max_heap) < len(min_heap):
             heappush(max_heap, - heappop(min_heap))
 
-        while len(max_heap) > len(min_heap) + 1:
-            heappush(min_heap, - heappop(max_heap))
+
+    def _add_median_to_medians(self, medians, max_heap):
+        medians.append(- max_heap[0])
+
+
 
 # def main():
 #     s = Solution()

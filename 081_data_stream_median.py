@@ -46,31 +46,31 @@ class Solution:
         medians = []
 
         for num in nums:
-            self.add_to_heap(max_heap, min_heap, num)
-            self.balance_heaps(max_heap, min_heap)
-            self._add_median_from_heaps(medians, max_heap)
+            self._add_num_to_heaps(max_heap, min_heap, num)
+            self._balance_heaps(max_heap, min_heap)
+            self._add_median_to_medians(medians, max_heap)
 
         return medians
 
 
-    def add_to_heap(self, max_heap, min_heap, num):
-        if len(max_heap) == 0:
-            heappush(max_heap, - num)
-            return
-
-        if num >= - max_heap[0]:
-            heappush(min_heap, num)
-        else:
-            heappush(max_heap, - num)
+    def _add_num_to_heaps(self, max_heap, min_heap, num):
+        # if len(max_heap) == 0:
+        #     heappush(max_heap, - num)
+        #     return
+        #
+        # if num >= - max_heap[0]:
+        #     heappush(min_heap, num)
+        # else:
+        #     heappush(max_heap, - num)
 
         # # for the first element, it should belogn to max heap
-        # if len(max_heap) == 0 or num < - max_heap[0]:
-        #     heappush(max_heap, - num)
-        # else:
-        #     heappush(min_heap, num)
+        if len(max_heap) == 0 or num < - max_heap[0]:
+            heappush(max_heap, - num)
+        else:
+            heappush(min_heap, num)
 
 
-    def balance_heaps(self, max_heap, min_heap):
+    def _balance_heaps(self, max_heap, min_heap):
         # make sure len(max_heap) = len(min_heap) or len(max_heap) = len(min_heap) + 1
         # you can use if statement or while statement, both work
         # becasue only one number is added to heap at one time.
@@ -81,7 +81,7 @@ class Solution:
             heappush(min_heap, - heappop(max_heap))
 
 
-    def _add_median_from_heaps(self, medians, max_heap):
+    def _add_median_to_medians(self, medians, max_heap):
         medians.append(- max_heap[0])
 
 
