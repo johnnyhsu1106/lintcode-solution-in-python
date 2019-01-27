@@ -49,31 +49,34 @@ class Solution:
 
         while left + 1 < right or up + 1 < down: #  use or, not and.
             # see  x, y direcetion, who has wider range (binary search)
-            if right - left > down - up:
+            if right - left >= down - up:
                 y = left + (right - left) //  2
-                x = self.find_x_peak(A, y, up, down)
+                x = self._find_x_peak(A, y, up, down)
 
-                if self.is_peak(A, x, y):
-                    return [x, y]
-                elif A[x][y] < A[x][y - 1]:
+                if A[x][y] < A[x][y - 1]:
                     right = y
                 elif A[x][y] < A[x][y + 1]:
                     left = y
+                else:
+                    return [x, y]
             else:
                 x = up + (down - up) // 2
-                y = self.find_y_peak(A, x, left, right)
+                y = self._find_y_peak(A, x, left, right)
 
-                if self.is_peak(A, x, y):
-                    return [x, y]
-                elif A[x][y] < A[x - 1][y]:
+                if A[x][y] < A[x - 1][y]:
                     down = x
-                else:
+                elif A[x][y] < A[x + 1][y]:
                     up = x
+                else:
+                    return [x, y]
 
 
-    def find_x_peak(self, A, y, up, down):
+
+
+    def _find_x_peak(self, A, y, up, down):
         max_value = float('-inf')
-                
+        x_peak = up
+
         for x in range(up, down + 1):
             if A[x][y] > max_value:
                 max_value = A[x][y]
@@ -82,8 +85,9 @@ class Solution:
         return x_peak
 
 
-    def find_y_peak(self, A, x, left, right):
+    def _find_y_peak(self, A, x, left, right):
         max_value = float('-inf')
+        y_peak = left
 
         for y in range(left, right + 1):
             if A[x][y] > max_value:
@@ -93,8 +97,9 @@ class Solution:
         return y_peak
 
 
-    def is_peak(self, A, x, y):
-        return A[x][y] > max(A[x - 1][y], A[x + 1][y], A[x][y - 1], A[x][y + 1])
+
+    # def is_peak(self, A, x, y):
+    #     return A[x][y] > max(A[x - 1][y], A[x + 1][y], A[x][y - 1], A[x][y + 1])
 
 
 

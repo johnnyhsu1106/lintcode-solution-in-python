@@ -33,6 +33,8 @@ class Solution:
     @return: An integer which is the first bad version.
     """
     def findFirstBadVersion(self, n):
+        if n <= 0:
+            return - 1
 
         start, end = 1, n
         while start + 1 < end:
@@ -44,5 +46,5 @@ class Solution:
 
         if SVNRepo.isBadVersion(start):
             return start
-            
+
         return end

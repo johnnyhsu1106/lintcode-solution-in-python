@@ -22,12 +22,6 @@ class Interval:
         self.start = start
         self.end = end
 
-def sorter(x, y):
-    if x[0] != y[0]:
-        return x[0] - y[0]
-    return x[1] - y[1]
-
-from functools import cmp_to_key
 class Solution:
     """
     @param: airplanes: An interval array
@@ -38,10 +32,12 @@ class Solution:
         schedule = []
 
         for airplane in airplanes:
+            # (time, is_flying)
             schedule.append((airplane.start, True)) # True stands for taking off
             schedule.append((airplane.end, False)) # False stands for landing
 
         schedule.sort()
+
         count = 0
         max_count = 0
 
@@ -57,15 +53,16 @@ class Solution:
 
     def countOfAirplanes_2(self, airplanes):
         schedule = []
-        
+
         for airplane in airplanes:
             schedule.append((airplane.start, 1))
             schedule.append((airplane.end, -1))
 
-        schedule = sorted(schedule, key = cmp_to_key(sorter))
-
+        schedule.sort()
+        
         count = 0
         max_count = 0
+
         for time, delta in schedule:
             count += delta
             max_count = max(max_count, count)

@@ -27,20 +27,23 @@ class Solution:
     @return: return any of peek positions.
     """
     def findPeak(self, A):
-    
+        if not A or len(A) <= 2:
+            return - 1
+
         start, end = 0, len(A) - 1
 
         while start + 1 < end:
             mid = start + (end - start) // 2
-            if A[mid] < A[mid + 1]:
+
+            if A[mid] <= A[mid + 1]:
                 start = mid
             else:
                 end  = mid
 
-        if A[start] < A[end]:
+        if A[start] <= A[end]:
             return end
-        else:
-            return start
+
+        return start
 
 
 # def main():
