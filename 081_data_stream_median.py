@@ -43,23 +43,31 @@ class Solution:
         Definition: median = A[(n - 1) / 2], according to problem statement.
         '''
         max_heap, min_heap = [], []
-        results = []
+        medians = []
 
         for num in nums:
             self.add_to_heap(max_heap, min_heap, num)
             self.balance_heaps(max_heap, min_heap)
-            median = - max_heap[0]
-            results.append(median)
+            self._add_median_from_heaps(medians, max_heap)
 
-        return results
+        return medians
 
 
     def add_to_heap(self, max_heap, min_heap, num):
-        # for the first element, it should belogn to max heap
-        if len(max_heap) == 0 or num < - max_heap[0]:
+        if len(max_heap) == 0:
             heappush(max_heap, - num)
-        else:
+            return
+
+        if num >= - max_heap[0]:
             heappush(min_heap, num)
+        else:
+            heappush(max_heap, - num)
+
+        # # for the first element, it should belogn to max heap
+        # if len(max_heap) == 0 or num < - max_heap[0]:
+        #     heappush(max_heap, - num)
+        # else:
+        #     heappush(min_heap, num)
 
 
     def balance_heaps(self, max_heap, min_heap):
@@ -72,6 +80,9 @@ class Solution:
         while len(max_heap) > len(min_heap) + 1:
             heappush(min_heap, - heappop(max_heap))
 
+
+    def _add_median_from_heaps(self, medians, max_heap):
+        medians.append(- max_heap[0])
 
 
 # def main():
