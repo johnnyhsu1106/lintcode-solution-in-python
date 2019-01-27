@@ -35,16 +35,18 @@ class Solution:
     """
 
     def countOfAirplanes_1(self, airplanes):
-        times = []
-        for airplane in airplanes:
-            times.append((airplane.start, 1)) # 1 stands for taking off
-            times.append((airplane.end, 0)) #  2 stands for landing
+        schedule = []
 
-        times.sort()
+        for airplane in airplanes:
+            schedule.append((airplane.start, True)) # True stands for taking off
+            schedule.append((airplane.end, False)) # False stands for landing
+
+        schedule.sort()
         count = 0
         max_count = 0
-        for time, flag in times:
-            if flag == 1:
+
+        for time, is_flying in schedule:
+            if is_flying:
                 count += 1
             else:
                 count -= 1
@@ -54,16 +56,17 @@ class Solution:
 
 
     def countOfAirplanes_2(self, airplanes):
-        times = []
+        schedule = []
+        
         for airplane in airplanes:
-            times.append((airplane.start, 1))
-            times.append((airplane.end, -1))
+            schedule.append((airplane.start, 1))
+            schedule.append((airplane.end, -1))
 
-        times = sorted(times, key = cmp_to_key(sorter))
+        schedule = sorted(schedule, key = cmp_to_key(sorter))
 
         count = 0
         max_count = 0
-        for time, delta in times:
+        for time, delta in schedule:
             count += delta
             max_count = max(max_count, count)
 

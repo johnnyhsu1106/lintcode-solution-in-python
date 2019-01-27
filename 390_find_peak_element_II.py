@@ -73,7 +73,7 @@ class Solution:
 
     def find_x_peak(self, A, y, up, down):
         max_value = float('-inf')
-
+                
         for x in range(up, down + 1):
             if A[x][y] > max_value:
                 max_value = A[x][y]

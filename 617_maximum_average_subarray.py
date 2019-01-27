@@ -9,20 +9,23 @@ class Solution:
 
         while right - left >= 1e-6:
             mid = left + (right - left) / 2.0
-            if self.is_valid(mid, nums, k):
+
+            if self._is_valid(mid, nums, k):
                 left = mid
             else:
                 right = mid
 
         return left
 
-    def is_valid(self, num, nums, k):
+
+    def _is_valid(self, num, nums, k):
         min_presum = 0
         pre_sum = [0 for i in range(len(nums) + 1)]
         pre_sum[0] = 0
 
         for i in range(1, len(nums)+ 1):
             pre_sum[i] = pre_sum[i - 1] + nums[i - 1] - num
+
             if i >= k and pre_sum[i] - min_presum >= 0:
                 return True
             if i >= k:

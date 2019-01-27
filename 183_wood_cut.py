@@ -5,7 +5,7 @@ you could have equal or more than k pieces with the same length.
 What is the longest length you can get from the n pieces of wood?
 Given L & k, return the maximum length of the small pieces.
 
- Notice
+Notice
 
 You couldn't cut wood into float length.
 
@@ -28,21 +28,24 @@ class Solution:
             return 0
 
         start, end = 1, max(L) # define the range
+
         while start + 1 < end:
             mid = start + (end - start) // 2
 
-            if self.count_piece(L, mid) >= k:
+            if self._count_piece(L, mid) >= k:
                 start = mid
             else:
                 end = mid
 
-        if self.count_piece(L, end) >= k:
+        if self._count_piece(L, end) >= k:
             return end
+
         return start
 
-
-    def count_piece(self, L, length):
+ 
+    def _count_piece(self, L, length):
         piece = 0
+
         for wood_length in L:
             piece += wood_length // length
 

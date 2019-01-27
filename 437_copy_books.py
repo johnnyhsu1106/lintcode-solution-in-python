@@ -24,25 +24,26 @@ class Solution:
     @return: an integer
     """
     def copyBooks(self, pages, k):
-        if pages is None or len(pages) == 0 or k <= 0:
+        if not pages or k <= 0:
             return 0
-        # time from max(pages), if k is len(nums), to sum(pags), if k = 1
+        # time from max(pages), if k is len(pages), to sum(pags), if k = 1
         start, end = max(pages), sum(pages)
-        print(start, end)
+
         while start + 1 < end:
              mid = start + (end - start) // 2
-             print(mid)
-             if self.count_copier(pages, mid) <= k:
+
+             if self._count_copier(pages, mid) <= k:
                  end = mid
-             elif self.count_copier(pages, mid) > k:
+             elif self._count_copier(pages, mid) > k:
                  start = mid
 
-        if self.count_copier(pages, start) <= k:
+        if self._count_copier(pages, start) <= k:
             return start
+
         return end
 
 
-    def count_copier(self, pages, time):
+    def _count_copier(self, pages, time):
         copiers = 1
         total = pages[0]
 

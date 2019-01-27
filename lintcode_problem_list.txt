@@ -1,4 +1,4 @@
- 1 - strStr & Coding Style
+  1 - strStr & Coding Style
     013. strStr
     018. Subsets II
     017. Subsets
@@ -224,7 +224,7 @@
     362. Sliding Window Maximum Super
 
 4 - Binary Search + Sweep Line
-    141. Sqrt(x) Easy
+    141. Sqrt(x)
     617. Maximum Average Subarray
     586. Sqrt(x) II
     391. Number of Airplanes in the Sky
@@ -234,3 +234,5 @@
     437. Copy Books
     390. Find Peak Element II
     183. Wood Cut
+    633. Find the Duplicate Number
+    131. The Skyline Problem
