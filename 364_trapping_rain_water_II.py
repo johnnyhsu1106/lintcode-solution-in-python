@@ -44,7 +44,7 @@ class Solution:
             visited_matrix[m - 1][y] = True
 
         # BFS ... using min_heap as queue (priority queue), 2D visited_matrix as set
-        result = 0
+        amount = 0
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
         while min_heap:
@@ -59,10 +59,10 @@ class Solution:
                     heappush(min_heap, (max(h, new_h), new_x, new_y))
                     visited_matrix[new_x][new_y] = True
                     # if new_h < h:
-                        # result += h - new_h
-                    result += max(0, h - new_h) # above two lines is equal to this line
+                        # amount += h - new_h
+                    amount += max(0, h - new_h) # above two lines is equal to this line
 
-        return result
+        return amount
 
 
     def _is_bound(self, x, y, m, n):

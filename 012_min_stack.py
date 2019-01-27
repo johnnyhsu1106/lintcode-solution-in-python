@@ -35,28 +35,28 @@ class MinStack:
         # stack.pop() is equal to list.pop()
         # stack.push() is equal to list.append()
         self.items = []
-        self.mins = [] # use the stack to store all min values.
+        self.min_stack = [] # use the stack to store all min values.
 
 
     def push(self, number):
         self.items.append(number)
 
-        if len(self.mins) == 0:
-            self.mins.append(number)
+        if len(self.min_stack) == 0:
+            self.min_stack.append(number)
         else:
-            self.mins.append(min(self.mins[-1], number))
+            self.min_stack.append(min(self.min_stack[-1], number))
 
 
     def pop(self):
         if len(self.items) == 0:
             return None
 
-        self.mins.pop()
+        self.min_stack.pop()
         return self.items.pop()
 
 
     def min(self):
-        return self.mins[-1]
+        return self.min_stack[-1]
 
 
 # def main():

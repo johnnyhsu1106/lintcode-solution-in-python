@@ -36,17 +36,27 @@ class Solution:
         while left < right:
             if left_height <= right_height:
                 left += 1
+                amount += max(0, left_height - heights[left])
+                left_height = max(left_height, heights[left])
+                # above two lines is equal to the following commented code
+                '''
                 if heights[left] <= left_height:
                     amount += left_height - heights[left]
                 else:
                     left_height = heights[left]
+                '''
 
             else:
                 right -= 1
-                if heights[right] <= right_height:
-                    amount += right_height - heights[right]
+                amount += max(0, right_height - heights[right])
+                right_height = max(right_height, heights[right])
+                # above two lines is equal to the following commented code
+                '''
+                if heights[right] <= right_right:
+                    amount += right_right - heights[right]
                 else:
-                    right_height = heights[right]
+                    right_right = heights[right]
+                '''
 
         return amount
 
