@@ -28,10 +28,9 @@ class Solution:
         if not triangle:
             return -1
 
-        n = len(triangle)
         # From Bottom to Top
-        # initail the dp
-        dp = [[0] * n  for i in range(n)]
+        n = len(triangle)
+        dp = [[0] * n  for i in range(n)] # initail the dp
         # in last row
         for y in range(n):
             dp[n - 1][y] = triangle[n - 1][y]
