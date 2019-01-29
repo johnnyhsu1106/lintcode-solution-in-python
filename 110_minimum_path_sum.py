@@ -13,25 +13,28 @@ class Solution:
     @return: An integer, minimizes the sum of all numbers along its path
     """
     def minPathSum(self, grid):
-
         if not grid or len(grid) == 0 or len(grid[0]) == 0:
-            return
+            return -1
 
         m, n = len(grid), len(grid[0])
-        dp = [[0] * n for i in range(m)]
-        dp[0][0] = grid[0][0]
+        dp = [[0] * n for x in range(m)]
 
+        # initialize dp at starting point
+        dp[0][0] = grid[0][0]
+        # iniitalize dp at x direction (first column)
         for x in range(1, m):
             dp[x][0] = dp[x - 1][0] + grid[x][0]
-
+        # initialize dp at y direction (first row)
         for y in range(1, n):
             dp[0][y] = dp[0][y - 1] + grid[0][y]
-
+        # start to update the status
         for x in range(1, m):
             for y in range(1, n):
                 dp[x][y] = min(dp[x - 1][y], dp[x][y - 1]) + grid[x][y]
 
         return dp[m - 1][n - 1]
+
+
 
 
 

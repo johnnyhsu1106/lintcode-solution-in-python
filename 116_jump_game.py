@@ -31,7 +31,7 @@ class Solution:
     @return: A boolean
     """
     def canJump(self, A):
-        if not A or len(A) == 0:
+        if not A:
             return False
 
         n = len(A)
@@ -39,11 +39,11 @@ class Solution:
         can[0] = True
         #  can[i] is determind by the can[0].. can[i - 1]
         #  can[j] = True and A[j] (jump distance) >= i - j (the distance between i and j)
-        for i in range(1, len(A)):
+        for i in range(1, n):
             for j in range(i):
 
                 if can[j] and A[j] >= i - j:
                     can[i] = True
                     break
 
-        return can[len(A) -1]
+        return can[n - 1]

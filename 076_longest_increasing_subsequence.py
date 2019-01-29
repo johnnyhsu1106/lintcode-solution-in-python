@@ -26,17 +26,15 @@ class Solution:
     @return: The length of LIS (longest increasing subsequence)
     """
     def longestIncreasingSubsequence(self, nums):
-        if not nums or len(nums) == 0:
-            return 0
-        n = len(nums)
+        if not nums:
+            return
 
-        # initialize DP
-        dp = [1] * n
-        #  the above code can be dp = [1] * n
+        n = len(nums)
+        dp = [1] * n # initialize DP
 
         for i in range(1, n):
             for j in range(i):
-                if nums[i] > nums[j]:
+                if nums[j] < nums[i]:
                     dp[i] = max(dp[j] + 1, dp[i])
 
         return max(dp)

@@ -18,7 +18,7 @@ class Solution:
     @return: An integer
     """
     def jump(self, A):
-        if not A or len(A) == 0:
+        if not A:
             return 0
 
         n = len(A)
@@ -32,6 +32,7 @@ class Solution:
             for j in range(i):
                 if steps[j] != float('inf') and A[j] >= i - j:
                     steps[i] = min(steps[i], steps[j] + 1)
+
         return steps[n - 1]
 
 
