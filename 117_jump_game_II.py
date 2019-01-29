@@ -22,9 +22,9 @@ class Solution:
             return 0
 
         n = len(A)
-        steps = [0] * n
-
+        steps = [0 for i in range(n)]
         steps[0] = 0
+        
         for i in range(1, n):
             steps[i] = float('inf')
 

@@ -23,43 +23,40 @@ The total number of unique paths is 2.
 '''
 class Solution:
     """
-    @param: obstacleGrid: A list of lists of integers
+    @param obstacleGrid: A list of lists of integers
     @return: An integer
     """
     def uniquePathsWithObstacles(self, obstacleGrid):
-
-        if not obstacleGrid or len(obstacleGrid) == 0 or len(obstacleGrid[0]) == 0:
+        if not obstacleGrid or len(obstacleGrid) == 0 or len(obstacleGrid[0]) == 0 or obstacleGrid[0][0] == 1:
             return 0
 
-        # initialize
         m, n = len(obstacleGrid), len(obstacleGrid[0])
-        paths = [[0] * n for i in range(m)]
-
-        if obstacleGrid[0][0] == 1:
-            paths[0][0] = 0
-        else:
-            paths[0][0] = 1
-
+        dp = [[0] * n for x in range(m)]
+        dp[0][0] = 1 # at staring point, the number of unique path is 1
+        # at the first column except starting point,
+        # the number of paths is determined by the previous paths from the point above
         for x in range(1, m):
             if obstacleGrid[x][0] == 1:
                 break
-            paths[x][0] = paths[x - 1][0]
 
+            dp[x][0] = dp[x - 1][0]
+
+        # at the first row except starting point,
+        # the number of paths is determined by the previous paths from the point on the left
         for y in range(1, n):
             if obstacleGrid[0][y] == 1:
                 break
-            paths[0][y] = paths[0][y - 1]
 
-        # DP
+            dp[0][y] = dp[0][y - 1]
+
+        # update the number of paths at each point if no obstacle at point(x, y)
         for x in range(1, m):
             for y in range(1, n):
                 if obstacleGrid[x][y] == 0:
-                    paths[x][y] = paths[x][y - 1] + paths[x - 1][y]
-                else:
-                    paths[x][y] = 0
+                    dp[x][y] = dp[x - 1][y] + dp[x][y - 1]
 
-        return paths[m - 1][n - 1]
 
+        return dp[m - 1][n - 1]
 
 # def main():
 #     s = Solution()

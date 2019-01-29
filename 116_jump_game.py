@@ -35,10 +35,10 @@ class Solution:
             return False
 
         n = len(A)
-        can = [False] * n
+        can = [False for i in range(n)]
         can[0] = True
         #  can[i] is determind by the can[0].. can[i - 1]
-        #  can[j] = True and A[j] (jump distance) >= i - j (the distance between i and j)
+        #  can[j] = True and A[j] (jump distance) >= i - j (the distance between i and j) , i > j
         for i in range(1, n):
             for j in range(i):
 

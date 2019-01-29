@@ -20,20 +20,20 @@ class Solution:
     @return: An integer
     """
     def uniquePaths(self, m, n):
-        paths = [[0] * n for i in range(m)]
-        # initial rows
+        paths = [[0] * n for x in range(m)]
+        # initial dp at starting point
         paths[0][0] = 1
-
+        # initialize dp at firsts column
         for x in range(1, m):
             paths[x][0] = paths[x - 1][0]
-        # initail columns
+        # initail dp at first row
         for y in range(1, n):
             paths[0][y] = paths[0][y - 1]
-
+        # update the dp's status
         for x in range(1, m):
             for y in range(1, n):
                 paths[x][y] = paths[x -1][y] + paths[x][y - 1]
- 
+
         return paths[m - 1][n - 1]
 
 
