@@ -24,7 +24,7 @@ class Solution:
 
         nums.sort()
         left, right = 0, len(nums) - 1
-        count = 0
+        num_of_pairs = 0
 
         while left < right:
             total = nums[left] + nums[right]
@@ -36,7 +36,7 @@ class Solution:
                 left += 1
 
             else:
-                count += 1
+                num_of_pairs += 1
                 left += 1
                 right -= 1
                 # skip the duplicate (inner loop: nleft <right must be satisfied)
@@ -46,7 +46,7 @@ class Solution:
                 while left < right and nums[right] == nums[right + 1]:
                     right -= 1
 
-        return count
+        return num_of_pairs
 
 
 

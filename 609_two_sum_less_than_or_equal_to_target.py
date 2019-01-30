@@ -23,12 +23,12 @@ class Solution:
         Time: O(n^2)
         Space: O(1)
         '''
-        count = 0
+        num_of_pairs = 0
         for i in range(len(nums)-1):
             for j in range(i+1,len(nums)):
                 if nums[i] + nums[j] <= target:
-                    count += 1
-        return count
+                    num_of_pairs += 1
+        return num_of_pairs
 
 
     def twoSum5_2(self, nums, target):
@@ -39,7 +39,7 @@ class Solution:
         if not nums or len(nums) < 2:
             return 0
 
-        count = 0
+        num_of_pairs = 0
         left , right = 0, len(nums) - 1
         nums.sort()
 
@@ -47,9 +47,9 @@ class Solution:
             if nums[right] + nums[left] > target:
                 right -= 1
             else:
-                count += right - left
+                num_of_pairs += right - left
                 left += 1
-        return count
+        return num_of_pairs
 
 
 # def main():
