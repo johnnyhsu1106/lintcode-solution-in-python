@@ -26,7 +26,7 @@ class Solution:
     @return: The length of LIS (longest increasing subsequence)
     """
     def longestIncreasingSubsequence(self, nums):
-        if not nums:
+        if not nums: 
             return
 
         n = len(nums)

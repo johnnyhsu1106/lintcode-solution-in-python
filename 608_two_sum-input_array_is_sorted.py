@@ -1,5 +1,5 @@
 '''
-Given an array of integers that is already sorted in ascending order,
+Given an array of integers that is already sorted in ascrighting order,
 find two numbers such that they add up to a specific target number.
 
 The function twoSum should return indices of the two numbers such that they add up to the target,
@@ -22,12 +22,12 @@ class Solution:
     @return: [index1 + 1, index2 + 1] (index1 < index2)
     """
     def twoSum(self, nums, target):
-        start, end = 0, len(nums) - 1
+        left, right = 0, len(nums) - 1
 
-        while start < end:
-            if nums[start] + nums[end] < target:
-                start += 1
-            elif nums[start] + nums[end] > target:
-                end -= 1
+        while left < right:
+            if nums[left] + nums[right] < target:
+                left += 1
+            elif nums[left] + nums[right] > target:
+                right -= 1
             else:
-                return [start + 1, end + 1]
+                return [left + 1, right + 1]

@@ -1,22 +1,25 @@
 class Solution:
     def twoSumClosest(self, nums, target):
-        if not nums or len(nums) == 0:
-            return -1;
+        if not nums:
+            return target;
 
         nums.sort()
         left, right = 0, len(nums) - 1
         diff = float('inf')
 
         while left < right:
-            diff = min(diff, abs(target - (nums[right] + nums[left])))
-            if nums[left] + nums [right] == target:
-                return 0
-            elif nums[left] + nums[right] > target:
+            total = nums[left] + nums[right]
+
+            if total < target:
+                min_diff = min(min_diff, target - total)
+                left += 1
+            elif total > target:
+                min_diff = min(min_diff, total - target)
                 right -= 1
             else:
-                left += 1
+                return 0
 
-        return diff
+        return min_diff
 
 
 # def main():
